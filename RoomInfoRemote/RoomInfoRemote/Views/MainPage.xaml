@@ -6,11 +6,7 @@
             xmlns:extension="clr-namespace:RoomInfoRemote.Extension;assembly=RoomInfoRemote"
             x:Class="RoomInfoRemote.Views.MainPage"
             Title="{Binding Title}"
-            android:TabbedPage.ToolbarPlacement="Bottom">
-    <NavigationPage Title="{extension:Translate RoomsTabTitle}">
-        <x:Arguments>
-            <local:RoomsPage/>
-        </x:Arguments>
-    </NavigationPage>
+            android:TabbedPage.ToolbarPlacement="Bottom">    
+            <local:RoomsPage Title="{extension:Translate RoomsTabTitle}"/>        
     <local:SettingsPage Title="{extension:Translate SettingsTabTitle}"/>
 </TabbedPage>
