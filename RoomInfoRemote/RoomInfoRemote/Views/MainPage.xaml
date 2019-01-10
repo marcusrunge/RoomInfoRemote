@@ -1,15 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             xmlns:local="clr-namespace:RoomInfoRemote.Views;assembly=RoomInfoRemote"
-             x:Class="RoomInfoRemote.Views.MainPage"
-             Title="{Binding Title}"
-             android:TabbedPage.ToolbarPlacement="Bottom">    
-    <NavigationPage Title="Rooms" >
+            xmlns:extension="clr-namespace:RoomInfoRemote.Extension;assembly=RoomInfoRemote"
+            x:Class="RoomInfoRemote.Views.MainPage"
+            Title="{Binding Title}"
+            android:TabbedPage.ToolbarPlacement="Bottom">
+    <NavigationPage Title="{extension:Translate RoomsTabTitle}">
         <x:Arguments>
             <local:RoomsPage/>
         </x:Arguments>
     </NavigationPage>
-    <local:SettingsPage Title="Settings"/>
+    <local:SettingsPage Title="{extension:Translate SettingsTabTitle}"/>
 </TabbedPage>

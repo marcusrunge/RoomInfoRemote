@@ -1,7 +1,9 @@
 ﻿using Prism;
 using Prism.Ioc;
+using RoomInfoRemote.Interfaces;
 using RoomInfoRemote.ViewModels;
 using RoomInfoRemote.Views;
+using System.Reflection;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -21,7 +23,13 @@ namespace RoomInfoRemote
 
         protected override async void OnInitialized()
         {
-            InitializeComponent();
+            InitializeComponent();            
+            if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
+            {
+                var ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                Resx.AppResources.Culture = ci;
+                DependencyService.Get<ILocalize>().SetLocale(ci);
+            }
 
             await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
