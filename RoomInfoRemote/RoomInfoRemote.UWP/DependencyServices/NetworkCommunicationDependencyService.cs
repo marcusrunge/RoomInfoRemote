@@ -13,6 +13,8 @@ namespace RoomInfoRemote.UWP.DependencyServices
 {
     public class NetworkCommunicationDependencyService : INetworkCommunication
     {
+        StreamSocketListener _streamSocketListener;
+        DatagramSocket _datagramSocket;
         public event EventHandler<ConnectionReceivedEventArgs> ConnectionReceived;
 
         public async Task SendPayload(string payload, string hostName, string port, NetworkProtocol networkProtocol, bool broadcast = false)
@@ -96,7 +98,7 @@ namespace RoomInfoRemote.UWP.DependencyServices
         {
             try
             {
-                var _streamSocketListener = new StreamSocketListener();
+                _streamSocketListener = new StreamSocketListener();
                 _streamSocketListener.ConnectionReceived += async (s, e) =>
                 {
                     using (Stream inputStream = e.Socket.InputStream.AsStreamForRead())
@@ -121,15 +123,15 @@ namespace RoomInfoRemote.UWP.DependencyServices
         {
             try
             {
-                var datagramSocket = new DatagramSocket();
-                datagramSocket.MessageReceived += async (s, e) =>
+                _datagramSocket = new DatagramSocket();
+                _datagramSocket.MessageReceived += async (s, e) =>
                 {                    
                     uint stringLength = e.GetDataReader().UnconsumedBufferLength;
                     OnConnectionReceived(new ConnectionReceivedEventArgs(e.RemotePort, e.GetDataReader().ReadString(stringLength)));
                     await s.CancelIOAsync();
                     s.Dispose();
                 };
-                await datagramSocket.BindServiceNameAsync(port);
+                await _datagramSocket.BindServiceNameAsync(port);
             }
             catch (Exception ex)
             {
