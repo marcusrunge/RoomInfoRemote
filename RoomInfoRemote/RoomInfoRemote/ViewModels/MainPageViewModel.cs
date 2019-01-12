@@ -23,7 +23,7 @@ namespace RoomInfoRemote.ViewModels
             base.OnNavigatedTo(parameters);
             if (string.IsNullOrEmpty(Settings.TcpPort)) Settings.TcpPort = "8273";
             if (string.IsNullOrEmpty(Settings.UdpPort)) Settings.UdpPort = "8274";
-            DependencyService.Get<INetworkCommunication>().StartConnectionListener(Settings.TcpPort, NetworkProtocol.TransmissionControl);
+            DependencyService.Get<INetworkCommunication>(DependencyFetchTarget.GlobalInstance).StartConnectionListener(Settings.TcpPort, NetworkProtocol.TransmissionControl);
         }
 
         private ICommand _notifyCurrentPageChangedCommand;

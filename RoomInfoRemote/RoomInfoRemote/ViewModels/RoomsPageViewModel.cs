@@ -21,7 +21,7 @@ namespace RoomInfoRemote.ViewModels
         public RoomsPageViewModel(INavigationService navigationService, IEventAggregator eventAggregator) : base(navigationService)
         {
             RoomItems = new ObservableCollection<RoomItem>();
-            _networkCommunication = DependencyService.Get<INetworkCommunication>();
+            _networkCommunication = DependencyService.Get<INetworkCommunication>(DependencyFetchTarget.GlobalInstance);
             _eventAggregator = eventAggregator;
             _networkCommunication.ConnectionReceived += (s, e) => ProcessPackage(JsonConvert.DeserializeObject<Package>(e.Package), e.HostName);
             _networkCommunication.SendPayload(null, null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
