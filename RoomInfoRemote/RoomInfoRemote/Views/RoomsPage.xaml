@@ -6,5 +6,13 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoomInfoRemote.Views.RoomsPage"
              NavigationPage.HasNavigationBar="false">
-    <ListView ItemsSource="{Binding RoomItem, Mode=OneWay, UpdateSourceEventName=ValueChanged}"/>
+    <ListView ItemsSource="{Binding RoomItems, Mode=OneWay, UpdateSourceEventName=ValueChanged}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Label Text="{Binding Room.RoomName}"/>
+                </Grid>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>

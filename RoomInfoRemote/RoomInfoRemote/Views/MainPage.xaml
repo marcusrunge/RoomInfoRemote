@@ -4,9 +4,19 @@
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             xmlns:local="clr-namespace:RoomInfoRemote.Views;assembly=RoomInfoRemote"
             xmlns:extension="clr-namespace:RoomInfoRemote.Extension;assembly=RoomInfoRemote"
+            xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+            xmlns:converters="clr-namespace:Prism.Converters;assembly=Prism.Forms"
             x:Class="RoomInfoRemote.Views.MainPage"
+            x:Name="tabbedPage"
             Title="{Binding Title}"
-            android:TabbedPage.ToolbarPlacement="Bottom">    
-            <local:RoomsPage Title="{extension:Translate RoomsTabTitle}"/>        
+            android:TabbedPage.ToolbarPlacement="Bottom">
+    <TabbedPage.Resources>
+        <ResourceDictionary>            
+        </ResourceDictionary>
+    </TabbedPage.Resources>
+    <TabbedPage.Behaviors>
+        <behaviors:EventToCommandBehavior EventName="CurrentPageChanged" Command="{Binding NotifyCurrentPageChangedCommand}" CommandParameter="{x:Reference tabbedPage}"/>
+    </TabbedPage.Behaviors>
+    <local:RoomsPage Title="{extension:Translate RoomsTabTitle}"/>        
     <local:SettingsPage Title="{extension:Translate SettingsTabTitle}"/>
 </TabbedPage>

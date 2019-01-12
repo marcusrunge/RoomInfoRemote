@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RoomInfoRemote.Helper
+namespace RoomInfoRemote.Helpers
 {
     public class PlatformCulture
     {

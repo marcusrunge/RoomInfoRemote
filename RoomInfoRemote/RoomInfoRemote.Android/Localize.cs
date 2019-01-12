@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using System.Threading;
-using RoomInfoRemote.Helper;
+using RoomInfoRemote.Helpers;
 using RoomInfoRemote.Interfaces;
 using Xamarin.Forms;
 

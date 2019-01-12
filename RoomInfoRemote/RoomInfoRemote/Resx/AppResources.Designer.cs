@@ -70,6 +70,69 @@ namespace RoomInfoRemote.Resx {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Port selection ähnelt.
+        /// </summary>
+        internal static string SettingsPage_Ports {
+            get {
+                return ResourceManager.GetString("SettingsPage_Ports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die TCP-Port: ähnelt.
+        /// </summary>
+        internal static string SettingsPage_TcpPort {
+            get {
+                return ResourceManager.GetString("SettingsPage_TcpPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dark ähnelt.
+        /// </summary>
+        internal static string SettingsPage_Theme_Dark {
+            get {
+                return ResourceManager.GetString("SettingsPage_Theme_Dark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Default ähnelt.
+        /// </summary>
+        internal static string SettingsPage_Theme_Default {
+            get {
+                return ResourceManager.GetString("SettingsPage_Theme_Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Light ähnelt.
+        /// </summary>
+        internal static string SettingsPage_Theme_Light {
+            get {
+                return ResourceManager.GetString("SettingsPage_Theme_Light", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Theme selection ähnelt.
+        /// </summary>
+        internal static string SettingsPage_Themes {
+            get {
+                return ResourceManager.GetString("SettingsPage_Themes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die UDP-Port: ähnelt.
+        /// </summary>
+        internal static string SettingsPage_UdpPort {
+            get {
+                return ResourceManager.GetString("SettingsPage_UdpPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Settings ähnelt.
         /// </summary>
         internal static string SettingsTabTitle {

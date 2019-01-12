@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RoomInfoRemote.UWP.DependencyServices;
+using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -43,6 +44,8 @@ namespace RoomInfoRemote.UWP
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 Xamarin.Forms.Forms.Init(e);
+
+                Xamarin.Forms.DependencyService.Register<NetworkCommunicationDependencyService>();
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {

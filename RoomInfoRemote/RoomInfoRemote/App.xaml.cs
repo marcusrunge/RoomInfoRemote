@@ -3,7 +3,6 @@ using Prism.Ioc;
 using RoomInfoRemote.Interfaces;
 using RoomInfoRemote.ViewModels;
 using RoomInfoRemote.Views;
-using System.Reflection;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
