@@ -14,5 +14,8 @@ namespace RoomInfoRemote.Models
 
         int _occupancy = default(int);
         public int Occupancy { get => _occupancy; set { SetProperty(ref _occupancy, value); } }
+
+        //object _reserved = default(object);
+        //public object Reserved { get => _reserved; set { SetProperty(ref _reserved, value); } }
     }
 }

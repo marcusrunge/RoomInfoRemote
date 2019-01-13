@@ -20,11 +20,11 @@ namespace RoomInfoRemote.ViewModels
 
         public RoomsPageViewModel(INavigationService navigationService, IEventAggregator eventAggregator) : base(navigationService)
         {
-            RoomItems = new ObservableCollection<RoomItem>();
+            if (RoomItems == null) RoomItems = new ObservableCollection<RoomItem>();
             _networkCommunication = DependencyService.Get<INetworkCommunication>(DependencyFetchTarget.GlobalInstance);
             _eventAggregator = eventAggregator;
             _networkCommunication.ConnectionReceived += (s, e) => ProcessPackage(JsonConvert.DeserializeObject<Package>(e.Package), e.HostName);
-            _networkCommunication.SendPayload(null, null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
+            _networkCommunication.SendPayload("", null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
             _eventAggregator.GetEvent<CurrentPageChangedEvent>().Subscribe((e) =>
             {
                 if (e == typeof(RoomsPage)) _networkCommunication.SendPayload(null, null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
@@ -33,13 +33,13 @@ namespace RoomInfoRemote.ViewModels
 
         private void ProcessPackage(Package package, string hostName)
         {
-            System.Diagnostics.Debug.WriteLine("ProcessPackage");
             switch ((PayloadType)package.PayloadType)
             {
                 case PayloadType.Occupancy:
                     break;
                 case PayloadType.Room:
-                    RoomItems.Add(new RoomItem() { Room = (Room)package.Payload, HostName = hostName });
+                    if (RoomItems == null) RoomItems = new ObservableCollection<RoomItem>();
+                    Device.BeginInvokeOnMainThread(() => RoomItems.Add(new RoomItem() { Room = JsonConvert.DeserializeObject<Room>(package.Payload.ToString()), HostName = hostName }));
                     break;
                 case PayloadType.Schedule:
                     break;

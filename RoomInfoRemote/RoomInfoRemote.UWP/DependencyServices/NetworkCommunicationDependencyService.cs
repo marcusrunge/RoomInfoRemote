@@ -17,6 +17,11 @@ namespace RoomInfoRemote.UWP.DependencyServices
         DatagramSocket _datagramSocket;
         public event EventHandler<ConnectionReceivedEventArgs> ConnectionReceived;
 
+        public NetworkCommunicationDependencyService()
+        {
+            System.Diagnostics.Debug.WriteLine("NetworkCommunicationDependencyService Constructor called...");
+        }
+
         public async Task SendPayload(string payload, string hostName, string port, NetworkProtocol networkProtocol, bool broadcast = false)
         {
             switch (networkProtocol)
@@ -47,7 +52,8 @@ namespace RoomInfoRemote.UWP.DependencyServices
                             await streamWriter.WriteLineAsync(payload);
                             await streamWriter.FlushAsync();
                         }
-                    }                    
+                    }
+                    datagramSocket.Dispose();
                 }
             }
             catch (Exception ex)
@@ -108,8 +114,7 @@ namespace RoomInfoRemote.UWP.DependencyServices
                             OnConnectionReceived(new ConnectionReceivedEventArgs(e.Socket.Information.RemotePort, await streamReader.ReadLineAsync()));
                         }
                     }
-                    await s.CancelIOAsync();
-                    s.Dispose();
+                    e.Socket.Dispose();
                 };
                 await _streamSocketListener.BindServiceNameAsync(port);
             }
@@ -124,12 +129,10 @@ namespace RoomInfoRemote.UWP.DependencyServices
             try
             {
                 _datagramSocket = new DatagramSocket();
-                _datagramSocket.MessageReceived += async (s, e) =>
+                _datagramSocket.MessageReceived += (s, e) =>
                 {                    
                     uint stringLength = e.GetDataReader().UnconsumedBufferLength;
                     OnConnectionReceived(new ConnectionReceivedEventArgs(e.RemotePort, e.GetDataReader().ReadString(stringLength)));
-                    await s.CancelIOAsync();
-                    s.Dispose();
                 };
                 await _datagramSocket.BindServiceNameAsync(port);
             }

@@ -6,12 +6,16 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoomInfoRemote.Views.RoomsPage"
              NavigationPage.HasNavigationBar="false">
-    <ListView ItemsSource="{Binding RoomItems, Mode=OneWay, UpdateSourceEventName=ValueChanged}">
+    <ListView ItemsSource="{Binding RoomItems}" HasUnevenRows="True" SeparatorVisibility="None" VerticalOptions="FillAndExpand">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <Grid>
-                    <Label Text="{Binding Room.RoomName}"/>
-                </Grid>
+                <ViewCell>
+                    <ViewCell.View>
+                        <StackLayout>
+                            <Label Text="{Binding Room.RoomName}"/>
+                        </StackLayout>
+                    </ViewCell.View>
+                </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
