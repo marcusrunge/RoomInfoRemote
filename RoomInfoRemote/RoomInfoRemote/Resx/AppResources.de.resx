@@ -144,4 +144,22 @@
   <data name="SettingsTabTitle" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
+  <data name="RoomsPage_Occupancy_Absent" xml:space="preserve">
+    <value>ABWESEND</value>
+  </data>
+  <data name="RoomsPage_Occupancy_Busy" xml:space="preserve">
+    <value>BESCHÄFTIGT</value>
+  </data>
+  <data name="RoomsPage_Occupancy_Free" xml:space="preserve">
+    <value>FREI</value>
+  </data>
+  <data name="RoomsPage_Occupancy_Locked" xml:space="preserve">
+    <value>GESPERRT</value>
+  </data>
+  <data name="RoomsPage_Occupancy_Occupied" xml:space="preserve">
+    <value>BELEGT</value>
+  </data>
+  <data name="RoomsPage_Occupancy_Present" xml:space="preserve">
+    <value>ANWESENT</value>
+  </data>
 </root>

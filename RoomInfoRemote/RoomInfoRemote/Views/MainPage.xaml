@@ -10,6 +10,9 @@
             x:Name="tabbedPage"
             Title="{Binding Title}"
             android:TabbedPage.ToolbarPlacement="Bottom">
+    <NavigationPage.TitleView>
+        <Button Text="Refresh" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,12,0" Command="{Binding NotifyButtonPressedCommand}" CommandParameter="0" IsVisible="{Binding IsRefreshButtonVisible}"/>
+    </NavigationPage.TitleView>
     <TabbedPage.Resources>
         <ResourceDictionary>            
         </ResourceDictionary>

@@ -15,7 +15,7 @@ namespace RoomInfoRemote.UWP.DependencyServices
     {
         StreamSocketListener _streamSocketListener;
         DatagramSocket _datagramSocket;
-        public event EventHandler<ConnectionReceivedEventArgs> ConnectionReceived;
+        public event EventHandler<PayloadReceivedEventArgs> PayloadReceived;
 
         public NetworkCommunicationDependencyService()
         {
@@ -76,7 +76,14 @@ namespace RoomInfoRemote.UWP.DependencyServices
                             await streamWriter.WriteLineAsync(payload);
                             await streamWriter.FlushAsync();
                         }
-                    }                    
+                    }
+                    using (Stream inputStream = streamSocket.InputStream.AsStreamForRead())
+                    {
+                        using (StreamReader streamReader = new StreamReader(inputStream))
+                        {
+                            OnPayloadReceived(new PayloadReceivedEventArgs(streamSocket.Information.RemotePort, await streamReader.ReadLineAsync()));
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -111,7 +118,7 @@ namespace RoomInfoRemote.UWP.DependencyServices
                     {
                         using (StreamReader streamReader = new StreamReader(inputStream))
                         {                            
-                            OnConnectionReceived(new ConnectionReceivedEventArgs(e.Socket.Information.RemotePort, await streamReader.ReadLineAsync()));
+                            OnPayloadReceived(new PayloadReceivedEventArgs(e.Socket.Information.RemotePort, await streamReader.ReadLineAsync()));
                         }
                     }
                     e.Socket.Dispose();
@@ -132,7 +139,7 @@ namespace RoomInfoRemote.UWP.DependencyServices
                 _datagramSocket.MessageReceived += (s, e) =>
                 {                    
                     uint stringLength = e.GetDataReader().UnconsumedBufferLength;
-                    OnConnectionReceived(new ConnectionReceivedEventArgs(e.RemotePort, e.GetDataReader().ReadString(stringLength)));
+                    OnPayloadReceived(new PayloadReceivedEventArgs(e.RemotePort, e.GetDataReader().ReadString(stringLength)));
                 };
                 await _datagramSocket.BindServiceNameAsync(port);
             }
@@ -142,6 +149,6 @@ namespace RoomInfoRemote.UWP.DependencyServices
             }
         }
 
-        void OnConnectionReceived(ConnectionReceivedEventArgs e) => ConnectionReceived?.Invoke(null, e);
+        void OnPayloadReceived(PayloadReceivedEventArgs e) => PayloadReceived?.Invoke(null, e);
     }
 }

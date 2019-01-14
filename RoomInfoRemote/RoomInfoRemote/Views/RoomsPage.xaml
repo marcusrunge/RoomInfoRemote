@@ -5,15 +5,32 @@
              xmlns:extension="clr-namespace:RoomInfoRemote.Extension;assembly=RoomInfoRemote"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoomInfoRemote.Views.RoomsPage"
-             NavigationPage.HasNavigationBar="false">
-    <ListView ItemsSource="{Binding RoomItems}" HasUnevenRows="True" SeparatorVisibility="None" VerticalOptions="FillAndExpand">
+             NavigationPage.HasNavigationBar="false">    
+    <ListView ItemsSource="{Binding RoomItems}" HasUnevenRows="True" SeparatorVisibility="None" VerticalOptions="FillAndExpand" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <ViewCell.View>
-                        <StackLayout>
-                            <Label Text="{Binding Room.RoomName}"/>
-                        </StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout>
+                                <Label Text="{Binding Room.RoomName}" FontSize="Medium"/>
+                                <Label Text="{Binding Room.RoomNumber}" FontSize="Medium"/>
+                            </StackLayout>
+                            <Picker Grid.Column="1" SelectedIndex="{Binding Room.Occupancy, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" FontSize="Large">
+                                <Picker.Items>
+                                    <extension:Translate Text="RoomsPage_Occupancy_Free"/>
+                                    <extension:Translate Text="RoomsPage_Occupancy_Present"/>
+                                    <extension:Translate Text="RoomsPage_Occupancy_Absent"/>
+                                    <extension:Translate Text="RoomsPage_Occupancy_Busy"/>
+                                    <extension:Translate Text="RoomsPage_Occupancy_Occupied"/>
+                                    <extension:Translate Text="RoomsPage_Occupancy_Locked"/>
+                                </Picker.Items>
+                            </Picker>
+                        </Grid>                        
                     </ViewCell.View>
                 </ViewCell>
             </DataTemplate>

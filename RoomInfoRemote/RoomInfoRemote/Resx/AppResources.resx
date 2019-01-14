@@ -144,4 +144,22 @@
   <data name="SettingsTabTitle" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="RoomsPage_Occupancy_Absent" xml:space="preserve">
+    <value>ABSENT</value>
+  </data>
+  <data name="RoomsPage_Occupancy_Busy" xml:space="preserve">
+    <value>BUSY</value>
+  </data>
+  <data name="RoomsPage_Occupancy_Free" xml:space="preserve">
+    <value>FREE</value>
+  </data>
+  <data name="RoomsPage_Occupancy_Locked" xml:space="preserve">
+    <value>LOCKED</value>
+  </data>
+  <data name="RoomsPage_Occupancy_Occupied" xml:space="preserve">
+    <value>OCCUPIED</value>
+  </data>
+  <data name="RoomsPage_Occupancy_Present" xml:space="preserve">
+    <value>PRESENT</value>
+  </data>
 </root>

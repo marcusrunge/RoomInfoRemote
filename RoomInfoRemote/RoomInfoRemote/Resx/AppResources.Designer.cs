@@ -61,6 +61,60 @@ namespace RoomInfoRemote.Resx {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die ABSENT ähnelt.
+        /// </summary>
+        internal static string RoomsPage_Occupancy_Absent {
+            get {
+                return ResourceManager.GetString("RoomsPage_Occupancy_Absent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die BUSY ähnelt.
+        /// </summary>
+        internal static string RoomsPage_Occupancy_Busy {
+            get {
+                return ResourceManager.GetString("RoomsPage_Occupancy_Busy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die FREE ähnelt.
+        /// </summary>
+        internal static string RoomsPage_Occupancy_Free {
+            get {
+                return ResourceManager.GetString("RoomsPage_Occupancy_Free", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die LOCKED ähnelt.
+        /// </summary>
+        internal static string RoomsPage_Occupancy_Locked {
+            get {
+                return ResourceManager.GetString("RoomsPage_Occupancy_Locked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die OCCUPIED ähnelt.
+        /// </summary>
+        internal static string RoomsPage_Occupancy_Occupied {
+            get {
+                return ResourceManager.GetString("RoomsPage_Occupancy_Occupied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die PRESENT ähnelt.
+        /// </summary>
+        internal static string RoomsPage_Occupancy_Present {
+            get {
+                return ResourceManager.GetString("RoomsPage_Occupancy_Present", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Rooms ähnelt.
         /// </summary>
         internal static string RoomsTabTitle {

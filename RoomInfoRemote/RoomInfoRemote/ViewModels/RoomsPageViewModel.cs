@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Navigation;
 using RoomInfoRemote.Helpers;
@@ -6,6 +7,7 @@ using RoomInfoRemote.Interfaces;
 using RoomInfoRemote.Models;
 using RoomInfoRemote.Views;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace RoomInfoRemote.ViewModels
@@ -18,16 +20,31 @@ namespace RoomInfoRemote.ViewModels
         ObservableCollection<RoomItem> _roomItems = default(ObservableCollection<RoomItem>);
         public ObservableCollection<RoomItem> RoomItems { get => _roomItems; set { SetProperty(ref _roomItems, value); } }
 
+        bool _isRefreshing = default(bool);
+        public bool IsRefreshing { get => _isRefreshing; set { SetProperty(ref _isRefreshing, value); } }
+
         public RoomsPageViewModel(INavigationService navigationService, IEventAggregator eventAggregator) : base(navigationService)
         {
             if (RoomItems == null) RoomItems = new ObservableCollection<RoomItem>();
             _networkCommunication = DependencyService.Get<INetworkCommunication>(DependencyFetchTarget.GlobalInstance);
             _eventAggregator = eventAggregator;
-            _networkCommunication.ConnectionReceived += (s, e) => ProcessPackage(JsonConvert.DeserializeObject<Package>(e.Package), e.HostName);
+            _networkCommunication.PayloadReceived += (s, e) => ProcessPackage(JsonConvert.DeserializeObject<Package>(e.Package), e.HostName);
             _networkCommunication.SendPayload("", null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
-            _eventAggregator.GetEvent<CurrentPageChangedEvent>().Subscribe((e) =>
+            _eventAggregator.GetEvent<CurrentPageChangedEvent>().Subscribe(e =>
             {
-                if (e == typeof(RoomsPage)) _networkCommunication.SendPayload(null, null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
+                if (e == typeof(RoomsPage))
+                {
+                    if (RoomItems != null) RoomItems.Clear();
+                    _networkCommunication.SendPayload(null, null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
+                }
+            });
+            _eventAggregator.GetEvent<ButtonPressedEvent>().Subscribe(e =>
+            {
+                if (e == ButtenType.Refresh)
+                {
+                    if (RoomItems != null) RoomItems.Clear();
+                    _networkCommunication.SendPayload(null, null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
+                }
             });
         }
 
@@ -57,5 +74,14 @@ namespace RoomInfoRemote.ViewModels
                     break;
             }
         }
+
+        private ICommand _refreshCommand;
+        public ICommand RefreshCommand => _refreshCommand ?? (_refreshCommand = new DelegateCommand<object>((param) =>
+        {
+            IsRefreshing = true;
+            if (RoomItems != null) RoomItems.Clear();
+            _networkCommunication.SendPayload("", null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
+            IsRefreshing = false;
+        }));
     }
 }

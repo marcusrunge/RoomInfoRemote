@@ -2,14 +2,15 @@
 
 namespace RoomInfoRemote.Models
 {
-    public class ConnectionReceivedEventArgs : EventArgs
+    public class PayloadReceivedEventArgs : EventArgs
     {
-        public ConnectionReceivedEventArgs(string hostName, string package)
+        public PayloadReceivedEventArgs(string hostName, string package)
         {
             HostName = hostName;
             Package = package;
         }
         public string HostName { get; }
         public string Package { get; }
+
     }
 }
