@@ -118,7 +118,7 @@ namespace RoomInfoRemote.UWP.DependencyServices
                     {
                         using (StreamReader streamReader = new StreamReader(inputStream))
                         {                            
-                            OnPayloadReceived(new PayloadReceivedEventArgs(e.Socket.Information.RemotePort, await streamReader.ReadLineAsync()));
+                            OnPayloadReceived(new PayloadReceivedEventArgs(e.Socket.Information.RemoteHostName.CanonicalName, await streamReader.ReadLineAsync()));
                         }
                     }
                     e.Socket.Dispose();

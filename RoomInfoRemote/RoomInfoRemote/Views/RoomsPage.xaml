@@ -3,10 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:extension="clr-namespace:RoomInfoRemote.Extension;assembly=RoomInfoRemote"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"             
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoomInfoRemote.Views.RoomsPage"
-             NavigationPage.HasNavigationBar="false">    
+             NavigationPage.HasNavigationBar="false">   
     <ListView ItemsSource="{Binding RoomItems}" HasUnevenRows="True" SeparatorVisibility="None" VerticalOptions="FillAndExpand" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing}">
+        <ListView.Behaviors>
+            <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding NavigateToSelectedRoomPageCommand}" EventArgsParameterPath="Item"/>
+        </ListView.Behaviors>
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
@@ -21,6 +25,9 @@
                                 <Label Text="{Binding Room.RoomNumber}" FontSize="Medium"/>
                             </StackLayout>
                             <Picker Grid.Column="1" SelectedIndex="{Binding Room.Occupancy, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" FontSize="Large">
+                                <Picker.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding UpdateRemoteOccupancyCommand}"/>
+                                </Picker.Behaviors>
                                 <Picker.Items>
                                     <extension:Translate Text="RoomsPage_Occupancy_Free"/>
                                     <extension:Translate Text="RoomsPage_Occupancy_Present"/>

@@ -16,6 +16,7 @@ namespace RoomInfoRemote.ViewModels
     {
         INetworkCommunication _networkCommunication;
         IEventAggregator _eventAggregator;
+        INavigationService _navigationService;
 
         ObservableCollection<RoomItem> _roomItems = default(ObservableCollection<RoomItem>);
         public ObservableCollection<RoomItem> RoomItems { get => _roomItems; set { SetProperty(ref _roomItems, value); } }
@@ -28,6 +29,7 @@ namespace RoomInfoRemote.ViewModels
             if (RoomItems == null) RoomItems = new ObservableCollection<RoomItem>();
             _networkCommunication = DependencyService.Get<INetworkCommunication>(DependencyFetchTarget.GlobalInstance);
             _eventAggregator = eventAggregator;
+            _navigationService = navigationService;
             _networkCommunication.PayloadReceived += (s, e) => ProcessPackage(JsonConvert.DeserializeObject<Package>(e.Package), e.HostName);
             _networkCommunication.SendPayload("", null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
             _eventAggregator.GetEvent<CurrentPageChangedEvent>().Subscribe(e =>
@@ -56,7 +58,7 @@ namespace RoomInfoRemote.ViewModels
                     break;
                 case PayloadType.Room:
                     if (RoomItems == null) RoomItems = new ObservableCollection<RoomItem>();
-                    Device.BeginInvokeOnMainThread(() => RoomItems.Add(new RoomItem() { Room = JsonConvert.DeserializeObject<Room>(package.Payload.ToString()), HostName = hostName }));
+                    Device.BeginInvokeOnMainThread(() => RoomItems.Add(new RoomItem(_networkCommunication) { Room = JsonConvert.DeserializeObject<Room>(package.Payload.ToString()), HostName = hostName }));
                     break;
                 case PayloadType.Schedule:
                     break;
@@ -82,6 +84,14 @@ namespace RoomInfoRemote.ViewModels
             if (RoomItems != null) RoomItems.Clear();
             _networkCommunication.SendPayload("", null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
             IsRefreshing = false;
+        }));
+
+        private ICommand _navigateToSelectedRoomPageCommand;
+        public ICommand NavigateToSelectedRoomPageCommand => _navigateToSelectedRoomPageCommand ?? (_navigateToSelectedRoomPageCommand = new DelegateCommand<object>((param) =>
+        {
+            _navigationService.NavigateAsync("RoomPage");
+            System.Diagnostics.Debug.WriteLine("UpdateRemoteOccupancyCommand executed");
+            System.Diagnostics.Debug.WriteLine("UpdateRemoteOccupancyCommand parameter: " + param.ToString());
         }));
     }
 }
