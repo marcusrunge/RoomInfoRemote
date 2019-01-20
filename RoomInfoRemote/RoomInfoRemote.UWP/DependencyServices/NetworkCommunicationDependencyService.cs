@@ -19,7 +19,7 @@ namespace RoomInfoRemote.UWP.DependencyServices
 
         public NetworkCommunicationDependencyService()
         {
-            System.Diagnostics.Debug.WriteLine("NetworkCommunicationDependencyService Constructor called...");
+            //System.Diagnostics.Debug.WriteLine("NetworkCommunicationDependencyService Constructor called...");
         }
 
         public async Task SendPayload(string payload, string hostName, string port, NetworkProtocol networkProtocol, bool broadcast = false)

@@ -3,6 +3,7 @@ using Prism.Ioc;
 using RoomInfoRemote.Interfaces;
 using RoomInfoRemote.ViewModels;
 using RoomInfoRemote.Views;
+using Syncfusion.Licensing;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -22,6 +23,7 @@ namespace RoomInfoRemote
 
         protected override async void OnInitialized()
         {
+            SyncfusionLicenseProvider.RegisterLicense("NjE2MTBAMzEzNjJlMzQyZTMwZ2NyTlFZN2p0citUVFZiSlhEbmVGMUpTajlVSWhLTEw2bnhZYlh3dE1Ucz0=");
             InitializeComponent();            
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {

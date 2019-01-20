@@ -35,8 +35,6 @@ namespace RoomInfoRemote.Models
                 _isCommandExecutionAllowed = false;
                 var package = new Package() { PayloadType = (int)PayloadType.Occupancy, Payload = Room.Occupancy };
                 await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
-                System.Diagnostics.Debug.WriteLine("UpdateRemoteOccupancyCommand executed");
-                System.Diagnostics.Debug.WriteLine("UpdateRemoteOccupancyCommand occupancy: " + Room.Occupancy);
             }
             else _isCommandExecutionAllowed = true;
         }));

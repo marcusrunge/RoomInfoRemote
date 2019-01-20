@@ -1,5 +1,8 @@
 ﻿using RoomInfoRemote.UWP.DependencyServices;
+using Syncfusion.SfCalendar.XForms.UWP;
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -43,7 +46,12 @@ namespace RoomInfoRemote.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                Xamarin.Forms.Forms.Init(e);
+                List<Assembly> assembliesToInclude = new List<Assembly>
+                {
+                    typeof(SfCalendarRenderer).GetTypeInfo().Assembly
+                };
+
+                Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
                 Xamarin.Forms.DependencyService.Register<NetworkCommunicationDependencyService>();
 

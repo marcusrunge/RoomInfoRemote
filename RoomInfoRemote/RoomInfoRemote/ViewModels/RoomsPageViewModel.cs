@@ -16,7 +16,6 @@ namespace RoomInfoRemote.ViewModels
     {
         INetworkCommunication _networkCommunication;
         IEventAggregator _eventAggregator;
-        INavigationService _navigationService;
 
         ObservableCollection<RoomItem> _roomItems = default(ObservableCollection<RoomItem>);
         public ObservableCollection<RoomItem> RoomItems { get => _roomItems; set { SetProperty(ref _roomItems, value); } }
@@ -29,7 +28,6 @@ namespace RoomInfoRemote.ViewModels
             if (RoomItems == null) RoomItems = new ObservableCollection<RoomItem>();
             _networkCommunication = DependencyService.Get<INetworkCommunication>(DependencyFetchTarget.GlobalInstance);
             _eventAggregator = eventAggregator;
-            _navigationService = navigationService;
             _networkCommunication.PayloadReceived += (s, e) => ProcessPackage(JsonConvert.DeserializeObject<Package>(e.Package), e.HostName);
             _networkCommunication.SendPayload("", null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
             _eventAggregator.GetEvent<CurrentPageChangedEvent>().Subscribe(e =>
@@ -89,9 +87,11 @@ namespace RoomInfoRemote.ViewModels
         private ICommand _navigateToSelectedRoomPageCommand;
         public ICommand NavigateToSelectedRoomPageCommand => _navigateToSelectedRoomPageCommand ?? (_navigateToSelectedRoomPageCommand = new DelegateCommand<object>((param) =>
         {
-            _navigationService.NavigateAsync("RoomPage");
-            System.Diagnostics.Debug.WriteLine("UpdateRemoteOccupancyCommand executed");
-            System.Diagnostics.Debug.WriteLine("UpdateRemoteOccupancyCommand parameter: " + param.ToString());
+            var navigationParameters = new NavigationParameters
+            {
+                { "RoomItem", param }
+            };
+            NavigationService.NavigateAsync("RoomPage", navigationParameters);
         }));
     }
 }
