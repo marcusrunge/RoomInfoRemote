@@ -61,6 +61,15 @@ namespace RoomInfoRemote.Resx {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dim device ähnelt.
+        /// </summary>
+        internal static string RoomItem_Dim {
+            get {
+                return ResourceManager.GetString("RoomItem_Dim", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die ABSENT ähnelt.
         /// </summary>
         internal static string RoomsPage_Occupancy_Absent {

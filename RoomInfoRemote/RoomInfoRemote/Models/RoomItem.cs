@@ -38,5 +38,12 @@ namespace RoomInfoRemote.Models
             }
             else _isCommandExecutionAllowed = true;
         }));
+
+        private ICommand _dimRemoteIoTDeviceCommand;
+        public ICommand DimRemoteIoTDeviceCommand => _dimRemoteIoTDeviceCommand ?? (_dimRemoteIoTDeviceCommand = new DelegateCommand<object>(async(param) =>
+        {
+            var package = new Package() { PayloadType = (int)PayloadType.IotDim, Payload = !(bool)param };
+            await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
+        }));
     }
 }

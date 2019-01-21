@@ -17,14 +17,23 @@
                     <ViewCell.View>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>                                
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <StackLayout>
                                 <Label Text="{Binding Room.RoomName}" FontSize="Medium"/>
                                 <Label Text="{Binding Room.RoomNumber}" FontSize="Medium"/>
                             </StackLayout>
-                            <Picker Grid.Column="1" SelectedIndex="{Binding Room.Occupancy, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" FontSize="Large">
+                            <StackLayout Grid.Column="1" IsVisible="{Binding Room.IsIoT}" VerticalOptions="Center">
+                                <Label Text="{extension:Translate RoomItem_Dim}"/>
+                                <Switch x:Name="dimSwitch">
+                                <Switch.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding DimRemoteIoTDeviceCommand}" CommandParameter="{Binding Source={x:Reference dimSwitch}, Path=IsToggled}"/>
+                                </Switch.Behaviors>
+                            </Switch>
+                            </StackLayout>
+                            <Picker Grid.Column="2" SelectedIndex="{Binding Room.Occupancy, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" FontSize="Large">
                                 <Picker.Behaviors>
                                     <behaviors:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding UpdateRemoteOccupancyCommand}"/>
                                 </Picker.Behaviors>

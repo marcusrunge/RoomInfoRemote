@@ -162,4 +162,7 @@
   <data name="RoomsPage_Occupancy_Present" xml:space="preserve">
     <value>PRESENT</value>
   </data>
+  <data name="RoomItem_Dim" xml:space="preserve">
+    <value>Dim device</value>
+  </data>
 </root>
