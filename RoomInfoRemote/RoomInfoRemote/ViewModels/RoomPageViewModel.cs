@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace RoomInfoRemote.ViewModels
@@ -29,6 +30,9 @@ namespace RoomInfoRemote.ViewModels
         CalendarEventCollection _calendarInlineEvents = default(CalendarEventCollection);
         public CalendarEventCollection CalendarInlineEvents { get => _calendarInlineEvents; set { SetProperty(ref _calendarInlineEvents, value); } }
 
+        AgendaItem _agendaItem = default(AgendaItem);
+        public AgendaItem AgendaItem { get => _agendaItem; set { SetProperty(ref _agendaItem, value); } }
+
         public RoomPageViewModel(INavigationService navigationService, IEventAggregator eventAggregator) : base(navigationService)
         {
             _networkCommunication = DependencyService.Get<INetworkCommunication>(DependencyFetchTarget.GlobalInstance);
@@ -44,6 +48,19 @@ namespace RoomInfoRemote.ViewModels
             _networkCommunication.PayloadReceived += (s, e) => ProcessPackage(JsonConvert.DeserializeObject<Package>(e.Package), e.HostName);
             await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), RoomItem.HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
         }
+
+        private ICommand _openReservationPopupCommand;
+        public ICommand OpenReservationPopupCommand => _openReservationPopupCommand ?? (_openReservationPopupCommand = new DelegateCommand<object>((param) =>
+        {
+            System.Diagnostics.Debug.WriteLine("OpenReservationPopupCommand");
+        }));
+
+        private ICommand _addAgendaItemCommand;
+        public ICommand AddAgendaItemCommand => _addAgendaItemCommand ?? (_addAgendaItemCommand = new DelegateCommand<object>(async (param) =>
+        {
+            var package = new Package() { PayloadType = (int)PayloadType.AgendaItem, Payload = AgendaItem };
+            await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), RoomItem.HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
+        }));
 
         private void ProcessPackage(Package package, string hostName)
         {
@@ -81,6 +98,11 @@ namespace RoomInfoRemote.ViewModels
                 case PayloadType.RequestStandardWeek:
                     break;
                 case PayloadType.IotDim:
+                    break;
+                case PayloadType.AgendaItem:
+                    break;
+                case PayloadType.AgendaItemId:
+                    AgendaItem.Id = (int)Convert.ChangeType(package.Payload, typeof(int));
                     break;
                 default:
                     break;
