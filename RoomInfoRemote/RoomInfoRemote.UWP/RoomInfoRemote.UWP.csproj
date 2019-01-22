@@ -127,7 +127,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.9" />
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar">
-      <Version>16.4.0.47</Version>
+      <Version>16.4.0.48</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
