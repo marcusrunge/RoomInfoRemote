@@ -9,7 +9,7 @@
              NavigationPage.HasNavigationBar="false">   
     <ListView ItemsSource="{Binding RoomItems}" HasUnevenRows="True" SeparatorVisibility="None" VerticalOptions="FillAndExpand" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing}">
         <ListView.Behaviors>
-            <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding NavigateToSelectedRoomPageCommand}" EventArgsParameterPath="Item"/>
+            <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding NavigateToSelectedRoomPageCommand}" EventArgsParameterPath="InlineEvent"/>
         </ListView.Behaviors>
         <ListView.ItemTemplate>
             <DataTemplate>

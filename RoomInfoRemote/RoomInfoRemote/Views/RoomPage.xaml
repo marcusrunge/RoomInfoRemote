@@ -4,12 +4,18 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:converters="clr-namespace:Prism.Converters;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoomInfoRemote.Views.RoomPage"
-             Title="{Binding Title}">    
-    <syncfusion:SfCalendar x:Name="calendar" ShowInlineEvents="true" DataSource="{Binding CalendarInlineEvents}">
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <syncfusion:SfCalendar x:Name="calendar" ShowInlineEvents="true" DataSource="{Binding CalendarInlineEvents}" >
         <syncfusion:SfCalendar.Behaviors>
-            <behaviors:EventToCommandBehavior EventName="InlineItemTapped" Command="{Binding OpenReservationPopupCommand}"  />
+            <behaviors:EventToCommandBehavior EventName="InlineItemTapped" Command="{Binding OpenReservationPopupCommand}"/>
         </syncfusion:SfCalendar.Behaviors>
     </syncfusion:SfCalendar>
 </ContentPage>
