@@ -3,19 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
-             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
-             xmlns:converters="clr-namespace:Prism.Converters;assembly=Prism.Forms"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"             
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoomInfoRemote.Views.RoomPage"
              Title="{Binding Title}">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-    
-    <syncfusion:SfCalendar x:Name="calendar" ShowInlineEvents="true" DataSource="{Binding CalendarInlineEvents}" >
-        <syncfusion:SfCalendar.Behaviors>
-            <behaviors:EventToCommandBehavior EventName="InlineItemTapped" Command="{Binding OpenReservationPopupCommand}"/>
+
+    <syncfusion:SfCalendar x:Name="calendar" ViewMode="MonthView" ShowInlineEvents="true" InlineViewMode="Inline" DataSource="{Binding CalendarInlineEvents}">
+    <syncfusion:SfCalendar.Behaviors>
+            <behaviors:EventToCommandBehavior EventName="InlineItemTapped" Command="{Binding OpenReservationPopupCommand}" EventArgsParameterPath="InlineEvent" />
         </syncfusion:SfCalendar.Behaviors>
     </syncfusion:SfCalendar>
 </ContentPage>

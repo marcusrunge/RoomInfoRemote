@@ -1,16 +1,12 @@
 ﻿using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Events;
-using Prism.Mvvm;
 using Prism.Navigation;
 using RoomInfoRemote.Helpers;
 using RoomInfoRemote.Interfaces;
 using RoomInfoRemote.Models;
 using Syncfusion.SfCalendar.XForms;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
