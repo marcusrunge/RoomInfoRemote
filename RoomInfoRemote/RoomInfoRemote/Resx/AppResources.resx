@@ -165,4 +165,16 @@
   <data name="RoomItem_Dim" xml:space="preserve">
     <value>Dim device</value>
   </data>
+  <data name="RoomPage_AllDayButton_Text" xml:space="preserve">
+    <value>All Day</value>
+  </data>
+  <data name="RoomPage_CancelButton_Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="RoomPage_DeleteButton_Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="RoomPage_SaveButton_Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>

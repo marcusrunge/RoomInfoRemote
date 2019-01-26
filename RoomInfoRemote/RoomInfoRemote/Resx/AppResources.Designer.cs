@@ -70,6 +70,42 @@ namespace RoomInfoRemote.Resx {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die All Day ähnelt.
+        /// </summary>
+        internal static string RoomPage_AllDayButton_Text {
+            get {
+                return ResourceManager.GetString("RoomPage_AllDayButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
+        /// </summary>
+        internal static string RoomPage_CancelButton_Text {
+            get {
+                return ResourceManager.GetString("RoomPage_CancelButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Delete ähnelt.
+        /// </summary>
+        internal static string RoomPage_DeleteButton_Text {
+            get {
+                return ResourceManager.GetString("RoomPage_DeleteButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save ähnelt.
+        /// </summary>
+        internal static string RoomPage_SaveButton_Text {
+            get {
+                return ResourceManager.GetString("RoomPage_SaveButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die ABSENT ähnelt.
         /// </summary>
         internal static string RoomsPage_Occupancy_Absent {

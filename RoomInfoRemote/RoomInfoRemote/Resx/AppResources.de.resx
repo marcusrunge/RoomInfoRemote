@@ -165,4 +165,16 @@
   <data name="RoomItem_Dim" xml:space="preserve">
     <value>Gerät dimmen</value>
   </data>
+  <data name="RoomPage_AllDayButton_Text" xml:space="preserve">
+    <value>Ganztägig</value>
+  </data>
+  <data name="RoomPage_CancelButton_Text" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="RoomPage_DeleteButton_Text" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="RoomPage_SaveButton_Text" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
 </root>
