@@ -5,14 +5,20 @@
              xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"             
              xmlns:extension="clr-namespace:RoomInfoRemote.Extension;assembly=RoomInfoRemote"
+             xmlns:helpers="clr-namespace:RoomInfoRemote.Helpers;assembly=RoomInfoRemote"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoomInfoRemote.Views.RoomPage"
              Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helpers:InlineItemTappedEventArgsConverter x:Key="inlineItemTappedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <AbsoluteLayout>
             <syncfusion:SfCalendar x:Name="calendar" ViewMode="MonthView" ShowInlineEvents="true" InlineViewMode="Inline" DataSource="{Binding CalendarInlineEvents}" >
                 <syncfusion:SfCalendar.Behaviors>
-                    <behaviors:EventToCommandBehavior EventName="InlineItemTapped" Command="{Binding OpenReservationPopupCommand}" EventArgsParameterPath="InlineEvent" />
+                    <behaviors:EventToCommandBehavior EventName="InlineItemTapped" Command="{Binding OpenReservationPopupCommand}" EventArgsConverter="{StaticResource inlineItemTappedEventArgsConverter}" />
                 </syncfusion:SfCalendar.Behaviors>
             </syncfusion:SfCalendar>
             <ContentView x:Name="reservationContentView" BackgroundColor="#C0808080" IsVisible="{Binding IsReservationContentViewVisible}" WidthRequest="640" HorizontalOptions="Center" VerticalOptions="Center" Padding="32">

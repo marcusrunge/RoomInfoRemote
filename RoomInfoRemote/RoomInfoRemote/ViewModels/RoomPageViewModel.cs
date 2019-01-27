@@ -55,10 +55,11 @@ namespace RoomInfoRemote.ViewModels
         private ICommand _openReservationPopupCommand;
         public ICommand OpenReservationPopupCommand => _openReservationPopupCommand ?? (_openReservationPopupCommand = new DelegateCommand<object>((param) =>
         {
-            if (param != null && param is CalendarInlineEvent inlineEvent)
+            if (param != null && param is InlineItemTappedEventArgs inlineItemTappedEventArgs)
             {
-                AgendaItem = _agendaItems.Where(x => x.Start.DateTime == inlineEvent.StartTime).Where(x=> x.End.DateTime == inlineEvent.EndTime).Select(x => x).FirstOrDefault();
-            }
+                if (inlineItemTappedEventArgs.InlineEvent != null) AgendaItem = _agendaItems.Where(x => x.Start.DateTime == inlineItemTappedEventArgs.InlineEvent.StartTime).Where(x => x.End.DateTime == inlineItemTappedEventArgs.InlineEvent.EndTime).Select(x => x).FirstOrDefault();
+                else AgendaItem = _agendaItems.Where(x => x.Start.DateTime.Date == inlineItemTappedEventArgs.SelectedDate.Date).Select(x => x).FirstOrDefault();
+            }            
             IsReservationContentViewVisible = true;
         }));
 
