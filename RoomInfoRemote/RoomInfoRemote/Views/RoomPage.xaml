@@ -34,11 +34,11 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <DatePicker />
-                        <TimePicker Grid.Column="1" />
+                        <DatePicker Date="{Binding AgendaItem.Start.Date, Mode=TwoWay, UpdateSourceEventName=ValueChanged}"  />
+                        <TimePicker Grid.Column="1" Time="{Binding AgendaItem.Start.TimeOfDay, Mode=TwoWay, UpdateSourceEventName=ValueChanged}"/>
                         <Button Grid.Column="2" Text="{extension:Translate RoomPage_AllDayButton_Text}"/>
-                        <DatePicker Grid.Row="1"/>
-                        <TimePicker Grid.Column="1" Grid.Row="1"/>                        
+                        <DatePicker Grid.Row="1" Date="{Binding AgendaItem.End.Date, Mode=TwoWay, UpdateSourceEventName=ValueChanged}"/>
+                        <TimePicker Grid.Column="1" Grid.Row="1" Time="{Binding AgendaItem.End.TimeOfDay, Mode=TwoWay, UpdateSourceEventName=ValueChanged}"/>                        
                     </Grid>
                     <Editor Text="{Binding AgendaItem.Description, Mode=TwoWay, UpdateSourceEventName=ValueChanged}"/>
                     <Picker SelectedIndex="{Binding AgendaItem.Occupancy, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" HorizontalOptions="Start">

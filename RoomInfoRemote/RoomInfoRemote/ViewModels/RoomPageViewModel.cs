@@ -44,7 +44,7 @@ namespace RoomInfoRemote.ViewModels
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            var RoomItem = parameters.GetValue<RoomItem>("RoomItem");
+            RoomItem = parameters.GetValue<RoomItem>("RoomItem");
             Title = RoomItem.Room.RoomName + " " + RoomItem.Room.RoomNumber;
             var package = new Package() { PayloadType = (int)PayloadType.RequestSchedule };
             _networkCommunication.PayloadReceived += (s, e) => ProcessPackage(JsonConvert.DeserializeObject<Package>(e.Package), e.HostName);
@@ -75,6 +75,11 @@ namespace RoomInfoRemote.ViewModels
         private ICommand _deleteReservationPopupCommand;
         public ICommand DeleteReservationPopupCommand => _deleteReservationPopupCommand ?? (_deleteReservationPopupCommand = new DelegateCommand<object>(async (param) =>
         {
+            _agendaItems.Remove(AgendaItem);
+            CalendarInlineEvents.Remove(CalendarInlineEvents.Where(x => x.StartTime == AgendaItem.Start.DateTime).Where(x => x.EndTime == AgendaItem.End.DateTime).FirstOrDefault());
+            AgendaItem.IsDeleted = true;
+            var package = new Package() { PayloadType = (int)PayloadType.AgendaItem, Payload = AgendaItem };
+            await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), RoomItem.HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
             IsReservationContentViewVisible = false;
             AgendaItem = null;
         }));
