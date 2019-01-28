@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
+             xmlns:syncfusionbuttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"             
              xmlns:extension="clr-namespace:RoomInfoRemote.Extension;assembly=RoomInfoRemote"
              xmlns:helpers="clr-namespace:RoomInfoRemote.Helpers;assembly=RoomInfoRemote"
@@ -33,24 +34,25 @@
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <DatePicker Date="{Binding AgendaItem.Start.Date, Mode=TwoWay, UpdateSourceEventName=ValueChanged}"  />
                         <TimePicker Grid.Column="1" Time="{Binding AgendaItem.Start.TimeOfDay, Mode=TwoWay, UpdateSourceEventName=ValueChanged}"/>
-                        <Button Grid.Column="2" Text="{extension:Translate RoomPage_AllDayButton_Text}"/>
+                        <syncfusionbuttons:SfCheckBox Grid.Column="2" Text="{extension:Translate RoomPage_AllDayButton_Text}" IsChecked="{Binding Binding AgendaItem.IsAllDayEvent}" />
                         <DatePicker Grid.Row="1" Date="{Binding AgendaItem.End.Date, Mode=TwoWay, UpdateSourceEventName=ValueChanged}"/>
-                        <TimePicker Grid.Column="1" Grid.Row="1" Time="{Binding AgendaItem.End.TimeOfDay, Mode=TwoWay, UpdateSourceEventName=ValueChanged}"/>                        
+                        <TimePicker Grid.Column="1" Grid.Row="1" Time="{Binding AgendaItem.End.TimeOfDay, Mode=TwoWay, UpdateSourceEventName=ValueChanged}"/>
+                        <Picker Grid.Row="2" SelectedIndex="{Binding AgendaItem.Occupancy, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" >
+                            <Picker.Items>
+                                <extension:Translate Text="RoomsPage_Occupancy_Free"/>
+                                <extension:Translate Text="RoomsPage_Occupancy_Present"/>
+                                <extension:Translate Text="RoomsPage_Occupancy_Absent"/>
+                                <extension:Translate Text="RoomsPage_Occupancy_Busy"/>
+                                <extension:Translate Text="RoomsPage_Occupancy_Occupied"/>
+                                <extension:Translate Text="RoomsPage_Occupancy_Locked"/>
+                            </Picker.Items>
+                        </Picker>
                     </Grid>
-                    <Editor Text="{Binding AgendaItem.Description, Mode=TwoWay, UpdateSourceEventName=ValueChanged}"/>
-                    <Picker SelectedIndex="{Binding AgendaItem.Occupancy, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" HorizontalOptions="Start">
-                        <Picker.Items>
-                            <extension:Translate Text="RoomsPage_Occupancy_Free"/>
-                            <extension:Translate Text="RoomsPage_Occupancy_Present"/>
-                            <extension:Translate Text="RoomsPage_Occupancy_Absent"/>
-                            <extension:Translate Text="RoomsPage_Occupancy_Busy"/>
-                            <extension:Translate Text="RoomsPage_Occupancy_Occupied"/>
-                            <extension:Translate Text="RoomsPage_Occupancy_Locked"/>
-                        </Picker.Items>
-                    </Picker>
+                    <Editor Text="{Binding AgendaItem.Description, Mode=TwoWay, UpdateSourceEventName=ValueChanged}"/>                    
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
