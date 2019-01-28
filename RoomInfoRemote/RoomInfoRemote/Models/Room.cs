@@ -18,8 +18,5 @@ namespace RoomInfoRemote.Models
 
         bool _isIoT = default(bool);
         public bool IsIoT { get => _isIoT; set { SetProperty(ref _isIoT, value); } }
-
-        bool _isDimmed = default(bool);
-        public bool IsDimmed { get => _isDimmed; set { SetProperty(ref _isDimmed, value); } }
     }
 }
