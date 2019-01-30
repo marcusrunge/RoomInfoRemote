@@ -70,6 +70,15 @@ namespace RoomInfoRemote.Resx {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add ähnelt.
+        /// </summary>
+        internal static string RoomPage_AddButton_Text {
+            get {
+                return ResourceManager.GetString("RoomPage_AddButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die All Day ähnelt.
         /// </summary>
         internal static string RoomPage_AllDayButton_Text {

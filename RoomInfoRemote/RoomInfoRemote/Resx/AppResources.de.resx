@@ -177,4 +177,7 @@
   <data name="RoomPage_SaveButton_Text" xml:space="preserve">
     <value>Speichern</value>
   </data>
+  <data name="RoomPage_AddButton_Text" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
 </root>

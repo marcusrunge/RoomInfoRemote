@@ -59,7 +59,11 @@ namespace RoomInfoRemote.ViewModels
             {
                 if (inlineItemTappedEventArgs.InlineEvent != null) AgendaItem = _agendaItems.Where(x => x.Start.DateTime == inlineItemTappedEventArgs.InlineEvent.StartTime).Where(x => x.End.DateTime == inlineItemTappedEventArgs.InlineEvent.EndTime).Select(x => x).FirstOrDefault();
                 else AgendaItem = _agendaItems.Where(x => x.Start.DateTime.Date == inlineItemTappedEventArgs.SelectedDate.Date).Select(x => x).FirstOrDefault();
-            }            
+            }
+            else if (param != null && param is string buttonName && buttonName.Equals("addReservationButton"))
+            {
+                AgendaItem = new AgendaItem();
+            }
             IsReservationContentViewVisible = true;
         }));
 

@@ -10,6 +10,9 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoomInfoRemote.Views.RoomPage"
              Title="{Binding Title}">
+    <NavigationPage.TitleView>
+        <Button x:Name="addReservationButton" Text="{extension:Translate RoomPage_AddButton_Text}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,12,0" Command="{Binding OpenReservationPopupCommand}" CommandParameter="addReservationButton"/>       
+    </NavigationPage.TitleView>    
     <ContentPage.Resources>
         <ResourceDictionary>
             <helpers:InlineItemTappedEventArgsConverter x:Key="inlineItemTappedEventArgsConverter" />
