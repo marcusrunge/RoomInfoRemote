@@ -30,14 +30,13 @@ namespace RoomInfoRemote.Models
         private ICommand _updateRemoteOccupancyCommand;
         public ICommand UpdateRemoteOccupancyCommand => _updateRemoteOccupancyCommand ?? (_updateRemoteOccupancyCommand = new DelegateCommand<object>(async (param) =>
         {
-            _isCommandExecutionAllowed = true;
             if (_isCommandExecutionAllowed)
             {
                 _isCommandExecutionAllowed = false;
                 var package = new Package() { PayloadType = (int)PayloadType.Occupancy, Payload = Room.Occupancy };
                 await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
             }
-            else _isCommandExecutionAllowed = true;
+            _isCommandExecutionAllowed = true;
         }));
 
         private ICommand _dimRemoteIoTDeviceCommand;

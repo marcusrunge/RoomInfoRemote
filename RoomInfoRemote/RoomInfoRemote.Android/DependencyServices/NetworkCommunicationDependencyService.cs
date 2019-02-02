@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using RoomInfoRemote.Interfaces;
 using RoomInfoRemote.Models;
 using Xamarin.Forms;
@@ -73,13 +64,11 @@ namespace RoomInfoRemote.Droid.DependencyServices
                             streamReader.Close();
                             networkStream.Close();
                         }
-
                         tcpClient.Close();
                     }
                 }
                 catch { }
             }
-
         }
 
         private async Task ListenForUserDatagramConnection(string port)
@@ -117,32 +106,17 @@ namespace RoomInfoRemote.Droid.DependencyServices
                 {
                     await tcpClient.ConnectAsync(hostName, int.Parse(port));
                     NetworkStream networkStream = tcpClient.GetStream();
-                    byte[] payloadAsBytes = Encoding.UTF8.GetBytes(payload);
+                    byte[] payloadAsBytes = Encoding.UTF8.GetBytes(payload + "\n");
                     await networkStream.WriteAsync(payloadAsBytes, 0, payloadAsBytes.Length);
-                    await networkStream.FlushAsync();
-                    MemoryStream memoryStream = new MemoryStream();
-                    payloadAsBytes = new byte[1024];
-                    int read = 0;
-                    do
+                    using (StreamReader streamReader = new StreamReader(networkStream, Encoding.UTF8))
                     {
-                        read = await networkStream.ReadAsync(payloadAsBytes, 0, 1024);
-                        memoryStream.Write(payloadAsBytes, 0, read);
-                        Array.Clear(payloadAsBytes, 0, payloadAsBytes.Length);
-                    } while (read > 0);
-                    memoryStream.Seek(0, SeekOrigin.Begin);
-                    StreamReader streamReader = new StreamReader(memoryStream);
-                    OnPayloadReceived(new PayloadReceivedEventArgs(((IPEndPoint)tcpClient.Client.RemoteEndPoint).Port.ToString(), response));                    
-                }
-                //TcpClient tcpClient = new TcpClient(hostName, int.Parse(port));
-                //byte[] bytes = Encoding.ASCII.GetBytes(payload);
-                //NetworkStream networkStream = tcpClient.GetStream();
-                //await networkStream.WriteAsync(bytes, 0, bytes.Length);
-                //StreamReader streamReader = new StreamReader(networkStream, Encoding.UTF8);
-                //string response = await streamReader.ReadLineAsync();
-                //if (!string.IsNullOrEmpty(response)) OnPayloadReceived(new PayloadReceivedEventArgs(((IPEndPoint)tcpClient.Client.RemoteEndPoint).Port.ToString(), response));
-                //streamReader.Close();
-                //networkStream.Close();
-                //tcpClient.Close();
+                        string response = await streamReader.ReadLineAsync();                        
+                        OnPayloadReceived(new PayloadReceivedEventArgs(((IPEndPoint)tcpClient.Client.RemoteEndPoint).Port.ToString(), response));
+                        streamReader.Close();
+                        networkStream.Close();
+                        tcpClient.Close();
+                    }
+                }                
             }
             catch { }
         }
