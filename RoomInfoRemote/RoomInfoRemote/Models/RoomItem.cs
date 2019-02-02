@@ -30,6 +30,7 @@ namespace RoomInfoRemote.Models
         private ICommand _updateRemoteOccupancyCommand;
         public ICommand UpdateRemoteOccupancyCommand => _updateRemoteOccupancyCommand ?? (_updateRemoteOccupancyCommand = new DelegateCommand<object>(async (param) =>
         {
+            _isCommandExecutionAllowed = true;
             if (_isCommandExecutionAllowed)
             {
                 _isCommandExecutionAllowed = false;

@@ -89,7 +89,7 @@ namespace RoomInfoRemote.ViewModels
         }));
 
         private ICommand _closeReservationPopupCommand;
-        public ICommand CloseReservationPopupCommand => _closeReservationPopupCommand ?? (_closeReservationPopupCommand = new DelegateCommand<object>(async (param) =>
+        public ICommand CloseReservationPopupCommand => _closeReservationPopupCommand ?? (_closeReservationPopupCommand = new DelegateCommand<object>((param) =>
         {
             IsReservationContentViewVisible = false;
             AgendaItem = null;

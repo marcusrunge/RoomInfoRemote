@@ -35,7 +35,7 @@ namespace RoomInfoRemote.ViewModels
                 if (e == typeof(RoomsPage))
                 {
                     if (RoomItems != null) RoomItems.Clear();
-                    _networkCommunication.SendPayload(null, null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
+                    _networkCommunication.SendPayload("", null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
                 }
             });
             _eventAggregator.GetEvent<ButtonPressedEvent>().Subscribe(e =>
@@ -43,7 +43,7 @@ namespace RoomInfoRemote.ViewModels
                 if (e == ButtenType.Refresh)
                 {
                     if (RoomItems != null) RoomItems.Clear();
-                    _networkCommunication.SendPayload(null, null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
+                    _networkCommunication.SendPayload("", null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
                 }
             });
         }
@@ -56,7 +56,19 @@ namespace RoomInfoRemote.ViewModels
                     break;
                 case PayloadType.Room:
                     if (RoomItems == null) RoomItems = new ObservableCollection<RoomItem>();
-                    Device.BeginInvokeOnMainThread(() => RoomItems.Add(new RoomItem(_networkCommunication) { Room = JsonConvert.DeserializeObject<Room>(package.Payload.ToString()), HostName = hostName }));
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        var room = JsonConvert.DeserializeObject<Room>(package.Payload.ToString());
+                        for (int i = 0; i < RoomItems.Count; i++)
+                        {
+                            if (RoomItems[i].Room.RoomGuid.Equals(room.RoomGuid))
+                            {
+                                RoomItems.RemoveAt(i);
+                                break;
+                            }
+                        }
+                        RoomItems.Add(new RoomItem(_networkCommunication) { Room = room, HostName = hostName });
+                    });
                     break;
                 case PayloadType.Schedule:
                     break;
