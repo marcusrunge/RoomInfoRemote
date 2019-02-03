@@ -62,7 +62,8 @@ namespace RoomInfoRemote.ViewModels
             }
             else if (param != null && param is string buttonName && buttonName.Equals("addReservationButton"))
             {
-                AgendaItem = new AgendaItem();
+                var now = DateTime.Now;
+                AgendaItem = new AgendaItem() { Start = now, End = now, IsAllDayEvent = false };
             }
             IsReservationContentViewVisible = true;
         }));
@@ -70,6 +71,17 @@ namespace RoomInfoRemote.ViewModels
         private ICommand _addOrSaveAgendaItemCommand;
         public ICommand AddOrSaveAgendaItemCommand => _addOrSaveAgendaItemCommand ?? (_addOrSaveAgendaItemCommand = new DelegateCommand<object>(async (param) =>
         {
+            //TODO updating
+            if (!(AgendaItem.End >= AgendaItem.Start ? _agendaItems.Where(x => x.Id != AgendaItem.Id && ((AgendaItem.Start >= x.Start && AgendaItem.Start <= x.End) || (AgendaItem.End >= x.Start && AgendaItem.End <= x.End))).FirstOrDefault() == null : false)) return;
+            _agendaItems.Add(AgendaItem);
+            CalendarInlineEvents.Add(new CalendarInlineEvent()
+            {
+                StartTime = AgendaItem.Start.DateTime,
+                EndTime = AgendaItem.End.DateTime,
+                Subject = AgendaItem.Title,
+                Color = Color.Fuchsia,
+                IsAllDay = AgendaItem.IsAllDayEvent
+            });
             var package = new Package() { PayloadType = (int)PayloadType.AgendaItem, Payload = AgendaItem };
             await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), RoomItem.HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
             IsReservationContentViewVisible = false;
@@ -79,13 +91,16 @@ namespace RoomInfoRemote.ViewModels
         private ICommand _deleteReservationPopupCommand;
         public ICommand DeleteReservationPopupCommand => _deleteReservationPopupCommand ?? (_deleteReservationPopupCommand = new DelegateCommand<object>(async (param) =>
         {
-            _agendaItems.Remove(AgendaItem);
-            CalendarInlineEvents.Remove(CalendarInlineEvents.Where(x => x.StartTime == AgendaItem.Start.DateTime).Where(x => x.EndTime == AgendaItem.End.DateTime).FirstOrDefault());
-            AgendaItem.IsDeleted = true;
-            var package = new Package() { PayloadType = (int)PayloadType.AgendaItem, Payload = AgendaItem };
-            await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), RoomItem.HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
-            IsReservationContentViewVisible = false;
-            AgendaItem = null;
+            if (AgendaItem != null)
+            {
+                _agendaItems.Remove(AgendaItem);
+                CalendarInlineEvents.Remove(CalendarInlineEvents.Where(x => x.StartTime == AgendaItem.Start.DateTime).Where(x => x.EndTime == AgendaItem.End.DateTime).FirstOrDefault());
+                AgendaItem.IsDeleted = true;
+                var package = new Package() { PayloadType = (int)PayloadType.AgendaItem, Payload = AgendaItem };
+                await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), RoomItem.HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
+                IsReservationContentViewVisible = false;
+                AgendaItem = null;
+            }
         }));
 
         private ICommand _closeReservationPopupCommand;
@@ -113,8 +128,8 @@ namespace RoomInfoRemote.ViewModels
                         {
                             CalendarInlineEvents.Add(new CalendarInlineEvent()
                             {
-                                StartTime = new DateTime(_agendaItems[i].Start.Ticks),
-                                EndTime = new DateTime(_agendaItems[i].End.Ticks),
+                                StartTime = _agendaItems[i].Start.DateTime,
+                                EndTime = _agendaItems[i].End.DateTime,
                                 Subject = _agendaItems[i].Title,
                                 Color = Color.Fuchsia,
                                 IsAllDay = _agendaItems[i].IsAllDayEvent
@@ -141,5 +156,28 @@ namespace RoomInfoRemote.ViewModels
                     break;
             }
         }
+        private ICommand _updateValueFromPickerCommand;
+        public ICommand UpdateValueFromPickerCommand => _updateValueFromPickerCommand ?? (_updateValueFromPickerCommand = new DelegateCommand<object>((param) =>
+        {
+            if (AgendaItem != null)
+            {
+                if (param is DatePicker)
+                {
+                    var datePicker = param as DatePicker;
+                    if (datePicker.StyleId.Equals("startDate"))
+                    {
+                        AgendaItem.Start = new DateTimeOffset(datePicker.Date + AgendaItem.Start.TimeOfDay);
+                        if(AgendaItem.End < AgendaItem.Start) AgendaItem.End = AgendaItem.Start;
+                    }
+                    else if (datePicker.StyleId.Equals("endDate")) AgendaItem.End = new DateTimeOffset(datePicker.Date + AgendaItem.End.TimeOfDay);
+                }
+                else if (param is TimePicker)
+                {
+                    var timePicker = param as TimePicker;
+                    if (timePicker.StyleId.Equals("startTime")) AgendaItem.Start = new DateTimeOffset(AgendaItem.Start.Date + timePicker.Time);
+                    else if (timePicker.StyleId.Equals("endTime")) AgendaItem.End = new DateTimeOffset(AgendaItem.End.Date + timePicker.Time);
+                }
+            }
+        }));
     }
 }

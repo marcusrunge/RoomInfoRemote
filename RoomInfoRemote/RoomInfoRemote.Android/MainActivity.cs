@@ -15,7 +15,7 @@ namespace RoomInfoRemote.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-
+            Xamarin.Essentials.Platform.Init(this, bundle);
             Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App(new AndroidInitializer()));
         }

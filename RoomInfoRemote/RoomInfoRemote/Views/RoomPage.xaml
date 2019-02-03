@@ -27,7 +27,7 @@
             </syncfusion:SfCalendar>
             <ContentView x:Name="reservationContentView" BackgroundColor="#C0808080" IsVisible="{Binding IsReservationContentViewVisible}" WidthRequest="640" HorizontalOptions="Center" VerticalOptions="Center" Padding="32">
                 <StackLayout HorizontalOptions="Center">
-                    <Entry Text="{Binding AgendaItem.Title, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" />
+                    <Entry Text="{Binding AgendaItem.Title, Mode=TwoWay}" />
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -39,12 +39,28 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <DatePicker Date="{Binding AgendaItem.Start.Date, Mode=TwoWay, UpdateSourceEventName=ValueChanged}"  />
-                        <TimePicker Grid.Column="1" Time="{Binding AgendaItem.Start.TimeOfDay, Mode=TwoWay, UpdateSourceEventName=ValueChanged}"/>
+                        <DatePicker x:Name="startDate" Date="{Binding AgendaItem.Start.Date, Mode=TwoWay}" >
+                            <DatePicker.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference startDate}}"/>
+                            </DatePicker.Behaviors>
+                        </DatePicker>
+                        <TimePicker x:Name="startTime" Grid.Column="1" Time="{Binding AgendaItem.Start.TimeOfDay, Mode=TwoWay}">
+                            <TimePicker.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference startTime}}"/>
+                            </TimePicker.Behaviors>
+                        </TimePicker>
                         <syncfusionbuttons:SfCheckBox Grid.Column="2" Text="{extension:Translate RoomPage_AllDayButton_Text}" IsChecked="{Binding Binding AgendaItem.IsAllDayEvent}" />
-                        <DatePicker Grid.Row="1" Date="{Binding AgendaItem.End.Date, Mode=TwoWay, UpdateSourceEventName=ValueChanged}"/>
-                        <TimePicker Grid.Column="1" Grid.Row="1" Time="{Binding AgendaItem.End.TimeOfDay, Mode=TwoWay, UpdateSourceEventName=ValueChanged}"/>
-                        <Picker Grid.Row="2" SelectedIndex="{Binding AgendaItem.Occupancy, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" >
+                        <DatePicker x:Name="endDate" Grid.Row="1" Date="{Binding AgendaItem.End.Date, Mode=TwoWay}">
+                            <DatePicker.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference endDate}}"/>
+                            </DatePicker.Behaviors>
+                        </DatePicker>
+                        <TimePicker x:Name="endTime" Grid.Column="1" Grid.Row="1" Time="{Binding AgendaItem.End.TimeOfDay, Mode=TwoWay}">
+                            <TimePicker.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference endTime}}"/>
+                            </TimePicker.Behaviors>
+                        </TimePicker>
+                        <Picker Grid.Row="2" SelectedIndex="{Binding AgendaItem.Occupancy, Mode=TwoWay}" >
                             <Picker.Items>
                                 <extension:Translate Text="RoomsPage_Occupancy_Free"/>
                                 <extension:Translate Text="RoomsPage_Occupancy_Present"/>
