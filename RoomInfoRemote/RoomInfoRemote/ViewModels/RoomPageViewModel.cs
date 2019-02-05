@@ -208,5 +208,21 @@ namespace RoomInfoRemote.ViewModels
                 }
             }
         }));
+
+        private ICommand _changeStateCommand;
+        public ICommand ChangeStateCommand => _changeStateCommand ?? (_changeStateCommand = new DelegateCommand<object>((param) =>
+        {
+            if(((string)param).Equals("true"))
+            {
+                AgendaItem.Start = DateTimeOffset.Now.Date + TimeSpan.FromHours(0);
+                AgendaItem.End = DateTimeOffset.Now.Date + TimeSpan.FromHours(23).Add(TimeSpan.FromMinutes(59));
+            }
+            else
+            {
+                var now = DateTime.Now;
+                AgendaItem.Start = now;
+                AgendaItem.End = now;
+            }
+        }));
     }
 }

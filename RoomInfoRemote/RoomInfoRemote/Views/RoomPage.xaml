@@ -45,7 +45,11 @@
                                 <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference startDate}}"/>
                             </DatePicker.Behaviors>
                         </DatePicker>
-                        <syncfusionbuttons:SfCheckBox Grid.Row="0" Grid.Column="1" Text="{extension:Translate RoomPage_AllDayButton_Text}" IsChecked="{Binding AgendaItem.IsAllDayEvent}" />
+                        <syncfusionbuttons:SfCheckBox x:Name="allDaySfCheckBox" Grid.Row="0" Grid.Column="1" Text="{extension:Translate RoomPage_AllDayButton_Text}" IsChecked="{Binding AgendaItem.IsAllDayEvent}" >
+                            <syncfusionbuttons:SfCheckBox.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="StateChanged" Command="{Binding ChangeStateCommand}" CommandParameter="{Binding Source={x:Reference allDaySfCheckBox}, Path=IsChecked}"/>
+                            </syncfusionbuttons:SfCheckBox.Behaviors>
+                        </syncfusionbuttons:SfCheckBox>
                         <TimePicker x:Name="startTime" Grid.Row="1" Time="{Binding AgendaItem.Start.TimeOfDay, Mode=TwoWay}">
                             <TimePicker.Behaviors>
                                 <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference startTime}}"/>
