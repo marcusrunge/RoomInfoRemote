@@ -27,7 +27,7 @@
             </syncfusion:SfCalendar>
             <ContentView x:Name="reservationContentView" BackgroundColor="#C0808080" IsVisible="{Binding IsReservationContentViewVisible}" HorizontalOptions="Start" VerticalOptions="Center" Padding="32">
                 <StackLayout HorizontalOptions="Start" >
-                    <Entry Text="{Binding AgendaItem.Title, Mode=TwoWay}" HorizontalOptions="StartAndExpand" WidthRequest="{Binding Source={x:Reference startDate},Path=Width}"/>
+                    <Entry Text="{Binding AgendaItem.Title, Mode=TwoWay}" HorizontalOptions="StartAndExpand" WidthRequest="{Binding Source={x:Reference startDate},Path=Width}" Placeholder="{extension:Translate RoomPage_ReservationTitle_Placeholder}"/>
                     <Grid x:Name="grid" Margin="0,8,0,0" HorizontalOptions="Start">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -79,7 +79,7 @@
                         </Picker>
                     </Grid>
 
-                    <Editor Text="{Binding AgendaItem.Description, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" Margin="0,8,0,0" HorizontalOptions="StartAndExpand" WidthRequest="{Binding Source={x:Reference startDate},Path=Width}"/>
+                    <Editor Text="{Binding AgendaItem.Description, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" Margin="0,8,0,0" HorizontalOptions="StartAndExpand" WidthRequest="{Binding Source={x:Reference startDate},Path=Width}" Placeholder="{extension:Translate RoomPage_ReservationDescription_Placeholder}"/>
                     
                     <Grid Margin="0,8,0,0" HorizontalOptions="Start" WidthRequest="{Binding Source={x:Reference startDate},Path=Width}">
                         <Grid.ColumnDefinitions>

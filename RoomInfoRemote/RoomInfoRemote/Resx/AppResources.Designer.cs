@@ -106,6 +106,24 @@ namespace RoomInfoRemote.Resx {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Appointment description ähnelt.
+        /// </summary>
+        internal static string RoomPage_ReservationDescription_Placeholder {
+            get {
+                return ResourceManager.GetString("RoomPage_ReservationDescription_Placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Appointment title ähnelt.
+        /// </summary>
+        internal static string RoomPage_ReservationTitle_Placeholder {
+            get {
+                return ResourceManager.GetString("RoomPage_ReservationTitle_Placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Save ähnelt.
         /// </summary>
         internal static string RoomPage_SaveButton_Text {

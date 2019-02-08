@@ -180,4 +180,10 @@
   <data name="RoomPage_AddButton_Text" xml:space="preserve">
     <value>Hinzufügen</value>
   </data>
+  <data name="RoomPage_ReservationDescription_Placeholder" xml:space="preserve">
+    <value>Beschreibung des Termins</value>
+  </data>
+  <data name="RoomPage_ReservationTitle_Placeholder" xml:space="preserve">
+    <value>Name des Termins</value>
+  </data>
 </root>
