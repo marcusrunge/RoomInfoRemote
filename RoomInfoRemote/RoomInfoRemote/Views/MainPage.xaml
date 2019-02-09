@@ -7,7 +7,7 @@
             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
             x:Class="RoomInfoRemote.Views.MainPage"
             x:Name="tabbedPage"
-            Title="{Binding Title}"
+            Title="{extension:Translate MainPage_Title}"
             android:TabbedPage.ToolbarPlacement="Bottom">
     <NavigationPage.TitleView>
         <Button Text="Refresh" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,12,0" Command="{Binding NotifyButtonPressedCommand}" CommandParameter="0" IsVisible="{Binding IsRefreshButtonVisible}"/>

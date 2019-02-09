@@ -19,7 +19,6 @@ namespace RoomInfoRemote.ViewModels
 
         public MainPageViewModel(INavigationService navigationService, IEventAggregator eventAggregator) : base(navigationService)
         {
-            Title = "Main Page";
             _eventAggregator = eventAggregator;
         }
 

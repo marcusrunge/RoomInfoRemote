@@ -61,6 +61,15 @@ namespace RoomInfoRemote.Resx {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Overview ähnelt.
+        /// </summary>
+        internal static string MainPage_Title {
+            get {
+                return ResourceManager.GetString("MainPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dim device ähnelt.
         /// </summary>
         internal static string RoomItem_Dim {
