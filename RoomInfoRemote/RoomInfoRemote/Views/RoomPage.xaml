@@ -7,27 +7,16 @@
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"             
              xmlns:extension="clr-namespace:RoomInfoRemote.Extension;assembly=RoomInfoRemote"
              xmlns:helpers="clr-namespace:RoomInfoRemote.Helpers;assembly=RoomInfoRemote"
-             xmlns:syncfusiontheme="clr-namespace:Syncfusion.XForms.Themes;assembly=Syncfusion.Core.XForms"
+             xmlns:customs="clr-namespace:RoomInfoRemote.Customs;assembly=RoomInfoRemote"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoomInfoRemote.Views.RoomPage"
              Title="{Binding Title}">    
     <NavigationPage.TitleView>
-        <Button x:Name="addReservationButton" Text="{extension:Translate RoomPage_AddButton_Text}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,12,0" Command="{Binding OpenReservationPopupCommand}" CommandParameter="addReservationButton"/>       
+        <customs:TransparentButton x:Name="addReservationButton" FontFamily="Segoe MDL2 Assets" Text="&#xE710;" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,12,0" Command="{Binding OpenReservationPopupCommand}" CommandParameter="addReservationButton"  BackgroundColor="Transparent" FontSize="Large"/>       
     </NavigationPage.TitleView>    
     <ContentPage.Resources>        
         <ResourceDictionary>
-            <helpers:InlineItemTappedEventArgsConverter x:Key="inlineItemTappedEventArgsConverter" />
-            <ResourceDictionary.MergedDictionaries>
-                <syncfusiontheme:LightTheme />
-                <syncfusion:SfCalendarStyles />
-                <ResourceDictionary>
-                    <Color x:Key="SfCalendarInlineBackgroundColor">Green</Color>
-                    <Color x:Key="SfCalendarInlineTextColor">White</Color>
-                    <Color x:Key="SfCalendarWeekEndBackgroundColor">Blue</Color>
-                    <Color x:Key="SfCalendarYearViewHeaderTextColor">Blue</Color>
-                    <Color x:Key="SfCalendarYearViewDateTextColor">Green</Color>
-                </ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
+            <helpers:InlineItemTappedEventArgsConverter x:Key="inlineItemTappedEventArgsConverter" />            
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>

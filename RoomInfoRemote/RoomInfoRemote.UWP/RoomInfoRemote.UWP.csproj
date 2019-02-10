@@ -93,6 +93,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomRenderer\TransparentButtonRenderer.cs" />
     <Compile Include="DependencyServices\NetworkCommunicationDependencyService.cs" />
     <Compile Include="DependencyServices\ThemeSelectionDependencyService.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -164,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Dictionaries\UIElementsDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
