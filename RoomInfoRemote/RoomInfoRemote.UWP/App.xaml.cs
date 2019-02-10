@@ -1,4 +1,5 @@
-﻿using RoomInfoRemote.UWP.DependencyServices;
+﻿using RoomInfoRemote.Helpers;
+using RoomInfoRemote.UWP.DependencyServices;
 using Syncfusion.SfCalendar.XForms.UWP;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,7 @@ namespace RoomInfoRemote.UWP
                 Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
                 Xamarin.Forms.DependencyService.Register<NetworkCommunicationDependencyService>();
+                Xamarin.Forms.DependencyService.Register<ThemeSelectionDependencyService>();
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
@@ -61,7 +63,7 @@ namespace RoomInfoRemote.UWP
                 }
 
                 // Place the frame in the current Window
-                Window.Current.Content = rootFrame;
+                Window.Current.Content = rootFrame;                
             }
 
             if (rootFrame.Content == null)

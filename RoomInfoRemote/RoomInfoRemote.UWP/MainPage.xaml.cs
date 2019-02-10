@@ -5,11 +5,13 @@ namespace RoomInfoRemote.UWP
 {
     public sealed partial class MainPage
     {
+        public static MainPage MainPageInstance;
         public MainPage()
         {
             this.InitializeComponent();
 
             LoadApplication(new RoomInfoRemote.App(new UwpInitializer()));
+            MainPageInstance = this;
         }
     }
 

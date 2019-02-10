@@ -1,5 +1,6 @@
 ﻿using Plugin.Settings;
 using Plugin.Settings.Abstractions;
+using RoomInfoRemote.Models;
 
 namespace RoomInfoRemote.Helpers
 {
@@ -17,6 +18,12 @@ namespace RoomInfoRemote.Helpers
         {
             get => AppSettings.GetValueOrDefault(nameof(UdpPort), string.Empty);
             set => AppSettings.AddOrUpdateValue(nameof(UdpPort), value);
+        }
+
+        public static Theme Theme
+        {
+            get => (Theme)AppSettings.GetValueOrDefault(nameof(Theme), 0);
+            set => AppSettings.AddOrUpdateValue(nameof(Theme), (int)value);
         }
     }
 }

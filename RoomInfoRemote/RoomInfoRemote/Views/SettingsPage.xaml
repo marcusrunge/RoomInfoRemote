@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:extension="clr-namespace:RoomInfoRemote.Extension;assembly=RoomInfoRemote"
+             xmlns:syncfusionbuttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoomInfoRemote.Views.SettingsPage">
     <ScrollView>
@@ -14,10 +16,21 @@
                 <Label Text="{extension:Translate SettingsPage_UdpPort}" />
                 <Entry Text="{Binding UdpPort, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" Placeholder="8274" MaxLength="5" Keyboard="Numeric" HorizontalOptions="Start"/>                
             </StackLayout>
-            <StackLayout Margin="0, 20, 0, 48">
+            <!--<StackLayout Margin="0, 20, 0, 48">
                 <Label Text="{extension:Translate SettingsPage_Themes}" FontSize="Medium"/>
-                
-            </StackLayout>
+                <syncfusionbuttons:SfRadioGroup>
+                    <syncfusionbuttons:SfRadioButton x:Name="lightThemeRadioButton" Text="{extension:Translate SettingsPage_Theme_Light}">
+                        <syncfusionbuttons:SfRadioButton.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="StateChanged" Command="{Binding SetThemeCommand}" CommandParameter="{Binding Source={x:Reference lightThemeRadioButton}}"/>
+                        </syncfusionbuttons:SfRadioButton.Behaviors>
+                    </syncfusionbuttons:SfRadioButton>
+                    <syncfusionbuttons:SfRadioButton x:Name="darkThemeRadioButton" Text="{extension:Translate SettingsPage_Theme_Dark}">
+                        <syncfusionbuttons:SfRadioButton.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="StateChanged" Command="{Binding SetThemeCommand}" CommandParameter="{Binding Source={x:Reference darkThemeRadioButton}}"/>
+                        </syncfusionbuttons:SfRadioButton.Behaviors>
+                    </syncfusionbuttons:SfRadioButton>
+                </syncfusionbuttons:SfRadioGroup>
+            </StackLayout>-->
         </StackLayout>
     </ScrollView>
 </ContentPage>

@@ -7,20 +7,32 @@
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"             
              xmlns:extension="clr-namespace:RoomInfoRemote.Extension;assembly=RoomInfoRemote"
              xmlns:helpers="clr-namespace:RoomInfoRemote.Helpers;assembly=RoomInfoRemote"
+             xmlns:syncfusiontheme="clr-namespace:Syncfusion.XForms.Themes;assembly=Syncfusion.Core.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoomInfoRemote.Views.RoomPage"
-             Title="{Binding Title}">
+             Title="{Binding Title}">    
     <NavigationPage.TitleView>
         <Button x:Name="addReservationButton" Text="{extension:Translate RoomPage_AddButton_Text}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,12,0" Command="{Binding OpenReservationPopupCommand}" CommandParameter="addReservationButton"/>       
     </NavigationPage.TitleView>    
-    <ContentPage.Resources>
+    <ContentPage.Resources>        
         <ResourceDictionary>
             <helpers:InlineItemTappedEventArgsConverter x:Key="inlineItemTappedEventArgsConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <syncfusiontheme:LightTheme />
+                <syncfusion:SfCalendarStyles />
+                <ResourceDictionary>
+                    <Color x:Key="SfCalendarInlineBackgroundColor">Green</Color>
+                    <Color x:Key="SfCalendarInlineTextColor">White</Color>
+                    <Color x:Key="SfCalendarWeekEndBackgroundColor">Blue</Color>
+                    <Color x:Key="SfCalendarYearViewHeaderTextColor">Blue</Color>
+                    <Color x:Key="SfCalendarYearViewDateTextColor">Green</Color>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
         <AbsoluteLayout>
-            <syncfusion:SfCalendar x:Name="calendar" ViewMode="MonthView" ShowInlineEvents="true" InlineViewMode="Inline" DataSource="{Binding CalendarInlineEvents}" >
+            <syncfusion:SfCalendar x:Name="calendar" ViewMode="MonthView" ShowInlineEvents="true" InlineViewMode="Inline" DataSource="{Binding CalendarInlineEvents}"  >
                 <syncfusion:SfCalendar.Behaviors>
                     <behaviors:EventToCommandBehavior EventName="InlineItemTapped" Command="{Binding OpenReservationPopupCommand}" EventArgsConverter="{StaticResource inlineItemTappedEventArgsConverter}" />
                 </syncfusion:SfCalendar.Behaviors>
