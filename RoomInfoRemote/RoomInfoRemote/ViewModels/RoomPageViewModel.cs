@@ -208,7 +208,7 @@ namespace RoomInfoRemote.ViewModels
                     if (timePicker.StyleId.Equals("startTime"))
                     {
                         AgendaItem.Start = new DateTimeOffset(AgendaItem.Start.Date + timePicker.Time);
-                        AgendaItem.End = AgendaItem.Start;
+                        //AgendaItem.End = AgendaItem.Start;
                     }
                     else if (timePicker.StyleId.Equals("endTime")) AgendaItem.End = new DateTimeOffset(AgendaItem.End.Date + timePicker.Time);
                 }

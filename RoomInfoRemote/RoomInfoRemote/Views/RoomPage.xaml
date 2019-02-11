@@ -10,7 +10,7 @@
              xmlns:customs="clr-namespace:RoomInfoRemote.Customs;assembly=RoomInfoRemote"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoomInfoRemote.Views.RoomPage"
-             Title="{Binding Title}">    
+             Title="{Binding Title}">
     <NavigationPage.TitleView>
         <customs:TransparentButton x:Name="addReservationButton" FontFamily="Segoe MDL2 Assets" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,12,0" Command="{Binding OpenReservationPopupCommand}" CommandParameter="addReservationButton"  BackgroundColor="Transparent" FontSize="Large">
             <customs:TransparentButton.Text>
@@ -24,11 +24,11 @@
                     <On Platform="iOS" Value="AddIcon"/>
                 </OnPlatform>
             </customs:TransparentButton.Image>
-        </customs:TransparentButton>       
-    </NavigationPage.TitleView>    
-    <ContentPage.Resources>        
+        </customs:TransparentButton>
+    </NavigationPage.TitleView>
+    <ContentPage.Resources>
         <ResourceDictionary>
-            <helpers:InlineItemTappedEventArgsConverter x:Key="inlineItemTappedEventArgsConverter" />            
+            <helpers:InlineItemTappedEventArgsConverter x:Key="inlineItemTappedEventArgsConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -38,74 +38,74 @@
                     <behaviors:EventToCommandBehavior EventName="InlineItemTapped" Command="{Binding OpenReservationPopupCommand}" EventArgsConverter="{StaticResource inlineItemTappedEventArgsConverter}" />
                 </syncfusion:SfCalendar.Behaviors>
             </syncfusion:SfCalendar>
-            <ContentView x:Name="reservationContentView" BackgroundColor="#C0808080" IsVisible="{Binding IsReservationContentViewVisible}" HorizontalOptions="Start" VerticalOptions="Center" Padding="32">
-                <ScrollView>
-                <StackLayout HorizontalOptions="Start" >
-                    <Entry Text="{Binding AgendaItem.Title, Mode=TwoWay}" HorizontalOptions="Start" WidthRequest="{Binding Source={x:Reference startDate},Path=Width}" Placeholder="{extension:Translate RoomPage_ReservationTitle_Placeholder}"/>
-                    <Grid x:Name="grid" Margin="0,8,0,0" HorizontalOptions="Start">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <DatePicker x:Name="startDate" Grid.Row="0" Date="{Binding AgendaItem.Start.Date, Mode=TwoWay}" >
-                            <DatePicker.Behaviors>
-                                <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference startDate}}"/>
-                            </DatePicker.Behaviors>
-                        </DatePicker>
-                        <syncfusionbuttons:SfCheckBox x:Name="allDaySfCheckBox" Grid.Row="0" Grid.Column="1" Text="{extension:Translate RoomPage_AllDayButton_Text}" IsChecked="{Binding AgendaItem.IsAllDayEvent}" >
-                            <syncfusionbuttons:SfCheckBox.Behaviors>
-                                <behaviors:EventToCommandBehavior EventName="StateChanged" Command="{Binding ChangeStateCommand}" CommandParameter="{Binding Source={x:Reference allDaySfCheckBox}, Path=IsChecked}"/>
-                            </syncfusionbuttons:SfCheckBox.Behaviors>
-                        </syncfusionbuttons:SfCheckBox>
-                        <TimePicker x:Name="startTime" Grid.Row="1" Time="{Binding AgendaItem.Start.TimeOfDay, Mode=TwoWay}" HorizontalOptions="Center" WidthRequest="{Binding Source={x:Reference startDate}, Path=Width}">
-                            <TimePicker.Behaviors>
-                                <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference startTime}}"/>
-                            </TimePicker.Behaviors>
-                        </TimePicker>   
-                        
-                        <DatePicker x:Name="endDate" Grid.Row="2" Date="{Binding AgendaItem.End.Date, Mode=TwoWay}" Margin="0,8,0,0">
-                            <DatePicker.Behaviors>
-                                <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference endDate}}"/>
-                            </DatePicker.Behaviors>
-                        </DatePicker>
+            <ContentView x:Name="reservationContentView" BackgroundColor="#C0808080" IsVisible="{Binding IsReservationContentViewVisible}" HorizontalOptions="Start" VerticalOptions="Center" Padding="12,0,12,0" HeightRequest="{Binding Source={x:Reference calendar},Path=Height}">
+                <ScrollView >
+                    <StackLayout x:Name="reservationStackLayout" HorizontalOptions="Start" Margin="0,12,0,12">
+                        <Entry Text="{Binding AgendaItem.Title, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Placeholder="{extension:Translate RoomPage_ReservationTitle_Placeholder}"/>
+                        <Grid x:Name="grid" Margin="0,8,0,0" HorizontalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <DatePicker x:Name="startDate" Grid.Row="0" Date="{Binding AgendaItem.Start.Date, Mode=TwoWay}" >
+                                <DatePicker.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference startDate}}"/>
+                                </DatePicker.Behaviors>
+                            </DatePicker>
+                            <syncfusionbuttons:SfCheckBox x:Name="allDaySfCheckBox" Grid.Row="0" Grid.Column="1" Text="{extension:Translate RoomPage_AllDayButton_Text}" IsChecked="{Binding AgendaItem.IsAllDayEvent}" >
+                                <syncfusionbuttons:SfCheckBox.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="StateChanged" Command="{Binding ChangeStateCommand}" CommandParameter="{Binding Source={x:Reference allDaySfCheckBox}, Path=IsChecked}"/>
+                                </syncfusionbuttons:SfCheckBox.Behaviors>
+                            </syncfusionbuttons:SfCheckBox>
+                            <TimePicker x:Name="startTime" Grid.Row="1" Time="{Binding AgendaItem.Start.TimeOfDay, Mode=TwoWay}" HorizontalOptions="Center" WidthRequest="{Binding Source={x:Reference startDate}, Path=Width}">
+                                <TimePicker.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference startTime}}"/>
+                                </TimePicker.Behaviors>
+                            </TimePicker>
+
+                            <DatePicker x:Name="endDate" Grid.Row="2" Date="{Binding AgendaItem.End.Date, Mode=TwoWay}" Margin="0,8,0,0">
+                                <DatePicker.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference endDate}}"/>
+                                </DatePicker.Behaviors>
+                            </DatePicker>
                             <TimePicker x:Name="endTime" Grid.Row="3" Time="{Binding AgendaItem.End.TimeOfDay, Mode=TwoWay}" HorizontalOptions="Center" WidthRequest="{Binding Source={x:Reference startDate}, Path=Width}">
-                            <TimePicker.Behaviors>
-                                <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference endTime}}"/>
-                            </TimePicker.Behaviors>
-                        </TimePicker>
-                        
-                        <Picker Grid.Row="4" SelectedIndex="{Binding AgendaItem.Occupancy, Mode=TwoWay}" Margin="0,8,0,0" >
-                            <Picker.Items>
-                                <extension:Translate Text="RoomsPage_Occupancy_Free"/>
-                                <extension:Translate Text="RoomsPage_Occupancy_Present"/>
-                                <extension:Translate Text="RoomsPage_Occupancy_Absent"/>
-                                <extension:Translate Text="RoomsPage_Occupancy_Busy"/>
-                                <extension:Translate Text="RoomsPage_Occupancy_Occupied"/>
-                                <extension:Translate Text="RoomsPage_Occupancy_Locked"/>
-                            </Picker.Items>
-                        </Picker>
-                    </Grid>
+                                <TimePicker.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference endTime}}"/>
+                                </TimePicker.Behaviors>
+                            </TimePicker>
 
-                    <Editor Text="{Binding AgendaItem.Description, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" Margin="0,8,0,0" HorizontalOptions="Start" WidthRequest="{Binding Source={x:Reference startDate},Path=Width}" Placeholder="{extension:Translate RoomPage_ReservationDescription_Placeholder}"/>
+                            <Picker Grid.Row="4" SelectedIndex="{Binding AgendaItem.Occupancy, Mode=TwoWay}" Margin="0,8,0,0" >
+                                <Picker.Items>
+                                    <extension:Translate Text="RoomsPage_Occupancy_Free"/>
+                                    <extension:Translate Text="RoomsPage_Occupancy_Present"/>
+                                    <extension:Translate Text="RoomsPage_Occupancy_Absent"/>
+                                    <extension:Translate Text="RoomsPage_Occupancy_Busy"/>
+                                    <extension:Translate Text="RoomsPage_Occupancy_Occupied"/>
+                                    <extension:Translate Text="RoomsPage_Occupancy_Locked"/>
+                                </Picker.Items>
+                            </Picker>
+                        </Grid>
 
-                        <Grid Margin="0,8,0,0" HorizontalOptions="Start" WidthRequest="{Binding Source={x:Reference grid},Path=Width}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Button Text="{extension:Translate RoomPage_CancelButton_Text}" Command="{Binding CloseReservationPopupCommand}" HorizontalOptions="Start"/>
-                        <Button Grid.Column="1" Text="{extension:Translate RoomPage_DeleteButton_Text}" Command="{Binding DeleteReservationPopupCommand}" HorizontalOptions="Center"/>
-                        <Button Grid.Column="2" Text="{extension:Translate RoomPage_SaveButton_Text}" Command="{Binding AddOrSaveAgendaItemCommand}" HorizontalOptions="End"/>
-                    </Grid>
-                </StackLayout>
+                        <Editor Text="{Binding AgendaItem.Description, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" Margin="0,8,0,0" HorizontalOptions="FillAndExpand" Placeholder="{extension:Translate RoomPage_ReservationDescription_Placeholder}" />
+
+                        <Grid x:Name="bottomButtonGrid" Margin="0,8,0,0" HorizontalOptions="Center" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Text="{extension:Translate RoomPage_CancelButton_Text}" Command="{Binding CloseReservationPopupCommand}" HorizontalOptions="Start"/>
+                            <Button Grid.Column="1" Text="{extension:Translate RoomPage_DeleteButton_Text}" Command="{Binding DeleteReservationPopupCommand}" HorizontalOptions="Center"/>
+                            <Button Grid.Column="2" Text="{extension:Translate RoomPage_SaveButton_Text}" Command="{Binding AddOrSaveAgendaItemCommand}" HorizontalOptions="End"/>
+                        </Grid>
+                    </StackLayout>
                 </ScrollView>
             </ContentView>
         </AbsoluteLayout>

@@ -7,7 +7,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoomInfoRemote.Views.RoomsPage"
              NavigationPage.HasNavigationBar="false">   
-    <ListView ItemsSource="{Binding RoomItems}" HasUnevenRows="True" SeparatorVisibility="None" VerticalOptions="FillAndExpand" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing}" Margin="12,0,12,0">
+    <ListView ItemsSource="{Binding RoomItems}" HasUnevenRows="True" SeparatorVisibility="None" VerticalOptions="FillAndExpand" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing}">
         <ListView.Behaviors>
             <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding NavigateToSelectedRoomPageCommand}" EventArgsParameterPath="Item"/>
         </ListView.Behaviors>
@@ -15,7 +15,7 @@
             <DataTemplate>
                 <ViewCell>
                     <ViewCell.View>
-                        <Grid>
+                        <Grid Padding="12,0,12,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>                                
                                 <ColumnDefinition Width="Auto"/>
