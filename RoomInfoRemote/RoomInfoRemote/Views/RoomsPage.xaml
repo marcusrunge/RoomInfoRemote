@@ -6,7 +6,7 @@
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"             
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoomInfoRemote.Views.RoomsPage"
-             NavigationPage.HasNavigationBar="false">   
+             NavigationPage.HasNavigationBar="false">
     <ListView ItemsSource="{Binding RoomItems}" HasUnevenRows="True" SeparatorVisibility="None" VerticalOptions="FillAndExpand" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing}">
         <ListView.Behaviors>
             <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding NavigateToSelectedRoomPageCommand}" EventArgsParameterPath="Item"/>
@@ -15,38 +15,41 @@
             <DataTemplate>
                 <ViewCell>
                     <ViewCell.View>
-                        <Grid Padding="12,0,12,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*"/>                                
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <StackLayout>
-                                <Label Text="{Binding Room.RoomName}" FontSize="Medium"/>
-                                <Label Text="{Binding Room.RoomNumber}" FontSize="Medium"/>
-                            </StackLayout>
-                            <StackLayout Grid.Column="1" IsVisible="{Binding Room.IsIoT}" VerticalOptions="Center">
-                                <Label Text="{extension:Translate RoomItem_Dim}"/>
-                                <Switch x:Name="dimSwitch" >
-                                <Switch.Behaviors>
-                                    <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding DimRemoteIoTDeviceCommand}" CommandParameter="{Binding Source={x:Reference dimSwitch}, Path=IsToggled}"/>
-                                </Switch.Behaviors>
-                            </Switch>
-                            </StackLayout>
-                            <Picker Grid.Column="2" SelectedIndex="{Binding Room.Occupancy, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" FontSize="Large">
-                                <Picker.Behaviors>
-                                    <behaviors:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding UpdateRemoteOccupancyCommand}"/>
-                                </Picker.Behaviors>
-                                <Picker.Items>
-                                    <extension:Translate Text="RoomsPage_Occupancy_Free"/>
-                                    <extension:Translate Text="RoomsPage_Occupancy_Present"/>
-                                    <extension:Translate Text="RoomsPage_Occupancy_Absent"/>
-                                    <extension:Translate Text="RoomsPage_Occupancy_Busy"/>
-                                    <extension:Translate Text="RoomsPage_Occupancy_Occupied"/>
-                                    <extension:Translate Text="RoomsPage_Occupancy_Locked"/>
-                                </Picker.Items>
-                            </Picker>
-                        </Grid>                        
+                        <StackLayout>
+                            <Grid Padding="12,0,12,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout>
+                                    <Label Text="{Binding Room.RoomName}" FontSize="Medium"/>
+                                    <Label Text="{Binding Room.RoomNumber}" FontSize="Medium"/>
+                                </StackLayout>
+                                <StackLayout Grid.Column="1" IsVisible="{Binding Room.IsIoT}" VerticalOptions="Center">
+                                    <Label Text="{extension:Translate RoomItem_Dim}"/>
+                                    <Switch x:Name="dimSwitch" >
+                                        <Switch.Behaviors>
+                                            <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding DimRemoteIoTDeviceCommand}" CommandParameter="{Binding Source={x:Reference dimSwitch}, Path=IsToggled}"/>
+                                        </Switch.Behaviors>
+                                    </Switch>
+                                </StackLayout>
+                                <Picker Grid.Column="2" SelectedIndex="{Binding Room.Occupancy, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" FontSize="Large">
+                                    <Picker.Behaviors>
+                                        <behaviors:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding UpdateRemoteOccupancyCommand}"/>
+                                    </Picker.Behaviors>
+                                    <Picker.Items>
+                                        <extension:Translate Text="RoomsPage_Occupancy_Free"/>
+                                        <extension:Translate Text="RoomsPage_Occupancy_Present"/>
+                                        <extension:Translate Text="RoomsPage_Occupancy_Absent"/>
+                                        <extension:Translate Text="RoomsPage_Occupancy_Busy"/>
+                                        <extension:Translate Text="RoomsPage_Occupancy_Occupied"/>
+                                        <extension:Translate Text="RoomsPage_Occupancy_Locked"/>
+                                    </Picker.Items>
+                                </Picker>
+                            </Grid>
+                            <Grid BackgroundColor="LightGray" HeightRequest="1"/>
+                        </StackLayout>
                     </ViewCell.View>
                 </ViewCell>
             </DataTemplate>

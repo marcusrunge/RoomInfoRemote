@@ -82,6 +82,7 @@
     <PackageReference Include="Prism.Unity.Forms" Version="7.1.0.431" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomRenderer\TabbedMainPageRenderer.cs" />
     <Compile Include="CustomRenderer\TransparentButtonRenderer.cs" />
     <Compile Include="DependencyServices\ThemeSelectionDependencyService.cs" />
     <Compile Include="Localize.cs" />
@@ -229,6 +230,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_action_refresh_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\shadow.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\top_shadow.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
