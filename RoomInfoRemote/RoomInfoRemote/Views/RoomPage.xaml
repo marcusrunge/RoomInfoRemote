@@ -12,7 +12,19 @@
              x:Class="RoomInfoRemote.Views.RoomPage"
              Title="{Binding Title}">    
     <NavigationPage.TitleView>
-        <customs:TransparentButton x:Name="addReservationButton" FontFamily="Segoe MDL2 Assets" Text="&#xE710;" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,12,0" Command="{Binding OpenReservationPopupCommand}" CommandParameter="addReservationButton"  BackgroundColor="Transparent" FontSize="Large"/>       
+        <customs:TransparentButton x:Name="addReservationButton" FontFamily="Segoe MDL2 Assets" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,12,0" Command="{Binding OpenReservationPopupCommand}" CommandParameter="addReservationButton"  BackgroundColor="Transparent" FontSize="Large">
+            <customs:TransparentButton.Text>
+                <OnPlatform x:TypeArguments="x:String">
+                    <On Platform="UWP" Value="&#xE710;"/>
+                </OnPlatform>
+            </customs:TransparentButton.Text>
+            <customs:TransparentButton.Image>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
+                    <On Platform="iOS" Value="AddIcon"/>
+                </OnPlatform>
+            </customs:TransparentButton.Image>
+        </customs:TransparentButton>       
     </NavigationPage.TitleView>    
     <ContentPage.Resources>        
         <ResourceDictionary>

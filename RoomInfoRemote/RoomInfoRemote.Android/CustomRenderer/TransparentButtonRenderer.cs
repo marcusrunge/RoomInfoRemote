@@ -14,7 +14,7 @@ namespace RoomInfoRemote.Droid.Renderer
         {
 
         }
-        protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.Button> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<Button> e)
         {
             base.OnElementChanged(e);
             Control.SetBackgroundColor(Android.Graphics.Color.Transparent);
