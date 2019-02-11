@@ -203,7 +203,11 @@ namespace RoomInfoRemote.ViewModels
                 else if (param is TimePicker)
                 {
                     var timePicker = param as TimePicker;
-                    if (timePicker.StyleId.Equals("startTime")) AgendaItem.Start = new DateTimeOffset(AgendaItem.Start.Date + timePicker.Time);
+                    if (timePicker.StyleId.Equals("startTime"))
+                    {
+                        AgendaItem.Start = new DateTimeOffset(AgendaItem.Start.Date + timePicker.Time);
+                        AgendaItem.End = AgendaItem.Start;
+                    }
                     else if (timePicker.StyleId.Equals("endTime")) AgendaItem.End = new DateTimeOffset(AgendaItem.End.Date + timePicker.Time);
                 }
             }

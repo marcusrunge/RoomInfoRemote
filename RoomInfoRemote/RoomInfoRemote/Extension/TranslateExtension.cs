@@ -11,7 +11,7 @@ namespace RoomInfoRemote.Extension
     [ContentProperty("Text")]
     public class TranslateExtension : IMarkupExtension
     {
-        readonly CultureInfo ci = null;
+        readonly CultureInfo cultureInfo = null;
         const string ResourceId = "RoomInfoRemote.Resx.AppResources";
 
         static readonly Lazy<ResourceManager> ResMgr = new Lazy<ResourceManager>(
@@ -23,7 +23,7 @@ namespace RoomInfoRemote.Extension
         {
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {
-                ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                cultureInfo = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
             }
         }
 
@@ -32,12 +32,12 @@ namespace RoomInfoRemote.Extension
             if (Text == null)
                 return string.Empty;
 
-            var translation = ResMgr.Value.GetString(Text, ci);
+            var translation = ResMgr.Value.GetString(Text, cultureInfo);
             if (translation == null)
             {
 #if DEBUG
                 throw new ArgumentException(
-                    string.Format("Key '{0}' was not found in resources '{1}' for culture '{2}'.", Text, ResourceId, ci.Name),
+                    string.Format("Key '{0}' was not found in resources '{1}' for culture '{2}'.", Text, ResourceId, cultureInfo.Name),
                     "Text");
 #else
                 translation = Text; // HACK: returns the key, which GETS DISPLAYED TO THE USER
