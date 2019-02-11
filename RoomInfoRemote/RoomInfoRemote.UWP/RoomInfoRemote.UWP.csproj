@@ -94,6 +94,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomRenderer\TransparentButtonRenderer.cs" />
+    <Compile Include="DependencyServices\Localize.cs" />
     <Compile Include="DependencyServices\NetworkCommunicationDependencyService.cs" />
     <Compile Include="DependencyServices\ThemeSelectionDependencyService.cs" />
     <Compile Include="MainPage.xaml.cs">

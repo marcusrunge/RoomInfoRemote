@@ -8,6 +8,7 @@ using RoomInfoRemote.Models;
 using Syncfusion.SfCalendar.XForms;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -24,8 +25,8 @@ namespace RoomInfoRemote.ViewModels
         RoomItem _roomItem = default(RoomItem);
         public RoomItem RoomItem { get => _roomItem; set { SetProperty(ref _roomItem, value); } }
 
-        //ObservableCollection<AgendaItem> _agendaItems = default(ObservableCollection<AgendaItem>);
-        //public ObservableCollection<AgendaItem> AgendaItems { get => _agendaItems; set { SetProperty(ref _agendaItems, value); } }
+        CultureInfo _cultureInfo = default(CultureInfo);
+        public CultureInfo CultureInfo { get => _cultureInfo; set { SetProperty(ref _cultureInfo, value); } }
 
         CalendarEventCollection _calendarInlineEvents = default(CalendarEventCollection);
         public CalendarEventCollection CalendarInlineEvents { get => _calendarInlineEvents; set { SetProperty(ref _calendarInlineEvents, value); } }
@@ -40,6 +41,7 @@ namespace RoomInfoRemote.ViewModels
         {
             _networkCommunication = DependencyService.Get<INetworkCommunication>(DependencyFetchTarget.GlobalInstance);
             _eventAggregator = eventAggregator;
+            CultureInfo = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
