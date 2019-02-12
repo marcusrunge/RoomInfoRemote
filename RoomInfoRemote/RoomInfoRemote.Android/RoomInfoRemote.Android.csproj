@@ -82,6 +82,7 @@
     <PackageReference Include="Prism.Unity.Forms" Version="7.1.0.431" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomRenderer\CustomTimePickerRenderer.cs" />
     <Compile Include="CustomRenderer\TabbedMainPageRenderer.cs" />
     <Compile Include="CustomRenderer\TransparentButtonRenderer.cs" />
     <Compile Include="DependencyServices\ThemeSelectionDependencyService.cs" />

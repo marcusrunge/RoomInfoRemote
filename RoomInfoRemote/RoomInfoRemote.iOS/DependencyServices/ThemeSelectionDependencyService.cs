@@ -1,5 +1,4 @@
-﻿using System;
-using RoomInfoRemote.Interfaces;
+﻿using RoomInfoRemote.Interfaces;
 using RoomInfoRemote.iOS.DependencyServices;
 using RoomInfoRemote.Models;
 using Xamarin.Forms;

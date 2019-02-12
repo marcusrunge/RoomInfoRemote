@@ -4,8 +4,6 @@ using Android.Content;
 using RoomInfoRemote.Customs;
 using RoomInfoRemote.Droid.Renderer;
 using Android.Views;
-using Xamarin.Essentials;
-using RoomInfoRemote.Interfaces;
 
 [assembly: ExportRenderer(typeof(TransparentButton), typeof(TransparentButtonRenderer))]
 namespace RoomInfoRemote.Droid.Renderer

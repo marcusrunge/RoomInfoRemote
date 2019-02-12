@@ -1,5 +1,4 @@
-﻿using RoomInfoRemote.Helpers;
-using RoomInfoRemote.UWP.DependencyServices;
+﻿using RoomInfoRemote.UWP.DependencyServices;
 using Syncfusion.SfCalendar.XForms.UWP;
 using System;
 using System.Collections.Generic;
