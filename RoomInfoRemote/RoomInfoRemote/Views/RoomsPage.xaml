@@ -18,23 +18,28 @@
                         <StackLayout>
                             <Grid Padding="12,0,12,0">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="1*"/>
                                     <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <StackLayout>
-                                    <Label Text="{Binding Room.RoomName}" FontSize="Medium"/>
-                                    <Label Text="{Binding Room.RoomNumber}" FontSize="Medium"/>
-                                </StackLayout>
-                                <StackLayout Grid.Column="1" IsVisible="{Binding Room.IsIoT}" VerticalOptions="Center">
-                                    <Label Text="{extension:Translate RoomItem_Dim}"/>
-                                    <Switch x:Name="dimSwitch" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Text="{Binding Room.RoomName}" FontSize="Large" VerticalOptions="Center"/>
+                                <Label x:Name="roomNumberLabel" Grid.Row="1" Text="{Binding Room.RoomNumber}" FontSize="Large" VerticalOptions="Center"/>
+                                <Grid Grid.Column="1" Grid.Row="1" IsVisible="{Binding Room.IsIoT}" VerticalOptions="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{extension:Translate RoomItem_Dim}" VerticalOptions="Center"/>
+                                    <Switch Grid.Column="1" x:Name="dimSwitch" VerticalOptions="Center" HeightRequest="{Binding Source={x:Reference roomNumberLabel}, Path=Height}">
                                         <Switch.Behaviors>
                                             <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding DimRemoteIoTDeviceCommand}" CommandParameter="{Binding Source={x:Reference dimSwitch}, Path=IsToggled}"/>
                                         </Switch.Behaviors>
                                     </Switch>
-                                </StackLayout>
-                                <Picker Grid.Column="2" SelectedIndex="{Binding Room.Occupancy, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" FontSize="Large">
+                                </Grid>
+                                <Picker Grid.Column="1" SelectedIndex="{Binding Room.Occupancy, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" FontSize="Medium">
                                     <Picker.Behaviors>
                                         <behaviors:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding UpdateRemoteOccupancyCommand}"/>
                                     </Picker.Behaviors>
