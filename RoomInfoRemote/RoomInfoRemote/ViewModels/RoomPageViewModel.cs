@@ -76,7 +76,7 @@ namespace RoomInfoRemote.ViewModels
                 var now = DateTime.Now;
                 AgendaItem = new AgendaItem() { Start = now, End = now, IsAllDayEvent = false };
             }
-            IsReservationContentViewVisible = true;
+            if (AgendaItem != null) IsReservationContentViewVisible = true;
         }));
 
         private ICommand _addOrSaveAgendaItemCommand;
@@ -197,8 +197,15 @@ namespace RoomInfoRemote.ViewModels
                     var datePicker = param as DatePicker;
                     if (datePicker.StyleId.Equals("startDate"))
                     {
-                        AgendaItem.Start = new DateTimeOffset(datePicker.Date + AgendaItem.Start.TimeOfDay);
-                        if (AgendaItem.End < AgendaItem.Start) AgendaItem.End = AgendaItem.Start;
+                        AgendaItem.Start = new DateTimeOffset(datePicker.Date + AgendaItem.Start.TimeOfDay);                        
+                        if (AgendaItem.End < AgendaItem.Start)
+                        {
+                            if (AgendaItem.IsAllDayEvent)
+                            {
+                                AgendaItem.End = AgendaItem.Start.Date + AgendaItem.End.TimeOfDay;
+                            }
+                            else AgendaItem.End = AgendaItem.Start;
+                        } 
                     }
                     else if (datePicker.StyleId.Equals("endDate")) AgendaItem.End = new DateTimeOffset(datePicker.Date + AgendaItem.End.TimeOfDay);
                 }
@@ -218,16 +225,17 @@ namespace RoomInfoRemote.ViewModels
         private ICommand _changeStateCommand;
         public ICommand ChangeStateCommand => _changeStateCommand ?? (_changeStateCommand = new DelegateCommand<object>((param) =>
         {
-            if(((string)param).Equals("true"))
+            if (AgendaItem == null) return;
+            if (!(bool)param)
             {
-                AgendaItem.Start = DateTimeOffset.Now.Date + TimeSpan.FromHours(0);
-                AgendaItem.End = DateTimeOffset.Now.Date + TimeSpan.FromHours(23).Add(TimeSpan.FromMinutes(59));
+                AgendaItem.Start = AgendaItem.Start.Date + TimeSpan.FromHours(0);
+                AgendaItem.End = AgendaItem.End.Date + TimeSpan.FromHours(23).Add(TimeSpan.FromMinutes(59));
             }
             else
             {
                 var now = DateTime.Now;
-                AgendaItem.Start = now;
-                AgendaItem.End = now;
+                AgendaItem.Start = AgendaItem.Start.Date + now.TimeOfDay;
+                AgendaItem.End = AgendaItem.End.Date + now.TimeOfDay;
             }
         }));
     }
