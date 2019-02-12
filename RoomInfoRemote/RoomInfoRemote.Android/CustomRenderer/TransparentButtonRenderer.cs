@@ -3,6 +3,9 @@ using Xamarin.Forms;
 using Android.Content;
 using RoomInfoRemote.Customs;
 using RoomInfoRemote.Droid.Renderer;
+using Android.Views;
+using Xamarin.Essentials;
+using RoomInfoRemote.Interfaces;
 
 [assembly: ExportRenderer(typeof(TransparentButton), typeof(TransparentButtonRenderer))]
 namespace RoomInfoRemote.Droid.Renderer
@@ -19,6 +22,10 @@ namespace RoomInfoRemote.Droid.Renderer
             base.OnElementChanged(e);
             Control.SetBackgroundColor(Android.Graphics.Color.Transparent);
             Control.SetHighlightColor(Android.Graphics.Color.Transparent);
+            if (e.NewElement.StyleId.Equals("refreshButton")) e.NewElement.Clicked += (sender, eventArgs) => 
+            {
+                MainActivity.DecorView.PerformHapticFeedback(FeedbackConstants.VirtualKey, FeedbackFlags.IgnoreGlobalSetting);
+            };
         }
     }
 }

@@ -197,26 +197,15 @@ namespace RoomInfoRemote.ViewModels
                     var datePicker = param as DatePicker;
                     if (datePicker.StyleId.Equals("startDate"))
                     {
-                        AgendaItem.Start = new DateTimeOffset(datePicker.Date + AgendaItem.Start.TimeOfDay);                        
-                        if (AgendaItem.End < AgendaItem.Start)
-                        {
-                            if (AgendaItem.IsAllDayEvent)
-                            {
-                                AgendaItem.End = AgendaItem.Start.Date + AgendaItem.End.TimeOfDay;
-                            }
-                            else AgendaItem.End = AgendaItem.Start;
-                        } 
+                        AgendaItem.Start = new DateTimeOffset(datePicker.Date + AgendaItem.Start.TimeOfDay);
+                        if (AgendaItem.End < AgendaItem.Start) AgendaItem.End = AgendaItem.Start.Date + AgendaItem.End.TimeOfDay;                        
                     }
                     else if (datePicker.StyleId.Equals("endDate")) AgendaItem.End = new DateTimeOffset(datePicker.Date + AgendaItem.End.TimeOfDay);
                 }
                 else if (param is TimePicker)
                 {
                     var timePicker = param as TimePicker;
-                    if (timePicker.StyleId.Equals("startTime"))
-                    {
-                        AgendaItem.Start = new DateTimeOffset(AgendaItem.Start.Date + timePicker.Time);
-                        //AgendaItem.End = AgendaItem.Start;
-                    }
+                    if (timePicker.StyleId.Equals("startTime"))AgendaItem.Start = new DateTimeOffset(AgendaItem.Start.Date + timePicker.Time);                    
                     else if (timePicker.StyleId.Equals("endTime")) AgendaItem.End = new DateTimeOffset(AgendaItem.End.Date + timePicker.Time);
                 }
             }

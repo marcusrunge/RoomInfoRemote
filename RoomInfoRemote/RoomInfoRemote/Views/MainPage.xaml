@@ -18,7 +18,7 @@
                     </OnPlatform>
                 </Label.TextColor>
             </Label>
-            <customs:TransparentButton FontFamily="Segoe MDL2 Assets" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,12,0" Command="{Binding NotifyButtonPressedCommand}" CommandParameter="0" IsVisible="{Binding IsRefreshButtonVisible}" BackgroundColor="Transparent" FontSize="Large">
+            <customs:TransparentButton x:Name="refreshButton" FontFamily="Segoe MDL2 Assets" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,12,0" Command="{Binding NotifyButtonPressedCommand}" CommandParameter="0" IsVisible="{Binding IsRefreshButtonVisible}" BackgroundColor="Transparent" FontSize="Large">
                 <customs:TransparentButton.Text>
                     <OnPlatform x:TypeArguments="x:String">
                         <On Platform="UWP" Value="&#xE72C;"/>
