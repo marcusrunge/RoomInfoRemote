@@ -189,4 +189,22 @@
   <data name="MainPage_Title" xml:space="preserve">
     <value>Übersicht</value>
   </data>
+  <data name="SettingsPage_About" xml:space="preserve">
+    <value>Über diese Anwendung</value>
+  </data>
+  <data name="SettingsPage_Application_Title" xml:space="preserve">
+    <value>Rauminfo Fernbedienung - </value>
+  </data>
+  <data name="SettingsPage_Made_in_Germany" xml:space="preserve">
+    <value>Hergestellt in Deutschland und entwickelt von</value>
+  </data>
+  <data name="SettingsPage_Privacy_Policy" xml:space="preserve">
+    <value>Datenschutzerklärung</value>
+  </data>
+  <data name="SettingsPage_Support" xml:space="preserve">
+    <value>Unterstützung</value>
+  </data>
+  <data name="SettingsPage_Privacy_Uri" xml:space="preserve">
+    <value>http://3lys1um.myqnapcloud.com/Datenschutz/roominfo/de/</value>
+  </data>
 </root>

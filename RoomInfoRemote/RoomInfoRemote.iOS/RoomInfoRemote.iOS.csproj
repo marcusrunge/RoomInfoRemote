@@ -89,6 +89,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CustomRenderer\TransparentButtonRenderer.cs" />
+    <Compile Include="DependencyServices\AppVersionDependencyService.cs" />
     <Compile Include="DependencyServices\NetworkCommunicationDependencyService.cs" />
     <Compile Include="DependencyServices\ThemeSelectionDependencyService.cs" />
     <Compile Include="Localize.cs" />
@@ -186,6 +187,9 @@
     <ImageAsset Include="Assets.xcassets\AddIcon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Developer.imageset\mru.png">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\HomeIcon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -199,6 +203,15 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\HomeIcon.imageset\Icon-Home-20x20@3x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Logo.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Developer.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Logo.imageset\logo.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\SettingsIcon.imageset\Contents.json">

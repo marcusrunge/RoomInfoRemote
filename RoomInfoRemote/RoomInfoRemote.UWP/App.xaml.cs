@@ -56,6 +56,7 @@ namespace RoomInfoRemote.UWP
                 Xamarin.Forms.DependencyService.Register<NetworkCommunicationDependencyService>();
                 Xamarin.Forms.DependencyService.Register<ThemeSelectionDependencyService>();
                 Xamarin.Forms.DependencyService.Register<Localize>();
+                Xamarin.Forms.DependencyService.Register<AppVersionDependencyService>();
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {

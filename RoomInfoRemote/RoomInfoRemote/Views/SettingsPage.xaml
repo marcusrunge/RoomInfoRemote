@@ -14,7 +14,7 @@
                 <Label Text="{extension:Translate SettingsPage_TcpPort}" />
                 <Entry Text="{Binding TcpPort, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" Placeholder="8273" MaxLength="15" Keyboard="Numeric" HorizontalOptions="Start"/>
                 <Label Text="{extension:Translate SettingsPage_UdpPort}" />
-                <Entry Text="{Binding UdpPort, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" Placeholder="8274" MaxLength="5" Keyboard="Numeric" HorizontalOptions="Start"/>                
+                <Entry Text="{Binding UdpPort, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" Placeholder="8274" MaxLength="5" Keyboard="Numeric" HorizontalOptions="Start"/>
             </StackLayout>
             <!--<StackLayout Margin="0, 20, 0, 48">
                 <Label Text="{extension:Translate SettingsPage_Themes}" FontSize="Medium"/>
@@ -31,6 +31,59 @@
                     </syncfusionbuttons:SfRadioButton>
                 </syncfusionbuttons:SfRadioGroup>
             </StackLayout>-->
+            <StackLayout Margin="0, 20, 0, 48">
+                <Label Text="{extension:Translate SettingsPage_About}" FontSize="Medium" HorizontalOptions="Start"/>
+                <Grid HorizontalOptions="Start"> 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{extension:Translate SettingsPage_Application_Title}" FontSize="Default"/>
+                    <Label Grid.Column="1" Text="{Binding VersionInfo}" FontSize="Default"/>
+                </Grid>
+                <Image HorizontalOptions="Start" WidthRequest="{Binding Source={x:Reference marcusRunge}, Path=Width}" Aspect="AspectFill">
+                    <Image.Source>
+                        <OnPlatform x:TypeArguments="FileImageSource">
+                            <On Platform="UWP" Value="Assets/logo.png"/>
+                            <On Platform="Android" Value="@drawable/logo.png"/>
+                            <On Platform="iOS" Value="Logo"/>
+                        </OnPlatform>
+                    </Image.Source>
+                </Image>
+                <Label HorizontalOptions="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{extension:Translate SettingsPage_Support}" TextColor="Blue" TextDecorations="Underline" FontSize="Default">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ExecuteHyperLinkCommand}" CommandParameter="mailto:code_m@outlook.de?subject=RoomInfoRemote"/>
+                                </Span.GestureRecognizers>
+                            </Span>                            
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label HorizontalOptions="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{extension:Translate SettingsPage_Privacy_Policy}" TextColor="Blue" TextDecorations="Underline" FontSize="Default">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ExecuteHyperLinkCommand}" CommandParameter="{extension:Translate SettingsPage_Privacy_Uri}"/>
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="{extension:Translate SettingsPage_Made_in_Germany}" FontSize="Default" HorizontalOptions="Start"/>
+                <Image HorizontalOptions="Start" WidthRequest="{Binding Source={x:Reference marcusRunge}, Path=Width}" Aspect="AspectFill">
+                    <Image.Source>
+                        <OnPlatform x:TypeArguments="FileImageSource">
+                            <On Platform="UWP" Value="Assets/mru.png"/>
+                            <On Platform="Android" Value="@drawable/mru.png"/>
+                            <On Platform="iOS" Value="Developer"/>
+                        </OnPlatform>
+                    </Image.Source>
+                </Image>
+                <Label x:Name="marcusRunge" Text="Marcus Runge" FontSize="Default" HorizontalOptions="Start"/>
+            </StackLayout>
         </StackLayout>
     </ScrollView>
 </ContentPage>

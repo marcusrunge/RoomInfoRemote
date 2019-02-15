@@ -189,4 +189,22 @@
   <data name="MainPage_Title" xml:space="preserve">
     <value>Overview</value>
   </data>
+  <data name="SettingsPage_About" xml:space="preserve">
+    <value>About this application</value>
+  </data>
+  <data name="SettingsPage_Application_Title" xml:space="preserve">
+    <value>Roominfo Remote - </value>
+  </data>
+  <data name="SettingsPage_Made_in_Germany" xml:space="preserve">
+    <value>Made in Germany and developed by</value>
+  </data>
+  <data name="SettingsPage_Privacy_Policy" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="SettingsPage_Support" xml:space="preserve">
+    <value>Support</value>
+  </data>
+  <data name="SettingsPage_Privacy_Uri" xml:space="preserve">
+    <value>http://3lys1um.myqnapcloud.com/Datenschutz/roominfo/en/</value>
+  </data>
 </root>

@@ -85,6 +85,7 @@
     <Compile Include="CustomRenderer\CustomTimePickerRenderer.cs" />
     <Compile Include="CustomRenderer\TabbedMainPageRenderer.cs" />
     <Compile Include="CustomRenderer\TransparentButtonRenderer.cs" />
+    <Compile Include="DependencyServices\AppVersionDependencyService.cs" />
     <Compile Include="DependencyServices\ThemeSelectionDependencyService.cs" />
     <Compile Include="Localize.cs" />
     <Compile Include="MainActivity.cs" />
@@ -237,6 +238,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\top_shadow.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\mru.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

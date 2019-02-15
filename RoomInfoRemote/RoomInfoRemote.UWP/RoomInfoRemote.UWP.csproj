@@ -94,6 +94,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomRenderer\TransparentButtonRenderer.cs" />
+    <Compile Include="DependencyServices\AppVersionDependencyService.cs" />
     <Compile Include="DependencyServices\Localize.cs" />
     <Compile Include="DependencyServices\NetworkCommunicationDependencyService.cs" />
     <Compile Include="DependencyServices\ThemeSelectionDependencyService.cs" />
@@ -118,6 +119,8 @@
     <Content Include="Assets\LargeTile.scale-150.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\logo.png" />
+    <Content Include="Assets\mru.png" />
     <Content Include="Assets\SmallTile.scale-100.png" />
     <Content Include="Assets\SmallTile.scale-125.png" />
     <Content Include="Assets\SmallTile.scale-150.png" />

@@ -26,6 +26,9 @@ namespace RoomInfoRemote.ViewModels
         bool _isDarkThemeEnabled = default(bool);
         public bool IsDarkThemeEnabled { get => _isDarkThemeEnabled; set { SetProperty(ref _isDarkThemeEnabled, value); } }
 
+        string _versionInfo = default(string);
+        public string VersionInfo { get => _versionInfo; set { SetProperty(ref _versionInfo, value); } }
+
         public SettingsPageViewModel(INavigationService navigationService, IEventAggregator eventAggregator) : base(navigationService)
         {
             _eventAggregator = eventAggregator;
@@ -48,6 +51,7 @@ namespace RoomInfoRemote.ViewModels
                 default:
                     break;
             }
+            VersionInfo = DependencyService.Get<IAppVersion>().VersionInfo();
         }
 
         private ICommand _setThemeCommand;
@@ -66,6 +70,12 @@ namespace RoomInfoRemote.ViewModels
                     Settings.Theme = Theme.Dark;
                 }
             }
+        }));
+
+        private ICommand _executeHyperLinkCommand;
+        public ICommand ExecuteHyperLinkCommand => _executeHyperLinkCommand ?? (_executeHyperLinkCommand = new DelegateCommand<object>((param) =>
+        {
+            Device.OpenUri(new System.Uri(param as string));
         }));
     }
 }

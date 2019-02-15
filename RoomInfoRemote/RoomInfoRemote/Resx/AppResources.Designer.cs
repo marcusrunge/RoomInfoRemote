@@ -205,11 +205,65 @@ namespace RoomInfoRemote.Resx {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die About this application ähnelt.
+        /// </summary>
+        internal static string SettingsPage_About {
+            get {
+                return ResourceManager.GetString("SettingsPage_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Roominfo Remote -  ähnelt.
+        /// </summary>
+        internal static string SettingsPage_Application_Title {
+            get {
+                return ResourceManager.GetString("SettingsPage_Application_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Made in Germany and developed by ähnelt.
+        /// </summary>
+        internal static string SettingsPage_Made_in_Germany {
+            get {
+                return ResourceManager.GetString("SettingsPage_Made_in_Germany", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Port selection ähnelt.
         /// </summary>
         internal static string SettingsPage_Ports {
             get {
                 return ResourceManager.GetString("SettingsPage_Ports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Privacy Policy ähnelt.
+        /// </summary>
+        internal static string SettingsPage_Privacy_Policy {
+            get {
+                return ResourceManager.GetString("SettingsPage_Privacy_Policy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die http://3lys1um.myqnapcloud.com/Datenschutz/roominfo/en/ ähnelt.
+        /// </summary>
+        internal static string SettingsPage_Privacy_Uri {
+            get {
+                return ResourceManager.GetString("SettingsPage_Privacy_Uri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Support ähnelt.
+        /// </summary>
+        internal static string SettingsPage_Support {
+            get {
+                return ResourceManager.GetString("SettingsPage_Support", resourceCulture);
             }
         }
         
