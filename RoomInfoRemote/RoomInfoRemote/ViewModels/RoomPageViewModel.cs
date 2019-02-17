@@ -91,7 +91,7 @@ namespace RoomInfoRemote.ViewModels
                     StartTime = AgendaItem.Start.DateTime,
                     EndTime = AgendaItem.End.DateTime,
                     Subject = AgendaItem.Title,
-                    Color = Color.Fuchsia,
+                    //Color = Color.Fuchsia,
                     IsAllDay = AgendaItem.IsAllDayEvent
                 });
             }
@@ -162,7 +162,7 @@ namespace RoomInfoRemote.ViewModels
                                 StartTime = _agendaItems[i].Start.DateTime,
                                 EndTime = _agendaItems[i].End.DateTime,
                                 Subject = _agendaItems[i].Title,
-                                Color = Color.Fuchsia,
+                                //Color = Color.Fuchsia,
                                 IsAllDay = _agendaItems[i].IsAllDayEvent
                             });
                         }
