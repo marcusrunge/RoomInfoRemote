@@ -21,7 +21,7 @@
     <PackageCertificateKeyFile>RoomInfoRemote.UWP_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>EE41DDC1429DC05CBEDB70D815633B84C233058D</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
-    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxPackageDir>C:\Users\Marcus Runge\Austausch\</AppxPackageDir>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
