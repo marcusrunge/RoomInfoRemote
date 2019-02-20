@@ -61,7 +61,7 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Label HorizontalOptions="Start">
+                <Label HorizontalOptions="Start" IsVisible="False">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="{extension:Translate SettingsPage_Privacy_Policy}" TextColor="Blue" TextDecorations="Underline" FontSize="Default">
