@@ -38,7 +38,9 @@ namespace RoomInfoRemote.ViewModels
             base.OnNavigatedTo(parameters);
             if (string.IsNullOrEmpty(Settings.TcpPort)) Settings.TcpPort = "8273";
             if (string.IsNullOrEmpty(Settings.UdpPort)) Settings.UdpPort = "8274";
-            DependencyService.Get<INetworkCommunication>(DependencyFetchTarget.GlobalInstance).StartConnectionListener(Settings.TcpPort, NetworkProtocol.TransmissionControl);
+            INetworkCommunication networkCommunication = DependencyService.Get<INetworkCommunication>(DependencyFetchTarget.GlobalInstance);
+            networkCommunication.StartConnectionListener(Settings.TcpPort, NetworkProtocol.TransmissionControl);
+            networkCommunication.StartConnectionListener(Settings.UdpPort, NetworkProtocol.UserDatagram);
             IsRefreshButtonVisible = true;
             Title = _resourceManager.GetString("MainPage_Title", _cultureInfo);
         }

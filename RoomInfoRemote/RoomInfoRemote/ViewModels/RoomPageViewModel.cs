@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -50,7 +51,7 @@ namespace RoomInfoRemote.ViewModels
             RoomItem = parameters.GetValue<RoomItem>("RoomItem");
             Title = RoomItem.Room.RoomName + " " + RoomItem.Room.RoomNumber;
             var package = new Package() { PayloadType = (int)PayloadType.RequestSchedule };
-            _networkCommunication.PayloadReceived += (s, e) => ProcessPackage(JsonConvert.DeserializeObject<Package>(e.Package), e.HostName);
+            _networkCommunication.PayloadReceived += async (s, e) => await ProcessPackage(JsonConvert.DeserializeObject<Package>(e.Package), e.HostName);
             await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), RoomItem.HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
             IsReservationContentViewVisible = false;
         }
@@ -141,7 +142,7 @@ namespace RoomInfoRemote.ViewModels
             AgendaItem = null;
         }));
 
-        private void ProcessPackage(Package package, string hostName)
+        private async Task ProcessPackage(Package package, string hostName)
         {
             switch ((PayloadType)package.PayloadType)
             {
@@ -150,11 +151,11 @@ namespace RoomInfoRemote.ViewModels
                 case PayloadType.Room:
                     break;
                 case PayloadType.Schedule:
-                    if (CalendarInlineEvents == null) CalendarInlineEvents = new CalendarEventCollection();
-                    else CalendarInlineEvents.Clear();
-                    _agendaItems = new List<AgendaItem>(JsonConvert.DeserializeObject<AgendaItem[]>(package.Payload.ToString()));
                     Device.BeginInvokeOnMainThread(() =>
                     {
+                        if (CalendarInlineEvents == null) CalendarInlineEvents = new CalendarEventCollection();
+                        else CalendarInlineEvents.Clear();
+                        _agendaItems = new List<AgendaItem>(JsonConvert.DeserializeObject<AgendaItem[]>(package.Payload.ToString()));
                         for (int i = 0; i < _agendaItems.Count; i++)
                         {
                             CalendarInlineEvents.Add(new CalendarInlineEvent()
@@ -162,7 +163,6 @@ namespace RoomInfoRemote.ViewModels
                                 StartTime = _agendaItems[i].Start.DateTime,
                                 EndTime = _agendaItems[i].End.DateTime,
                                 Subject = _agendaItems[i].Title,
-                                //Color = Color.Fuchsia,
                                 IsAllDay = _agendaItems[i].IsAllDayEvent
                             });
                         }
@@ -183,6 +183,12 @@ namespace RoomInfoRemote.ViewModels
                 case PayloadType.AgendaItemId:
                     AgendaItem.Id = (int)Convert.ChangeType(package.Payload, typeof(int));
                     break;
+                case PayloadType.Discovery:
+                    break;
+                case PayloadType.PropertyChanged:
+                    package = new Package() { PayloadType = (int)PayloadType.RequestSchedule };
+                    await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), RoomItem.HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
+                    break;
                 default:
                     break;
             }
@@ -198,14 +204,14 @@ namespace RoomInfoRemote.ViewModels
                     if (datePicker.StyleId.Equals("startDate"))
                     {
                         AgendaItem.Start = new DateTimeOffset(datePicker.Date + AgendaItem.Start.TimeOfDay);
-                        if (AgendaItem.End < AgendaItem.Start) AgendaItem.End = AgendaItem.Start.Date + AgendaItem.End.TimeOfDay;                        
+                        if (AgendaItem.End < AgendaItem.Start) AgendaItem.End = AgendaItem.Start.Date + AgendaItem.End.TimeOfDay;
                     }
                     else if (datePicker.StyleId.Equals("endDate")) AgendaItem.End = new DateTimeOffset(datePicker.Date + AgendaItem.End.TimeOfDay);
                 }
                 else if (param is TimePicker)
                 {
                     var timePicker = param as TimePicker;
-                    if (timePicker.StyleId.Equals("startTime"))AgendaItem.Start = new DateTimeOffset(AgendaItem.Start.Date + timePicker.Time);                    
+                    if (timePicker.StyleId.Equals("startTime")) AgendaItem.Start = new DateTimeOffset(AgendaItem.Start.Date + timePicker.Time);
                     else if (timePicker.StyleId.Equals("endTime")) AgendaItem.End = new DateTimeOffset(AgendaItem.End.Date + timePicker.Time);
                 }
             }

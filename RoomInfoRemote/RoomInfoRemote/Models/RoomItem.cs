@@ -24,7 +24,7 @@ namespace RoomInfoRemote.Models
         public RoomItem(INetworkCommunication networkCommunication)
         {
             _networkCommunication = networkCommunication;
-            _isCommandExecutionAllowed = true;
+            _isCommandExecutionAllowed = false;
         }
 
         private ICommand _updateRemoteOccupancyCommand;

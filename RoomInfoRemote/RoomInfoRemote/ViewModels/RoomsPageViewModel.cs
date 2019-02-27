@@ -16,6 +16,7 @@ namespace RoomInfoRemote.ViewModels
     {
         INetworkCommunication _networkCommunication;
         IEventAggregator _eventAggregator;
+        Package _discoveryPackage;
 
         ObservableCollection<RoomItem> _roomItems = default(ObservableCollection<RoomItem>);
         public ObservableCollection<RoomItem> RoomItems { get => _roomItems; set { SetProperty(ref _roomItems, value); } }
@@ -29,13 +30,16 @@ namespace RoomInfoRemote.ViewModels
             _networkCommunication = DependencyService.Get<INetworkCommunication>(DependencyFetchTarget.GlobalInstance);
             _eventAggregator = eventAggregator;
             _networkCommunication.PayloadReceived += (s, e) => ProcessPackage(JsonConvert.DeserializeObject<Package>(e.Package), e.HostName);
-            _networkCommunication.SendPayload("", null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
+
+            _discoveryPackage = new Package() { PayloadType = (int)PayloadType.Discovery };
+            _networkCommunication.SendPayload(JsonConvert.SerializeObject(_discoveryPackage), null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
+
             _eventAggregator.GetEvent<CurrentPageChangedEvent>().Subscribe(e =>
             {
                 if (e == typeof(RoomsPage))
                 {
                     if (RoomItems != null) RoomItems.Clear();
-                    _networkCommunication.SendPayload("", null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
+                    _networkCommunication.SendPayload(JsonConvert.SerializeObject(_discoveryPackage), null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
                 }
             });
             _eventAggregator.GetEvent<ButtonPressedEvent>().Subscribe(e =>
@@ -43,7 +47,7 @@ namespace RoomInfoRemote.ViewModels
                 if (e == ButtenType.Refresh)
                 {
                     if (RoomItems != null) RoomItems.Clear();
-                    _networkCommunication.SendPayload("", null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
+                    _networkCommunication.SendPayload(JsonConvert.SerializeObject(_discoveryPackage), null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
                 }
             });
         }
@@ -59,15 +63,20 @@ namespace RoomInfoRemote.ViewModels
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         var room = JsonConvert.DeserializeObject<Room>(package.Payload.ToString());
+                        bool roomUpdate = false;
                         for (int i = 0; i < RoomItems.Count; i++)
                         {
                             if (RoomItems[i].Room.RoomGuid.Equals(room.RoomGuid))
                             {
-                                RoomItems.RemoveAt(i);
+                                RoomItems[i].HostName = hostName;
+                                RoomItems[i].Room.Occupancy = room.Occupancy;
+                                RoomItems[i].Room.RoomName = room.RoomName;
+                                RoomItems[i].Room.RoomNumber = room.RoomNumber;
+                                roomUpdate = true;
                                 break;
                             }
                         }
-                        RoomItems.Add(new RoomItem(_networkCommunication) { Room = room, HostName = hostName });
+                        if (!roomUpdate) RoomItems.Add(new RoomItem(_networkCommunication) { Room = room, HostName = hostName });
                     });
                     break;
                 case PayloadType.Schedule:
@@ -82,6 +91,15 @@ namespace RoomInfoRemote.ViewModels
                     break;
                 case PayloadType.IotDim:
                     break;
+                case PayloadType.AgendaItem:
+                    break;
+                case PayloadType.AgendaItemId:
+                    break;
+                case PayloadType.Discovery:
+                    break;
+                case PayloadType.PropertyChanged:
+                    _networkCommunication.SendPayload(JsonConvert.SerializeObject(_discoveryPackage), null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
+                    break;
                 default:
                     break;
             }
@@ -92,7 +110,7 @@ namespace RoomInfoRemote.ViewModels
         {
             IsRefreshing = true;
             if (RoomItems != null) RoomItems.Clear();
-            _networkCommunication.SendPayload("", null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
+            _networkCommunication.SendPayload(JsonConvert.SerializeObject(_discoveryPackage), null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
             IsRefreshing = false;
         }));
 
