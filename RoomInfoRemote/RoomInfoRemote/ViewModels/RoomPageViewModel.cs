@@ -144,54 +144,57 @@ namespace RoomInfoRemote.ViewModels
 
         private async Task ProcessPackage(Package package, string hostName)
         {
-            switch ((PayloadType)package.PayloadType)
+            if(package != null)
             {
-                case PayloadType.Occupancy:
-                    break;
-                case PayloadType.Room:
-                    break;
-                case PayloadType.Schedule:
-                    Device.BeginInvokeOnMainThread(() =>
-                    {
-                        if (CalendarInlineEvents == null) CalendarInlineEvents = new CalendarEventCollection();
-                        else CalendarInlineEvents.Clear();
-                        _agendaItems = new List<AgendaItem>(JsonConvert.DeserializeObject<AgendaItem[]>(package.Payload.ToString()));
-                        for (int i = 0; i < _agendaItems.Count; i++)
+                switch ((PayloadType)package.PayloadType)
+                {
+                    case PayloadType.Occupancy:
+                        break;
+                    case PayloadType.Room:
+                        break;
+                    case PayloadType.Schedule:
+                        Device.BeginInvokeOnMainThread(() =>
                         {
-                            CalendarInlineEvents.Add(new CalendarInlineEvent()
+                            if (CalendarInlineEvents == null) CalendarInlineEvents = new CalendarEventCollection();
+                            else CalendarInlineEvents.Clear();
+                            _agendaItems = new List<AgendaItem>(JsonConvert.DeserializeObject<AgendaItem[]>(package.Payload.ToString()));
+                            for (int i = 0; i < _agendaItems.Count; i++)
                             {
-                                StartTime = _agendaItems[i].Start.DateTime,
-                                EndTime = _agendaItems[i].End.DateTime,
-                                Subject = _agendaItems[i].Title,
-                                IsAllDay = _agendaItems[i].IsAllDayEvent
-                            });
-                        }
-                    });
-                    break;
-                case PayloadType.StandardWeek:
-                    break;
-                case PayloadType.RequestOccupancy:
-                    break;
-                case PayloadType.RequestSchedule:
-                    break;
-                case PayloadType.RequestStandardWeek:
-                    break;
-                case PayloadType.IotDim:
-                    break;
-                case PayloadType.AgendaItem:
-                    break;
-                case PayloadType.AgendaItemId:
-                    AgendaItem.Id = (int)Convert.ChangeType(package.Payload, typeof(int));
-                    break;
-                case PayloadType.Discovery:
-                    break;
-                case PayloadType.PropertyChanged:
-                    package = new Package() { PayloadType = (int)PayloadType.RequestSchedule };
-                    await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), RoomItem.HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
-                    break;
-                default:
-                    break;
-            }
+                                CalendarInlineEvents.Add(new CalendarInlineEvent()
+                                {
+                                    StartTime = _agendaItems[i].Start.DateTime,
+                                    EndTime = _agendaItems[i].End.DateTime,
+                                    Subject = _agendaItems[i].Title,
+                                    IsAllDay = _agendaItems[i].IsAllDayEvent
+                                });
+                            }
+                        });
+                        break;
+                    case PayloadType.StandardWeek:
+                        break;
+                    case PayloadType.RequestOccupancy:
+                        break;
+                    case PayloadType.RequestSchedule:
+                        break;
+                    case PayloadType.RequestStandardWeek:
+                        break;
+                    case PayloadType.IotDim:
+                        break;
+                    case PayloadType.AgendaItem:
+                        break;
+                    case PayloadType.AgendaItemId:
+                        AgendaItem.Id = (int)Convert.ChangeType(package.Payload, typeof(int));
+                        break;
+                    case PayloadType.Discovery:
+                        break;
+                    case PayloadType.PropertyChanged:
+                        package = new Package() { PayloadType = (int)PayloadType.RequestSchedule };
+                        await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), RoomItem.HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
+                        break;
+                    default:
+                        break;
+                }
+            }            
         }
         private ICommand _updateValueFromPickerCommand;
         public ICommand UpdateValueFromPickerCommand => _updateValueFromPickerCommand ?? (_updateValueFromPickerCommand = new DelegateCommand<object>((param) =>

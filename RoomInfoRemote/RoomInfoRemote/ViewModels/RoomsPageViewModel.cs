@@ -54,55 +54,58 @@ namespace RoomInfoRemote.ViewModels
 
         private void ProcessPackage(Package package, string hostName)
         {
-            switch ((PayloadType)package.PayloadType)
+            if(package != null)
             {
-                case PayloadType.Occupancy:
-                    break;
-                case PayloadType.Room:
-                    if (RoomItems == null) RoomItems = new ObservableCollection<RoomItem>();
-                    Device.BeginInvokeOnMainThread(() =>
-                    {
-                        var room = JsonConvert.DeserializeObject<Room>(package.Payload.ToString());
-                        bool roomUpdate = false;
-                        for (int i = 0; i < RoomItems.Count; i++)
+                switch ((PayloadType)package.PayloadType)
+                {
+                    case PayloadType.Occupancy:
+                        break;
+                    case PayloadType.Room:
+                        if (RoomItems == null) RoomItems = new ObservableCollection<RoomItem>();
+                        Device.BeginInvokeOnMainThread(() =>
                         {
-                            if (RoomItems[i].Room.RoomGuid.Equals(room.RoomGuid))
+                            var room = JsonConvert.DeserializeObject<Room>(package.Payload.ToString());
+                            bool roomUpdate = false;
+                            for (int i = 0; i < RoomItems.Count; i++)
                             {
-                                RoomItems[i].HostName = hostName;
-                                RoomItems[i].Room.Occupancy = room.Occupancy;
-                                RoomItems[i].Room.RoomName = room.RoomName;
-                                RoomItems[i].Room.RoomNumber = room.RoomNumber;
-                                roomUpdate = true;
-                                break;
+                                if (RoomItems[i].Room.RoomGuid.Equals(room.RoomGuid))
+                                {
+                                    RoomItems[i].HostName = hostName;
+                                    RoomItems[i].Room.Occupancy = room.Occupancy;
+                                    RoomItems[i].Room.RoomName = room.RoomName;
+                                    RoomItems[i].Room.RoomNumber = room.RoomNumber;
+                                    roomUpdate = true;
+                                    break;
+                                }
                             }
-                        }
-                        if (!roomUpdate) RoomItems.Add(new RoomItem(_networkCommunication) { Room = room, HostName = hostName });
-                    });
-                    break;
-                case PayloadType.Schedule:
-                    break;
-                case PayloadType.StandardWeek:
-                    break;
-                case PayloadType.RequestOccupancy:
-                    break;
-                case PayloadType.RequestSchedule:
-                    break;
-                case PayloadType.RequestStandardWeek:
-                    break;
-                case PayloadType.IotDim:
-                    break;
-                case PayloadType.AgendaItem:
-                    break;
-                case PayloadType.AgendaItemId:
-                    break;
-                case PayloadType.Discovery:
-                    break;
-                case PayloadType.PropertyChanged:
-                    _networkCommunication.SendPayload(JsonConvert.SerializeObject(_discoveryPackage), null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
-                    break;
-                default:
-                    break;
-            }
+                            if (!roomUpdate) RoomItems.Add(new RoomItem(_networkCommunication) { Room = room, HostName = hostName });
+                        });
+                        break;
+                    case PayloadType.Schedule:
+                        break;
+                    case PayloadType.StandardWeek:
+                        break;
+                    case PayloadType.RequestOccupancy:
+                        break;
+                    case PayloadType.RequestSchedule:
+                        break;
+                    case PayloadType.RequestStandardWeek:
+                        break;
+                    case PayloadType.IotDim:
+                        break;
+                    case PayloadType.AgendaItem:
+                        break;
+                    case PayloadType.AgendaItemId:
+                        break;
+                    case PayloadType.Discovery:
+                        break;
+                    case PayloadType.PropertyChanged:
+                        _networkCommunication.SendPayload(JsonConvert.SerializeObject(_discoveryPackage), null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
+                        break;
+                    default:
+                        break;
+                }
+            }            
         }
 
         private ICommand _refreshCommand;
