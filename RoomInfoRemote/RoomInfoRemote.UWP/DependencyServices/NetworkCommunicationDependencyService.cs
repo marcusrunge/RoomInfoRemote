@@ -139,7 +139,7 @@ namespace RoomInfoRemote.UWP.DependencyServices
                 _datagramSocket.MessageReceived += (s, e) =>
                 {                    
                     uint stringLength = e.GetDataReader().UnconsumedBufferLength;
-                    OnPayloadReceived(new PayloadReceivedEventArgs(e.RemotePort, e.GetDataReader().ReadString(stringLength)));
+                    OnPayloadReceived(new PayloadReceivedEventArgs(e.RemoteAddress.CanonicalName, e.GetDataReader().ReadString(stringLength)));
                 };
                 await _datagramSocket.BindServiceNameAsync(port);
             }

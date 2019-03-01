@@ -27,19 +27,19 @@
                                 </Grid.RowDefinitions>
                                 <Label Text="{Binding Room.RoomName}" FontSize="Large" VerticalOptions="Center"/>
                                 <Label x:Name="roomNumberLabel" Grid.Row="1" Text="{Binding Room.RoomNumber}" FontSize="Large" VerticalOptions="Center"/>
-                                <Grid Grid.Column="1" Grid.Row="1" IsVisible="{Binding Room.IsIoT}" VerticalOptions="Center">
+                                <Grid x:Name="ioTGrid" Grid.Column="1" Grid.Row="1" VerticalOptions="Center">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <Label Text="{extension:Translate RoomItem_Dim}" VerticalOptions="Center"/>
-                                    <Switch Grid.Column="1" x:Name="dimSwitch" VerticalOptions="Center" HeightRequest="{Binding Source={x:Reference roomNumberLabel}, Path=Height}">
+                                    <Switch IsEnabled="{Binding Room.IsIoT}" Grid.Column="1" x:Name="dimSwitch" VerticalOptions="Center" HeightRequest="{Binding Source={x:Reference roomNumberLabel}, Path=Height}">
                                         <Switch.Behaviors>
                                             <behaviors:EventToCommandBehavior EventName="Toggled" Command="{Binding DimRemoteIoTDeviceCommand}" CommandParameter="{Binding Source={x:Reference dimSwitch}, Path=IsToggled}"/>
                                         </Switch.Behaviors>
                                     </Switch>
                                 </Grid>
-                                <Picker Grid.Column="1" SelectedIndex="{Binding Room.Occupancy, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" FontSize="Medium">
+                                <Picker Grid.Column="1" SelectedIndex="{Binding Room.Occupancy, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" FontSize="Medium" WidthRequest="{Binding Source={x:Reference ioTGrid}, Path=Width}">
                                     <Picker.Behaviors>
                                         <behaviors:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding UpdateRemoteOccupancyCommand}"/>
                                     </Picker.Behaviors>

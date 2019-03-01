@@ -92,7 +92,6 @@ namespace RoomInfoRemote.ViewModels
                     StartTime = AgendaItem.Start.DateTime,
                     EndTime = AgendaItem.End.DateTime,
                     Subject = AgendaItem.Title,
-                    //Color = Color.Fuchsia,
                     IsAllDay = AgendaItem.IsAllDayEvent
                 });
             }
@@ -100,17 +99,23 @@ namespace RoomInfoRemote.ViewModels
             {
                 for (int i = 0; i < _agendaItems.Count; i++)
                 {
-                    if (_agendaItems[i].Id == AgendaItem.Id) _agendaItems[i] = AgendaItem;
-                }
-                for (int i = 0; i < CalendarInlineEvents.Count; i++)
-                {
-                    if (CalendarInlineEvents[i].Id == _calendarInlineEvent.Id)
+                    if (_agendaItems[i].Id == AgendaItem.Id)
                     {
-                        CalendarInlineEvents[i].StartTime = AgendaItem.Start.DateTime;
-                        CalendarInlineEvents[i].EndTime = AgendaItem.End.DateTime;
-                        CalendarInlineEvents[i].Subject = AgendaItem.Title;
-                        CalendarInlineEvents[i].IsAllDay = AgendaItem.IsAllDayEvent;
+                        _agendaItems[i] = AgendaItem;
+                        break;
                     }
+                }                
+                if (CalendarInlineEvents == null) CalendarInlineEvents = new CalendarEventCollection();
+                else CalendarInlineEvents.Clear();
+                for (int i = 0; i < _agendaItems.Count; i++)
+                {
+                    CalendarInlineEvents.Add(new CalendarInlineEvent()
+                    {
+                        StartTime = _agendaItems[i].Start.DateTime,
+                        EndTime = _agendaItems[i].End.DateTime,
+                        Subject = _agendaItems[i].Title,
+                        IsAllDay = _agendaItems[i].IsAllDayEvent
+                    });
                 }
             }
 
@@ -126,7 +131,14 @@ namespace RoomInfoRemote.ViewModels
             if (AgendaItem != null)
             {
                 _agendaItems.Remove(AgendaItem);
-                CalendarInlineEvents.Remove(CalendarInlineEvents.Where(x => x.StartTime == AgendaItem.Start.DateTime).Where(x => x.EndTime == AgendaItem.End.DateTime).FirstOrDefault());
+                for (int i = 0; i < CalendarInlineEvents.Count; i++)
+                {
+                    if (CalendarInlineEvents[i].StartTime == AgendaItem.Start.DateTime && CalendarInlineEvents[i].EndTime == AgendaItem.End.DateTime)
+                    {
+                        CalendarInlineEvents.RemoveAt(i);
+                        break;
+                    }
+                }
                 AgendaItem.IsDeleted = true;
                 var package = new Package() { PayloadType = (int)PayloadType.AgendaItem, Payload = AgendaItem };
                 await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), RoomItem.HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
@@ -144,7 +156,7 @@ namespace RoomInfoRemote.ViewModels
 
         private async Task ProcessPackage(Package package, string hostName)
         {
-            if(package != null)
+            if (package != null)
             {
                 switch ((PayloadType)package.PayloadType)
                 {
@@ -194,7 +206,7 @@ namespace RoomInfoRemote.ViewModels
                     default:
                         break;
                 }
-            }            
+            }
         }
         private ICommand _updateValueFromPickerCommand;
         public ICommand UpdateValueFromPickerCommand => _updateValueFromPickerCommand ?? (_updateValueFromPickerCommand = new DelegateCommand<object>((param) =>

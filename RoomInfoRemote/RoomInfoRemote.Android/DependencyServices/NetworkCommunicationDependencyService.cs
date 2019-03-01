@@ -79,7 +79,7 @@ namespace RoomInfoRemote.Droid.DependencyServices
                 try
                 {
                     UdpReceiveResult received = await udpClient.ReceiveAsync();
-                    OnPayloadReceived(new PayloadReceivedEventArgs(received.RemoteEndPoint.Port.ToString(), Encoding.ASCII.GetString(received.Buffer)));
+                    OnPayloadReceived(new PayloadReceivedEventArgs(received.RemoteEndPoint.Address.ToString(), Encoding.ASCII.GetString(received.Buffer)));
                 }
                 catch { }
             }
