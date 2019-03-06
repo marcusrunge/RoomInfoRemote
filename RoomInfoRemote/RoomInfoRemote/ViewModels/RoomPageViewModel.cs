@@ -86,13 +86,14 @@ namespace RoomInfoRemote.ViewModels
             if (!(AgendaItem.End >= AgendaItem.Start ? _agendaItems.Where(x => x.Id != AgendaItem.Id && ((AgendaItem.Start >= x.Start && AgendaItem.Start <= x.End) || (AgendaItem.End >= x.Start && AgendaItem.End <= x.End))).FirstOrDefault() == null : false)) return;
             if (AgendaItem.Id < 1)
             {
-                _agendaItems.Add(AgendaItem);
+                _agendaItems.Add(AgendaItem);                
                 CalendarInlineEvents.Add(new CalendarInlineEvent()
                 {
                     StartTime = AgendaItem.Start.DateTime,
                     EndTime = AgendaItem.End.DateTime,
                     Subject = AgendaItem.Title,
-                    IsAllDay = AgendaItem.IsAllDayEvent
+                    IsAllDay = AgendaItem.IsAllDayEvent,
+                    Color = Color.FromHex(HexColorFromOccupancy((OccupancyVisualState)AgendaItem.Occupancy))
                 });
             }
             else
@@ -104,17 +105,18 @@ namespace RoomInfoRemote.ViewModels
                         _agendaItems[i] = AgendaItem;
                         break;
                     }
-                }                
+                }
                 if (CalendarInlineEvents == null) CalendarInlineEvents = new CalendarEventCollection();
                 else CalendarInlineEvents.Clear();
                 for (int i = 0; i < _agendaItems.Count; i++)
-                {
+                {                    
                     CalendarInlineEvents.Add(new CalendarInlineEvent()
                     {
                         StartTime = _agendaItems[i].Start.DateTime,
                         EndTime = _agendaItems[i].End.DateTime,
                         Subject = _agendaItems[i].Title,
-                        IsAllDay = _agendaItems[i].IsAllDayEvent
+                        IsAllDay = _agendaItems[i].IsAllDayEvent,
+                        Color = Color.FromHex(HexColorFromOccupancy((OccupancyVisualState)_agendaItems[i].Occupancy))
                     });
                 }
             }
@@ -171,13 +173,14 @@ namespace RoomInfoRemote.ViewModels
                             else CalendarInlineEvents.Clear();
                             _agendaItems = new List<AgendaItem>(JsonConvert.DeserializeObject<AgendaItem[]>(package.Payload.ToString()));
                             for (int i = 0; i < _agendaItems.Count; i++)
-                            {
+                            {                                
                                 CalendarInlineEvents.Add(new CalendarInlineEvent()
                                 {
                                     StartTime = _agendaItems[i].Start.DateTime,
                                     EndTime = _agendaItems[i].End.DateTime,
                                     Subject = _agendaItems[i].Title,
-                                    IsAllDay = _agendaItems[i].IsAllDayEvent
+                                    IsAllDay = _agendaItems[i].IsAllDayEvent,
+                                    Color = Color.FromHex(HexColorFromOccupancy((OccupancyVisualState)_agendaItems[i].Occupancy))
                                 });
                             }
                         });
@@ -248,5 +251,19 @@ namespace RoomInfoRemote.ViewModels
                 AgendaItem.End = AgendaItem.End.Date + now.TimeOfDay;
             }
         }));
+
+        private string HexColorFromOccupancy(OccupancyVisualState occupancyVisualState)
+        {
+            switch (occupancyVisualState)
+            {
+                case OccupancyVisualState.FreeVisualState: return "#FF00F200";
+                case OccupancyVisualState.PresentVisualState: return "#FF01A9F4";
+                case OccupancyVisualState.AbsentVisualState: return "#FF797979";
+                case OccupancyVisualState.BusyVisualState: return "#FFF2F200";
+                case OccupancyVisualState.OccupiedVisualState: return "#FFCC00CC";
+                case OccupancyVisualState.LockedVisualState: return "#FFF20000";
+                default: return "#000000";
+            }
+        }
     }
 }
