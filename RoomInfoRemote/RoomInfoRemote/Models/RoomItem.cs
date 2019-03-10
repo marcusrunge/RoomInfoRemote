@@ -10,7 +10,6 @@ namespace RoomInfoRemote.Models
 {
     public class RoomItem : BindableBase
     {
-        bool _isCommandExecutionAllowed;
         INetworkCommunication _networkCommunication;
         public string HostName { get; set; }
         public List<AgendaItem> AgendaItems { get; set; }
@@ -24,23 +23,17 @@ namespace RoomInfoRemote.Models
         public RoomItem(INetworkCommunication networkCommunication)
         {
             _networkCommunication = networkCommunication;
-            _isCommandExecutionAllowed = false;
         }
 
         private ICommand _updateRemoteOccupancyCommand;
         public ICommand UpdateRemoteOccupancyCommand => _updateRemoteOccupancyCommand ?? (_updateRemoteOccupancyCommand = new DelegateCommand<object>(async (param) =>
         {
-            if (_isCommandExecutionAllowed)
-            {
-                _isCommandExecutionAllowed = false;
-                var package = new Package() { PayloadType = (int)PayloadType.Occupancy, Payload = Room.Occupancy };
-                await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
-            }
-            _isCommandExecutionAllowed = true;
+            var package = new Package() { PayloadType = (int)PayloadType.Occupancy, Payload = Room.Occupancy };
+            await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
         }));
 
         private ICommand _dimRemoteIoTDeviceCommand;
-        public ICommand DimRemoteIoTDeviceCommand => _dimRemoteIoTDeviceCommand ?? (_dimRemoteIoTDeviceCommand = new DelegateCommand<object>(async(param) =>
+        public ICommand DimRemoteIoTDeviceCommand => _dimRemoteIoTDeviceCommand ?? (_dimRemoteIoTDeviceCommand = new DelegateCommand<object>(async (param) =>
         {
             var package = new Package() { PayloadType = (int)PayloadType.IotDim, Payload = !(bool)param };
             await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
