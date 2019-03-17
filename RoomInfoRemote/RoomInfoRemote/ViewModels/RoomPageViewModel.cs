@@ -236,7 +236,18 @@ namespace RoomInfoRemote.ViewModels
 
         private void ScheduleExtensionButtonVisibility(AgendaItem nextAgendaItem)
         {
-            throw new NotImplementedException();
+            TimeSpan interval = nextAgendaItem.Start - DateTimeOffset.Now;
+            Device.StartTimer(interval, () => 
+            {
+                IsExtensionButtonVisible = true;
+                interval = nextAgendaItem.End - nextAgendaItem.Start;
+                Device.StartTimer(interval, () =>
+                {
+                    IsExtensionButtonVisible = false;
+                    return false;
+                });
+                return false;
+            });
         }
 
         private AgendaItem FindCurrentAgendaItem(List<AgendaItem> agendaItems)
