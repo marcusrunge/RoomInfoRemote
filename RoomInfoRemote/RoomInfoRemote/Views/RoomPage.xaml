@@ -41,11 +41,14 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <AbsoluteLayout>
-            <syncfusion:SfCalendar x:Name="calendar" ViewMode="MonthView" ShowInlineEvents="true" InlineViewMode="Inline" DataSource="{Binding CalendarInlineEvents}" Locale="{Binding CultureInfo}">
-                <syncfusion:SfCalendar.Behaviors>
-                    <behaviors:EventToCommandBehavior EventName="InlineItemTapped" Command="{Binding OpenReservationPopupCommand}" EventArgsConverter="{StaticResource inlineItemTappedEventArgsConverter}" />
-                </syncfusion:SfCalendar.Behaviors>
-            </syncfusion:SfCalendar>
+            <StackLayout>
+                <syncfusion:SfCalendar x:Name="calendar" ViewMode="MonthView" ShowInlineEvents="true" InlineViewMode="Inline" DataSource="{Binding CalendarInlineEvents}" Locale="{Binding CultureInfo}">
+                    <syncfusion:SfCalendar.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="InlineItemTapped" Command="{Binding OpenReservationPopupCommand}" EventArgsConverter="{StaticResource inlineItemTappedEventArgsConverter}" />
+                    </syncfusion:SfCalendar.Behaviors>
+                </syncfusion:SfCalendar>
+                <Button x:Name="extensionButton" Text="{extension:Translate RoomsPage_ReservationExtensionButton_Text}" IsVisible="{Binding IsExtensionButtonVisible}" Command="{Binding ExtendCurrentReservationCommand}"/>
+            </StackLayout>
             <ContentView x:Name="reservationContentView" BackgroundColor="#D9808080" IsVisible="{Binding IsReservationContentViewVisible}" HorizontalOptions="Start" VerticalOptions="Center" Padding="12,0,12,0" HeightRequest="{Binding Source={x:Reference calendar},Path=Height}">
                 <ScrollView >
                     <StackLayout x:Name="reservationStackLayout" HorizontalOptions="Start" Margin="0,12,0,12">

@@ -5,7 +5,7 @@ using System;
 
 namespace RoomInfoRemote.Models
 {
-    public class AgendaItem : BindableBase
+    public class AgendaItem : BindableBase, IComparable
     {
         int _id = default(int);        
         public int Id { get => _id; set { SetProperty(ref _id, value); } }
@@ -46,5 +46,10 @@ namespace RoomInfoRemote.Models
         double _largeFontSize = default(double);
         [JsonIgnore]
         public double LargeFontSize { get => _largeFontSize; set { SetProperty(ref _largeFontSize, value); } }
+
+        public int CompareTo(object obj)
+        {
+            return ((IComparable)Start).CompareTo(((AgendaItem)obj).Start);
+        }
     }
 }

@@ -196,6 +196,15 @@ namespace RoomInfoRemote.Resx {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Extend current reservation by 15 minutes ähnelt.
+        /// </summary>
+        internal static string RoomsPage_ReservationExtensionButton_Text {
+            get {
+                return ResourceManager.GetString("RoomsPage_ReservationExtensionButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Rooms ähnelt.
         /// </summary>
         internal static string RoomsTabTitle {

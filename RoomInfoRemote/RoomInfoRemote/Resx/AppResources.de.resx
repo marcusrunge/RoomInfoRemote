@@ -207,4 +207,7 @@
   <data name="SettingsPage_Privacy_Uri" xml:space="preserve">
     <value>http://3lys1um.myqnapcloud.com/Datenschutz/roominfo/de/</value>
   </data>
+  <data name="RoomsPage_ReservationExtensionButton_Text" xml:space="preserve">
+    <value>Aktuelle Buchung um 15 Minuten verlängern</value>
+  </data>
 </root>
