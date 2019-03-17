@@ -27,9 +27,11 @@ namespace RoomInfoRemote.UWP.DependencyServices
             switch (networkProtocol)
             {
                 case NetworkProtocol.UserDatagram:
+                    if (string.IsNullOrEmpty(port)) port = "8274";
                     await SendUserDatagramPayload(payload, hostName, port, broadcast);
                     break;
                 case NetworkProtocol.TransmissionControl:
+                    if (string.IsNullOrEmpty(port)) port = "8273";
                     await SendTransmissionControlPayload(payload, hostName, port);
                     break;
                 default:
