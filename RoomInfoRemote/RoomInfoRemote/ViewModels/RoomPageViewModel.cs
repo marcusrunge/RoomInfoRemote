@@ -56,7 +56,7 @@ namespace RoomInfoRemote.ViewModels
             RoomItem = parameters.GetValue<RoomItem>("RoomItem");
             Title = RoomItem.Room.RoomName + " " + RoomItem.Room.RoomNumber;
             var package = new Package() { PayloadType = (int)PayloadType.RequestSchedule };
-            _networkCommunication.PayloadReceived += async (s, e) => await ProcessPackage(JsonConvert.DeserializeObject<Package>(e.Package), e.HostName);
+            _networkCommunication.PayloadReceived += async (s, e) => { if (e.Package != null) await ProcessPackage(JsonConvert.DeserializeObject<Package>(e.Package), e.HostName); };
             await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), RoomItem.HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
             IsReservationContentViewVisible = false;
             IsExtensionButtonVisible = false;
@@ -132,13 +132,16 @@ namespace RoomInfoRemote.ViewModels
             IsReservationContentViewVisible = false;
             AgendaItem = null;
             IsExtensionButtonVisible = false;
-            AgendaItem currentAgendaItem = FindCurrentAgendaItem(_agendaItems);
+            _currentAgendaItem = FindCurrentAgendaItem(_agendaItems);
             _nextAgendaItem = FindNextAgendaItem(_agendaItems);
-            if (currentAgendaItem != null)
+            if (_currentAgendaItem != null)
             {
-                _currentAgendaItem = currentAgendaItem;
-                _maximumExtensionTimeSpan = CalculateMaximumExtensionTimeSpan(currentAgendaItem, _agendaItems);
+                _maximumExtensionTimeSpan = CalculateMaximumExtensionTimeSpan(_currentAgendaItem, _agendaItems);
                 IsExtensionButtonVisible = _maximumExtensionTimeSpan >= TimeSpan.FromMinutes(15) ? true : false;
+                if (IsExtensionButtonVisible)
+                {
+                    SetExtensionButtonDisableTimer(_currentAgendaItem.End - DateTimeOffset.Now);
+                }
             }
             else if (_nextAgendaItem != null) ScheduleExtensionButtonVisibility(_nextAgendaItem);
         }));
@@ -187,6 +190,7 @@ namespace RoomInfoRemote.ViewModels
                     case PayloadType.Schedule:
                         Device.BeginInvokeOnMainThread(() =>
                         {
+                            IsExtensionButtonVisible = false;
                             if (CalendarInlineEvents == null) CalendarInlineEvents = new CalendarEventCollection();
                             else CalendarInlineEvents.Clear();
                             _agendaItems = new List<AgendaItem>(JsonConvert.DeserializeObject<AgendaItem[]>(package.Payload.ToString()));
@@ -201,13 +205,16 @@ namespace RoomInfoRemote.ViewModels
                                     Color = Color.FromHex(HexColorFromOccupancy((OccupancyVisualState)_agendaItems[i].Occupancy))
                                 });
                             }
-                            AgendaItem currentAgendaItem = FindCurrentAgendaItem(_agendaItems);
+                            _currentAgendaItem = FindCurrentAgendaItem(_agendaItems);
                             _nextAgendaItem = FindNextAgendaItem(_agendaItems);
-                            if (currentAgendaItem != null)
+                            if (_currentAgendaItem != null)
                             {
-                                _currentAgendaItem = currentAgendaItem;
-                                _maximumExtensionTimeSpan = CalculateMaximumExtensionTimeSpan(currentAgendaItem, _agendaItems);
+                                _maximumExtensionTimeSpan = CalculateMaximumExtensionTimeSpan(_currentAgendaItem, _agendaItems);
                                 IsExtensionButtonVisible = _maximumExtensionTimeSpan >= TimeSpan.FromMinutes(15) ? true : false;
+                                if (IsExtensionButtonVisible)
+                                {
+                                    SetExtensionButtonDisableTimer(_currentAgendaItem.End - DateTimeOffset.Now);
+                                }
                             }
                             else if (_nextAgendaItem != null) ScheduleExtensionButtonVisibility(_nextAgendaItem);
                         });
@@ -248,28 +255,55 @@ namespace RoomInfoRemote.ViewModels
 
         private void ScheduleExtensionButtonVisibility(AgendaItem nextAgendaItem)
         {
-            if (nextAgendaItem != null)
+            try
             {
-                TimeSpan interval = nextAgendaItem.Start - DateTimeOffset.Now;
-                if (interval < TimeSpan.Zero) interval = TimeSpan.Zero;
-                Device.StartTimer(interval, () =>
+                if (nextAgendaItem != null)
+                {
+                    TimeSpan interval = nextAgendaItem.Start - DateTimeOffset.Now;
+                    SetExtensionButtonEnableTimer(interval);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
+        }
+
+        private void SetExtensionButtonEnableTimer(TimeSpan interval)
+        {
+            Device.StartTimer(interval, () =>
+            {
+                try
                 {
                     IsExtensionButtonVisible = true;
-                    interval = nextAgendaItem.End - nextAgendaItem.Start;
-                    if (DateTimeOffset.Now < nextAgendaItem.End) return true;
-                    else
-                    {
-                        IsExtensionButtonVisible = false;
-                        _nextAgendaItem = FindNextAgendaItem(_agendaItems);
-                        if (_nextAgendaItem != null)
-                        {
-                            interval = nextAgendaItem.Start - DateTimeOffset.Now;
-                            return true;
-                        }
-                        else return false;
-                    }   
-                });
-            }
+                    _currentAgendaItem = _nextAgendaItem;
+                    SetExtensionButtonDisableTimer(_currentAgendaItem.End - DateTimeOffset.Now);
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e.Message);
+                }
+                return false;
+            });
+        }
+
+        private void SetExtensionButtonDisableTimer(TimeSpan interval)
+        {
+            Device.StartTimer(interval, () =>
+            {
+                try
+                {
+                    IsExtensionButtonVisible = false;
+                    _nextAgendaItem = FindNextAgendaItem(_agendaItems);
+                    if (_nextAgendaItem != null) ScheduleExtensionButtonVisibility(_nextAgendaItem);
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e.Message);
+                }
+
+                return false;
+            });
         }
 
         private AgendaItem FindCurrentAgendaItem(List<AgendaItem> agendaItems)

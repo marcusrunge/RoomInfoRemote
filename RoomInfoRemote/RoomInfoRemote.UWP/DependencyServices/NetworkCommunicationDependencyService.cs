@@ -83,7 +83,7 @@ namespace RoomInfoRemote.UWP.DependencyServices
                     {
                         using (StreamReader streamReader = new StreamReader(inputStream))
                         {
-                            OnPayloadReceived(new PayloadReceivedEventArgs(streamSocket.Information.RemotePort, await streamReader.ReadLineAsync()));
+                            OnPayloadReceived(new PayloadReceivedEventArgs(streamSocket.Information.RemoteHostName.CanonicalName, await streamReader.ReadLineAsync()));
                         }
                     }
                 }

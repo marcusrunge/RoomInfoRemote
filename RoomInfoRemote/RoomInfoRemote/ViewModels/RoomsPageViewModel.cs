@@ -29,7 +29,7 @@ namespace RoomInfoRemote.ViewModels
             if (RoomItems == null) RoomItems = new ObservableCollection<RoomItem>();
             _networkCommunication = DependencyService.Get<INetworkCommunication>(DependencyFetchTarget.GlobalInstance);
             _eventAggregator = eventAggregator;
-            _networkCommunication.PayloadReceived += (s, e) => ProcessPackage(JsonConvert.DeserializeObject<Package>(e.Package), e.HostName);
+            _networkCommunication.PayloadReceived += (s, e) => { if (e.Package != null) ProcessPackage(JsonConvert.DeserializeObject<Package>(e.Package), e.HostName); };
 
             _discoveryPackage = new Package() { PayloadType = (int)PayloadType.Discovery };
             _networkCommunication.SendPayload(JsonConvert.SerializeObject(_discoveryPackage), null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
@@ -54,7 +54,7 @@ namespace RoomInfoRemote.ViewModels
 
         private void ProcessPackage(Package package, string hostName)
         {
-            if(package != null)
+            if (package != null)
             {
                 switch ((PayloadType)package.PayloadType)
                 {
@@ -105,7 +105,7 @@ namespace RoomInfoRemote.ViewModels
                     default:
                         break;
                 }
-            }            
+            }
         }
 
         private ICommand _refreshCommand;
