@@ -22,7 +22,7 @@ namespace RoomInfoRemote.ViewModels
         IEventAggregator _eventAggregator;
         List<AgendaItem> _agendaItems;
         CalendarInlineEvent _calendarInlineEvent;
-        AgendaItem _currentAgendaItem;
+        AgendaItem _currentAgendaItem, _nextAgendaItem;
         TimeSpan _maximumExtensionTimeSpan;
 
         RoomItem _roomItem = default(RoomItem);
@@ -132,7 +132,15 @@ namespace RoomInfoRemote.ViewModels
             IsReservationContentViewVisible = false;
             AgendaItem = null;
             IsExtensionButtonVisible = false;
-            ScheduleExtensionButtonVisibility(FindNextAgendaItem(_agendaItems));
+            AgendaItem currentAgendaItem = FindCurrentAgendaItem(_agendaItems);
+            _nextAgendaItem = FindNextAgendaItem(_agendaItems);
+            if (currentAgendaItem != null)
+            {
+                _currentAgendaItem = currentAgendaItem;
+                _maximumExtensionTimeSpan = CalculateMaximumExtensionTimeSpan(currentAgendaItem, _agendaItems);
+                IsExtensionButtonVisible = _maximumExtensionTimeSpan >= TimeSpan.FromMinutes(15) ? true : false;
+            }
+            else if (_nextAgendaItem != null) ScheduleExtensionButtonVisibility(_nextAgendaItem);
         }));
 
         private ICommand _deleteReservationPopupCommand;
@@ -194,14 +202,14 @@ namespace RoomInfoRemote.ViewModels
                                 });
                             }
                             AgendaItem currentAgendaItem = FindCurrentAgendaItem(_agendaItems);
-                            AgendaItem nextAgendaItem = FindNextAgendaItem(_agendaItems);
+                            _nextAgendaItem = FindNextAgendaItem(_agendaItems);
                             if (currentAgendaItem != null)
                             {
                                 _currentAgendaItem = currentAgendaItem;
                                 _maximumExtensionTimeSpan = CalculateMaximumExtensionTimeSpan(currentAgendaItem, _agendaItems);
                                 IsExtensionButtonVisible = _maximumExtensionTimeSpan >= TimeSpan.FromMinutes(15) ? true : false;
                             }
-                            else if (nextAgendaItem != null) ScheduleExtensionButtonVisibility(nextAgendaItem);
+                            else if (_nextAgendaItem != null) ScheduleExtensionButtonVisibility(_nextAgendaItem);
                         });
                         break;
                     case PayloadType.StandardWeek:
@@ -248,13 +256,18 @@ namespace RoomInfoRemote.ViewModels
                 {
                     IsExtensionButtonVisible = true;
                     interval = nextAgendaItem.End - nextAgendaItem.Start;
-                    Device.StartTimer(interval, () =>
+                    if (DateTimeOffset.Now < nextAgendaItem.End) return true;
+                    else
                     {
                         IsExtensionButtonVisible = false;
-                        ScheduleExtensionButtonVisibility(FindNextAgendaItem(_agendaItems));
-                        return false;
-                    });
-                    return false;
+                        _nextAgendaItem = FindNextAgendaItem(_agendaItems);
+                        if (_nextAgendaItem != null)
+                        {
+                            interval = nextAgendaItem.Start - DateTimeOffset.Now;
+                            return true;
+                        }
+                        else return false;
+                    }   
                 });
             }
         }
