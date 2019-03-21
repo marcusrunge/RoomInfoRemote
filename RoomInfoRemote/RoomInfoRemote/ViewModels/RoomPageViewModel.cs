@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -24,6 +25,7 @@ namespace RoomInfoRemote.ViewModels
         CalendarInlineEvent _calendarInlineEvent;
         AgendaItem _currentAgendaItem, _nextAgendaItem;
         TimeSpan _maximumExtensionTimeSpan;
+        CancellationTokenSource _cancellationTokenSource;
 
         RoomItem _roomItem = default(RoomItem);
         public RoomItem RoomItem { get => _roomItem; set { SetProperty(ref _roomItem, value); } }
@@ -48,6 +50,7 @@ namespace RoomInfoRemote.ViewModels
             _networkCommunication = DependencyService.Get<INetworkCommunication>(DependencyFetchTarget.GlobalInstance);
             _eventAggregator = eventAggregator;
             CultureInfo = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+            _cancellationTokenSource = new CancellationTokenSource();
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
@@ -289,8 +292,10 @@ namespace RoomInfoRemote.ViewModels
 
         private void SetExtensionButtonDisableTimer(TimeSpan interval)
         {
+            CancellationTokenSource cancellationTokenSource = _cancellationTokenSource;
             Device.StartTimer(interval, () =>
             {
+                if (cancellationTokenSource.IsCancellationRequested) return false;
                 try
                 {
                     IsExtensionButtonVisible = false;
@@ -389,12 +394,16 @@ namespace RoomInfoRemote.ViewModels
                     IsExtensionButtonVisible = _maximumExtensionTimeSpan >= TimeSpan.FromMinutes(15) ? true : false;
                     var package = new Package() { PayloadType = (int)PayloadType.AgendaItem, Payload = _currentAgendaItem };
                     await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), RoomItem.HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
-                    if (IsExtensionButtonVisible)SetExtensionButtonDisableTimer(_currentAgendaItem.End - DateTimeOffset.Now);                    
+                    if (IsExtensionButtonVisible)
+                    {
+                        Interlocked.Exchange(ref _cancellationTokenSource, new CancellationTokenSource()).Cancel();
+                        SetExtensionButtonDisableTimer(_currentAgendaItem.End - DateTimeOffset.Now);
+                    }
                     else
                     {
                         _nextAgendaItem = FindNextAgendaItem(_agendaItems);
                         if (_nextAgendaItem != null) ScheduleExtensionButtonVisibility(_nextAgendaItem);
-                    }                    
+                    }
                 }
             }
         }));
