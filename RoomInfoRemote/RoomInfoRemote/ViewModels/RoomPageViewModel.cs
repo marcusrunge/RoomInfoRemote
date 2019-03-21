@@ -389,7 +389,12 @@ namespace RoomInfoRemote.ViewModels
                     IsExtensionButtonVisible = _maximumExtensionTimeSpan >= TimeSpan.FromMinutes(15) ? true : false;
                     var package = new Package() { PayloadType = (int)PayloadType.AgendaItem, Payload = _currentAgendaItem };
                     await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), RoomItem.HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
-                    ScheduleExtensionButtonVisibility(_currentAgendaItem);
+                    if (IsExtensionButtonVisible)SetExtensionButtonDisableTimer(_currentAgendaItem.End - DateTimeOffset.Now);                    
+                    else
+                    {
+                        _nextAgendaItem = FindNextAgendaItem(_agendaItems);
+                        if (_nextAgendaItem != null) ScheduleExtensionButtonVisibility(_nextAgendaItem);
+                    }                    
                 }
             }
         }));
