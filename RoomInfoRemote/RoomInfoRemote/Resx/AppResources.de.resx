@@ -210,4 +210,10 @@
   <data name="RoomsPage_ReservationExtensionButton_Text" xml:space="preserve">
     <value>Verlängerung um 15 Minuten</value>
   </data>
+  <data name="CalendarPageTab_Title" xml:space="preserve">
+    <value>Kalendar</value>
+  </data>
+  <data name="StandardWeekPageTab_Title" xml:space="preserve">
+    <value>Standardwoche</value>
+  </data>
 </root>

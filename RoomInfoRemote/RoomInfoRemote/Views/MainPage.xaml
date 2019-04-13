@@ -7,7 +7,7 @@
             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
             xmlns:customs="clr-namespace:RoomInfoRemote.Customs;assembly=RoomInfoRemote"
             x:Class="RoomInfoRemote.Views.MainPage"
-            x:Name="tabbedPage"            
+            x:Name="tabbedMainPage"            
             android:TabbedPage.ToolbarPlacement="Bottom">    
     <NavigationPage.TitleView>        
         <Grid>
@@ -34,7 +34,7 @@
         </Grid>
     </NavigationPage.TitleView>    
     <TabbedPage.Behaviors>
-        <behaviors:EventToCommandBehavior EventName="CurrentPageChanged" Command="{Binding NotifyCurrentPageChangedCommand}" CommandParameter="{x:Reference tabbedPage}"/>
+        <behaviors:EventToCommandBehavior EventName="CurrentPageChanged" Command="{Binding NotifyCurrentPageChangedCommand}" CommandParameter="{x:Reference tabbedMainPage}"/>
     </TabbedPage.Behaviors>
     <local:RoomsPage Title="{extension:Translate RoomsTabTitle}">
         <local:RoomsPage.Icon>

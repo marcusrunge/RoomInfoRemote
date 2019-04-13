@@ -41,6 +41,8 @@ namespace RoomInfoRemote
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<RoomsPage, RoomsPageViewModel>();
             containerRegistry.RegisterForNavigation<SettingsPage, SettingsPageViewModel>();
+            containerRegistry.RegisterForNavigation<CalendarPage, CalendarPageViewModel>();
+            containerRegistry.RegisterForNavigation<StandardWeekPage, StandardWeekPageViewModel>();
             containerRegistry.RegisterForNavigation<RoomPage, RoomPageViewModel>();
         }
     }

@@ -2,9 +2,9 @@
 
 namespace RoomInfoRemote.Views
 {
-    public partial class RoomPage : TabbedPage
+    public partial class StandardWeekPage : ContentPage
     {
-        public RoomPage()
+        public StandardWeekPage()
         {
             InitializeComponent();
         }

@@ -2,9 +2,9 @@
 
 namespace RoomInfoRemote.Views
 {
-    public partial class RoomPage : TabbedPage
+    public partial class CalendarPage : ContentPage
     {
-        public RoomPage()
+        public CalendarPage()
         {
             InitializeComponent();
         }
