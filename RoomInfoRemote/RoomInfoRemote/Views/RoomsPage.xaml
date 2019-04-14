@@ -50,6 +50,7 @@
                                         <extension:Translate Text="RoomsPage_Occupancy_Busy"/>
                                         <extension:Translate Text="RoomsPage_Occupancy_Occupied"/>
                                         <extension:Translate Text="RoomsPage_Occupancy_Locked"/>
+                                        <extension:Translate Text="RoomsPage_Occupancy_Home"/>
                                     </Picker.Items>
                                 </Picker>
                             </Grid>

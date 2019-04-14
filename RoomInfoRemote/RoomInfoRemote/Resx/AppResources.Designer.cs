@@ -178,6 +178,15 @@ namespace RoomInfoRemote.Resx {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die HOMEOFFICE ähnelt.
+        /// </summary>
+        internal static string RoomsPage_Occupancy_Home {
+            get {
+                return ResourceManager.GetString("RoomsPage_Occupancy_Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die LOCKED ähnelt.
         /// </summary>
         internal static string RoomsPage_Occupancy_Locked {

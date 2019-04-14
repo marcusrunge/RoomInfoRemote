@@ -216,4 +216,7 @@
   <data name="StandardWeekPageTab_Title" xml:space="preserve">
     <value>Standardwoche</value>
   </data>
+  <data name="RoomsPage_Occupancy_Home" xml:space="preserve">
+    <value>HEIMBÜRO</value>
+  </data>
 </root>

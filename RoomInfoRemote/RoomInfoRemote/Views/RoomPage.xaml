@@ -20,7 +20,7 @@
                     </OnPlatform>
                 </Label.TextColor>
             </Label>
-            <customs:TransparentButton x:Name="addReservationButton" FontFamily="Segoe MDL2 Assets" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,12,0" Command="{Binding OpenReservationPopupCommand}" CommandParameter="addReservationButton"  BackgroundColor="Transparent" FontSize="Large">
+            <customs:TransparentButton x:Name="addReservationButton" FontFamily="Segoe MDL2 Assets" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,12,0" Command="{Binding OpenReservationPopupCommand}" CommandParameter="addReservationButton"  BackgroundColor="Transparent" FontSize="Large" IsVisible="{Binding IsAddReservationButtonVisible}">
                 <customs:TransparentButton.Text>
                     <OnPlatform x:TypeArguments="x:String">
                         <On Platform="UWP" Value="&#xE710;"/>

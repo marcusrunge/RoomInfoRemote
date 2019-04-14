@@ -63,6 +63,7 @@ namespace RoomInfoRemote.ViewModels
             await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), RoomItem.HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
             IsReservationContentViewVisible = false;
             IsExtensionButtonVisible = false;
+            _eventAggregator.GetEvent<OpenReservationPopupEvent>().Subscribe((param) => OpenReservationPopupCommand.Execute(param));
         }
 
         private ICommand _openReservationPopupCommand;
@@ -374,6 +375,7 @@ namespace RoomInfoRemote.ViewModels
                 case OccupancyVisualState.BusyVisualState: return "#FFF2F200";
                 case OccupancyVisualState.OccupiedVisualState: return "#FFCC00CC";
                 case OccupancyVisualState.LockedVisualState: return "#FFF20000";
+                case OccupancyVisualState.HomeVisualState: return "#FF00796b";
                 default: return "#000000";
             }
         }
