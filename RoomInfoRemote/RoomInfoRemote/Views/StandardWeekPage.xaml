@@ -1,129 +1,162 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Name="standardWeekPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:extension="clr-namespace:RoomInfoRemote.Extension;assembly=RoomInfoRemote"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="RoomInfoRemote.Views.StandardWeekPage">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Label Text="{extension:Translate StandardWeekPage_Monday}" HorizontalOptions="Center"/>
-        <Label Grid.Column="1" Text="{extension:Translate StandardWeekPage_Tuesday}" HorizontalOptions="Center"/>
-        <Label Grid.Column="2" Text="{extension:Translate StandardWeekPage_Wednesday}" HorizontalOptions="Center"/>
-        <Label Grid.Column="3" Text="{extension:Translate StandardWeekPage_Thursday}" HorizontalOptions="Center"/>
-        <Label Grid.Column="4" Text="{extension:Translate StandardWeekPage_Friday}" HorizontalOptions="Center"/>
-        <Label Grid.Column="5" Text="{extension:Translate StandardWeekPage_Saturday}" HorizontalOptions="Center"/>
-        <Label Grid.Column="6" Text="{extension:Translate StandardWeekPage_Sunday}" HorizontalOptions="Center"/>
-        <Button Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Monday">
-            <Button.Text>
-                <OnPlatform x:TypeArguments="x:String">
-                    <On Platform="UWP" Value="&#xE710;"/>
-                </OnPlatform>
-            </Button.Text>
-            <Button.Image>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
-                    <On Platform="iOS" Value="AddIcon"/>
-                </OnPlatform>
-            </Button.Image>
-        </Button>
-        <Button Grid.Column="1" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Tuesday">
-            <Button.Text>
-                <OnPlatform x:TypeArguments="x:String">
-                    <On Platform="UWP" Value="&#xE710;"/>
-                </OnPlatform>
-            </Button.Text>
-            <Button.Image>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
-                    <On Platform="iOS" Value="AddIcon"/>
-                </OnPlatform>
-            </Button.Image>
-        </Button>
-        <Button Grid.Column="2" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Wednesday">
-            <Button.Text>
-                <OnPlatform x:TypeArguments="x:String">
-                    <On Platform="UWP" Value="&#xE710;"/>
-                </OnPlatform>
-            </Button.Text>
-            <Button.Image>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
-                    <On Platform="iOS" Value="AddIcon"/>
-                </OnPlatform>
-            </Button.Image>
-        </Button>
-        <Button Grid.Column="3" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Thurday">
-            <Button.Text>
-                <OnPlatform x:TypeArguments="x:String">
-                    <On Platform="UWP" Value="&#xE710;"/>
-                </OnPlatform>
-            </Button.Text>
-            <Button.Image>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
-                    <On Platform="iOS" Value="AddIcon"/>
-                </OnPlatform>
-            </Button.Image>
-        </Button>
-        <Button Grid.Column="4" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Friday">
-            <Button.Text>
-                <OnPlatform x:TypeArguments="x:String">
-                    <On Platform="UWP" Value="&#xE710;"/>
-                </OnPlatform>
-            </Button.Text>
-            <Button.Image>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
-                    <On Platform="iOS" Value="AddIcon"/>
-                </OnPlatform>
-            </Button.Image>
-        </Button>
-        <Button Grid.Column="5" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Saturday">
-            <Button.Text>
-                <OnPlatform x:TypeArguments="x:String">
-                    <On Platform="UWP" Value="&#xE710;"/>
-                </OnPlatform>
-            </Button.Text>
-            <Button.Image>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
-                    <On Platform="iOS" Value="AddIcon"/>
-                </OnPlatform>
-            </Button.Image>
-        </Button>
-        <Button Grid.Column="6" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Sunday">
-            <Button.Text>
-                <OnPlatform x:TypeArguments="x:String">
-                    <On Platform="UWP" Value="&#xE710;"/>
-                </OnPlatform>
-            </Button.Text>
-            <Button.Image>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
-                    <On Platform="iOS" Value="AddIcon"/>
-                </OnPlatform>
-            </Button.Image>
-        </Button>
-        <ListView Grid.Row="2"/>
-        <ListView Grid.Column="1" Grid.Row="2"/>
-        <ListView Grid.Column="2" Grid.Row="2"/>
-        <ListView Grid.Column="3" Grid.Row="2"/>
-        <ListView Grid.Column="4" Grid.Row="2"/>
-        <ListView Grid.Column="5" Grid.Row="2"/>
-        <ListView Grid.Column="6" Grid.Row="2"/>
-    </Grid>
+             x:Class="RoomInfoRemote.Views.StandardWeekPage" >
+    <ContentPage.Content>
+        <AbsoluteLayout x:Name="standardWeekPageAbsoluteLayout">
+            <ScrollView Orientation="Horizontal" WidthRequest="{Binding Source={x:Reference standardWeekPageAbsoluteLayout}, Path=Width}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="128" />
+                        <ColumnDefinition Width="128"/>
+                        <ColumnDefinition Width="128"/>
+                        <ColumnDefinition Width="128"/>
+                        <ColumnDefinition Width="128"/>
+                        <ColumnDefinition Width="128"/>
+                        <ColumnDefinition Width="128"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Label Text="{extension:Translate StandardWeekPage_Monday}" HorizontalOptions="Center"/>
+                    <Label Grid.Column="1" Text="{extension:Translate StandardWeekPage_Tuesday}" HorizontalOptions="Center"/>
+                    <Label Grid.Column="2" Text="{extension:Translate StandardWeekPage_Wednesday}" HorizontalOptions="Center"/>
+                    <Label Grid.Column="3" Text="{extension:Translate StandardWeekPage_Thursday}" HorizontalOptions="Center"/>
+                    <Label Grid.Column="4" Text="{extension:Translate StandardWeekPage_Friday}" HorizontalOptions="Center"/>
+                    <Label Grid.Column="5" Text="{extension:Translate StandardWeekPage_Saturday}" HorizontalOptions="Center"/>
+                    <Label Grid.Column="6" Text="{extension:Translate StandardWeekPage_Sunday}" HorizontalOptions="Center"/>
+                    <Button Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Monday">
+                        <Button.Text>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="UWP" Value="&#xE710;"/>
+                            </OnPlatform>
+                        </Button.Text>
+                        <Button.Image>
+                            <OnPlatform x:TypeArguments="FileImageSource">
+                                <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
+                                <On Platform="iOS" Value="AddIcon"/>
+                            </OnPlatform>
+                        </Button.Image>
+                    </Button>
+                    <Button Grid.Column="1" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Tuesday">
+                        <Button.Text>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="UWP" Value="&#xE710;"/>
+                            </OnPlatform>
+                        </Button.Text>
+                        <Button.Image>
+                            <OnPlatform x:TypeArguments="FileImageSource">
+                                <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
+                                <On Platform="iOS" Value="AddIcon"/>
+                            </OnPlatform>
+                        </Button.Image>
+                    </Button>
+                    <Button Grid.Column="2" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Wednesday">
+                        <Button.Text>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="UWP" Value="&#xE710;"/>
+                            </OnPlatform>
+                        </Button.Text>
+                        <Button.Image>
+                            <OnPlatform x:TypeArguments="FileImageSource">
+                                <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
+                                <On Platform="iOS" Value="AddIcon"/>
+                            </OnPlatform>
+                        </Button.Image>
+                    </Button>
+                    <Button Grid.Column="3" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Thurday">
+                        <Button.Text>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="UWP" Value="&#xE710;"/>
+                            </OnPlatform>
+                        </Button.Text>
+                        <Button.Image>
+                            <OnPlatform x:TypeArguments="FileImageSource">
+                                <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
+                                <On Platform="iOS" Value="AddIcon"/>
+                            </OnPlatform>
+                        </Button.Image>
+                    </Button>
+                    <Button Grid.Column="4" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Friday">
+                        <Button.Text>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="UWP" Value="&#xE710;"/>
+                            </OnPlatform>
+                        </Button.Text>
+                        <Button.Image>
+                            <OnPlatform x:TypeArguments="FileImageSource">
+                                <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
+                                <On Platform="iOS" Value="AddIcon"/>
+                            </OnPlatform>
+                        </Button.Image>
+                    </Button>
+                    <Button Grid.Column="5" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Saturday">
+                        <Button.Text>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="UWP" Value="&#xE710;"/>
+                            </OnPlatform>
+                        </Button.Text>
+                        <Button.Image>
+                            <OnPlatform x:TypeArguments="FileImageSource">
+                                <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
+                                <On Platform="iOS" Value="AddIcon"/>
+                            </OnPlatform>
+                        </Button.Image>
+                    </Button>
+                    <Button Grid.Column="6" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Sunday">
+                        <Button.Text>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="UWP" Value="&#xE710;"/>
+                            </OnPlatform>
+                        </Button.Text>
+                        <Button.Image>
+                            <OnPlatform x:TypeArguments="FileImageSource">
+                                <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
+                                <On Platform="iOS" Value="AddIcon"/>
+                            </OnPlatform>
+                        </Button.Image>
+                    </Button>
+                    <ListView Grid.Row="2"/>
+                    <ListView Grid.Column="1" Grid.Row="2"/>
+                    <ListView Grid.Column="2" Grid.Row="2"/>
+                    <ListView Grid.Column="3" Grid.Row="2"/>
+                    <ListView Grid.Column="4" Grid.Row="2"/>
+                    <ListView Grid.Column="5" Grid.Row="2"/>
+                    <ListView Grid.Column="6" Grid.Row="2"/>
+                </Grid>
+            </ScrollView>
+            <ContentView BackgroundColor="#D9808080">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label HorizontalOptions="Start"/>
+                    <Button HorizontalOptions="End"/>
+                    <TimePicker Grid.Row="1"/>
+                    <TimePicker Grid.Row="2"/>
+                    <Picker Grid.Row="3">
+                        <Picker.Items>
+                            <extension:Translate Text="RoomsPage_Occupancy_Free"/>
+                            <extension:Translate Text="RoomsPage_Occupancy_Present"/>
+                            <extension:Translate Text="RoomsPage_Occupancy_Absent"/>
+                            <extension:Translate Text="RoomsPage_Occupancy_Busy"/>
+                            <extension:Translate Text="RoomsPage_Occupancy_Occupied"/>
+                            <extension:Translate Text="RoomsPage_Occupancy_Locked"/>
+                            <extension:Translate Text="RoomsPage_Occupancy_Home"/>
+                        </Picker.Items>
+                    </Picker>
+                </Grid>
+            </ContentView>
+        </AbsoluteLayout>
+    </ContentPage.Content>    
 </ContentPage>

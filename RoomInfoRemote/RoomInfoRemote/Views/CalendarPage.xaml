@@ -8,32 +8,7 @@
              xmlns:syncfusionbuttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"             
              xmlns:extension="clr-namespace:RoomInfoRemote.Extension;assembly=RoomInfoRemote"
-             xmlns:helpers="clr-namespace:RoomInfoRemote.Helpers;assembly=RoomInfoRemote"
-             xmlns:customs="clr-namespace:RoomInfoRemote.Customs;assembly=RoomInfoRemote">
-    <!--<NavigationPage.TitleView>
-        <Grid>
-            <Label Text="{Binding Title}" HorizontalOptions="Start" VerticalOptions="Center" FontSize="Medium">
-                <Label.TextColor>
-                    <OnPlatform x:TypeArguments="Color">
-                        <On Platform="Android" Value="white"/>
-                    </OnPlatform>
-                </Label.TextColor>
-            </Label>
-            <customs:TransparentButton x:Name="addReservationButton" FontFamily="Segoe MDL2 Assets" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,12,0" Command="{Binding OpenReservationPopupCommand}" CommandParameter="addReservationButton"  BackgroundColor="Transparent" FontSize="Large">
-                <customs:TransparentButton.Text>
-                    <OnPlatform x:TypeArguments="x:String">
-                        <On Platform="UWP" Value="&#xE710;"/>
-                    </OnPlatform>
-                </customs:TransparentButton.Text>
-                <customs:TransparentButton.Image>
-                    <OnPlatform x:TypeArguments="FileImageSource">
-                        <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
-                        <On Platform="iOS" Value="AddIcon"/>
-                    </OnPlatform>
-                </customs:TransparentButton.Image>
-            </customs:TransparentButton>
-        </Grid>
-    </NavigationPage.TitleView>-->
+             xmlns:helpers="clr-namespace:RoomInfoRemote.Helpers;assembly=RoomInfoRemote">    
     <ContentPage.Resources>
         <ResourceDictionary>
             <helpers:InlineItemTappedEventArgsConverter x:Key="inlineItemTappedEventArgsConverter" />
@@ -89,7 +64,6 @@
                                     <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference endTime}}"/>
                                 </TimePicker.Behaviors>
                             </TimePicker>
-
                             <Picker Grid.Row="4" SelectedIndex="{Binding AgendaItem.Occupancy, Mode=TwoWay}" Margin="0,8,0,0" >
                                 <Picker.Items>
                                     <extension:Translate Text="RoomsPage_Occupancy_Free"/>
