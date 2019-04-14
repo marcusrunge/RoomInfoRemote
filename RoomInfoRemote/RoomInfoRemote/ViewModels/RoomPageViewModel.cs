@@ -16,10 +16,10 @@ namespace RoomInfoRemote.ViewModels
     {
         IEventAggregator _eventAggregator;
 
-        RoomItem _roomItem = default(RoomItem);
+        RoomItem _roomItem = default;
         public RoomItem RoomItem { get => _roomItem; set { SetProperty(ref _roomItem, value); } }
 
-        bool _isAddReservationButtonVisible = default(bool);
+        bool _isAddReservationButtonVisible = default;
         public bool IsAddReservationButtonVisible { get => _isAddReservationButtonVisible; set { SetProperty(ref _isAddReservationButtonVisible, value); } }
 
         public RoomPageViewModel(INavigationService navigationService, IEventAggregator eventAggregator) : base(navigationService)

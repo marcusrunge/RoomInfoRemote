@@ -358,6 +358,69 @@ namespace RoomInfoRemote.Resx {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Friday ähnelt.
+        /// </summary>
+        internal static string StandardWeekPage_Friday {
+            get {
+                return ResourceManager.GetString("StandardWeekPage_Friday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Monday ähnelt.
+        /// </summary>
+        internal static string StandardWeekPage_Monday {
+            get {
+                return ResourceManager.GetString("StandardWeekPage_Monday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Saturday ähnelt.
+        /// </summary>
+        internal static string StandardWeekPage_Saturday {
+            get {
+                return ResourceManager.GetString("StandardWeekPage_Saturday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sunday ähnelt.
+        /// </summary>
+        internal static string StandardWeekPage_Sunday {
+            get {
+                return ResourceManager.GetString("StandardWeekPage_Sunday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Thursday ähnelt.
+        /// </summary>
+        internal static string StandardWeekPage_Thursday {
+            get {
+                return ResourceManager.GetString("StandardWeekPage_Thursday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Tuesday ähnelt.
+        /// </summary>
+        internal static string StandardWeekPage_Tuesday {
+            get {
+                return ResourceManager.GetString("StandardWeekPage_Tuesday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wednesday ähnelt.
+        /// </summary>
+        internal static string StandardWeekPage_Wednesday {
+            get {
+                return ResourceManager.GetString("StandardWeekPage_Wednesday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Standardweek ähnelt.
         /// </summary>
         internal static string StandardWeekPageTab_Title {

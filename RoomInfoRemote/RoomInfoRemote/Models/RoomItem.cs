@@ -13,9 +13,8 @@ namespace RoomInfoRemote.Models
         INetworkCommunication _networkCommunication;
         public string HostName { get; set; }
         public List<AgendaItem> AgendaItems { get; set; }
-        public StandardWeek StandardWeek { get; set; }
 
-        Room _room = default(Room);
+        Room _room = default;
         public Room Room { get => _room; set { SetProperty(ref _room, value); } }
 
         //object _reserved = default(object);

@@ -18,10 +18,10 @@ namespace RoomInfoRemote.ViewModels
         IEventAggregator _eventAggregator;
         Package _discoveryPackage;
 
-        ObservableCollection<RoomItem> _roomItems = default(ObservableCollection<RoomItem>);
+        ObservableCollection<RoomItem> _roomItems = default;
         public ObservableCollection<RoomItem> RoomItems { get => _roomItems; set { SetProperty(ref _roomItems, value); } }
 
-        bool _isRefreshing = default(bool);
+        bool _isRefreshing = default;
         public bool IsRefreshing { get => _isRefreshing; set { SetProperty(ref _isRefreshing, value); } }
 
         public RoomsPageViewModel(INavigationService navigationService, IEventAggregator eventAggregator) : base(navigationService)

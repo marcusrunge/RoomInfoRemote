@@ -27,22 +27,22 @@ namespace RoomInfoRemote.ViewModels
         TimeSpan _maximumExtensionTimeSpan;
         CancellationTokenSource _cancellationTokenSource;
 
-        RoomItem _roomItem = default(RoomItem);
+        RoomItem _roomItem = default;
         public RoomItem RoomItem { get => _roomItem; set { SetProperty(ref _roomItem, value); } }
 
-        CultureInfo _cultureInfo = default(CultureInfo);
+        CultureInfo _cultureInfo = default;
         public CultureInfo CultureInfo { get => _cultureInfo; set { SetProperty(ref _cultureInfo, value); } }
 
-        CalendarEventCollection _calendarInlineEvents = default(CalendarEventCollection);
+        CalendarEventCollection _calendarInlineEvents = default;
         public CalendarEventCollection CalendarInlineEvents { get => _calendarInlineEvents; set { SetProperty(ref _calendarInlineEvents, value); } }
 
-        AgendaItem _agendaItem = default(AgendaItem);
+        AgendaItem _agendaItem = default;
         public AgendaItem AgendaItem { get => _agendaItem; set { SetProperty(ref _agendaItem, value); } }
 
-        bool _isReservationContentViewVisible = default(bool);
+        bool _isReservationContentViewVisible = default;
         public bool IsReservationContentViewVisible { get => _isReservationContentViewVisible; set { SetProperty(ref _isReservationContentViewVisible, value); } }
 
-        bool _isExtensionButtonVisible = default(bool);
+        bool _isExtensionButtonVisible = default;
         public bool IsExtensionButtonVisible { get => _isExtensionButtonVisible; set { SetProperty(ref _isExtensionButtonVisible, value); } }
 
         public CalendarPageViewModel(INavigationService navigationService, IEventAggregator eventAggregator) : base(navigationService)

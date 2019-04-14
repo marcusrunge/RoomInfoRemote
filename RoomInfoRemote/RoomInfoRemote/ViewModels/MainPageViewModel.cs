@@ -20,7 +20,7 @@ namespace RoomInfoRemote.ViewModels
         ResourceManager _resourceManager;
         readonly CultureInfo _cultureInfo;
 
-        bool _isRefreshButtonVisible = default(bool);
+        bool _isRefreshButtonVisible = default;
         public bool IsRefreshButtonVisible { get => _isRefreshButtonVisible; set { SetProperty(ref _isRefreshButtonVisible, value); } }
 
         public MainPageViewModel(INavigationService navigationService, IEventAggregator eventAggregator) : base(navigationService)

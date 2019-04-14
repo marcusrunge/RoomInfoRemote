@@ -15,19 +15,19 @@ namespace RoomInfoRemote.ViewModels
     public class SettingsPageViewModel : ViewModelBase
     {
         IEventAggregator _eventAggregator;
-        string _tcpPort = default(string);
+        string _tcpPort = default;
         public string TcpPort { get => _tcpPort; set { SetProperty(ref _tcpPort, value); Settings.TcpPort = TcpPort; } }
 
-        string _udpPort = default(string);
+        string _udpPort = default;
         public string UdpPort { get => _udpPort; set { SetProperty(ref _udpPort, value); Settings.UdpPort = UdpPort; } }
 
-        bool _isLightThemeEnabled = default(bool);
+        bool _isLightThemeEnabled = default;
         public bool IsLightThemeEnabled { get => _isLightThemeEnabled; set { SetProperty(ref _isLightThemeEnabled, value); } }
 
-        bool _isDarkThemeEnabled = default(bool);
+        bool _isDarkThemeEnabled = default;
         public bool IsDarkThemeEnabled { get => _isDarkThemeEnabled; set { SetProperty(ref _isDarkThemeEnabled, value); } }
 
-        string _versionInfo = default(string);
+        string _versionInfo = default;
         public string VersionInfo { get => _versionInfo; set { SetProperty(ref _versionInfo, value); } }
 
         public SettingsPageViewModel(INavigationService navigationService, IEventAggregator eventAggregator) : base(navigationService)

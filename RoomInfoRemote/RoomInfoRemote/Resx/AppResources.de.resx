@@ -219,4 +219,25 @@
   <data name="RoomsPage_Occupancy_Home" xml:space="preserve">
     <value>HEIMBÜRO</value>
   </data>
+  <data name="StandardWeekPage_Friday" xml:space="preserve">
+    <value>Freitag</value>
+  </data>
+  <data name="StandardWeekPage_Monday" xml:space="preserve">
+    <value>Montag</value>
+  </data>
+  <data name="StandardWeekPage_Saturday" xml:space="preserve">
+    <value>Samstag</value>
+  </data>
+  <data name="StandardWeekPage_Sunday" xml:space="preserve">
+    <value>Sonntag</value>
+  </data>
+  <data name="StandardWeekPage_Thursday" xml:space="preserve">
+    <value>Donnerstag</value>
+  </data>
+  <data name="StandardWeekPage_Tuesday" xml:space="preserve">
+    <value>Dienstag</value>
+  </data>
+  <data name="StandardWeekPage_Wednesday" xml:space="preserve">
+    <value>Mittwoch</value>
+  </data>
 </root>
