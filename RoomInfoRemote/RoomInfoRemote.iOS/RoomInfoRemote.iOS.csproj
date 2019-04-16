@@ -118,6 +118,18 @@
     <ImageAsset Include="Assets.xcassets\AddIcon.imageset\Icon-Add-20x20@3x.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\CalendaIcon.imageset\Icon-App-20x20@1x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\CalendaIcon.imageset\Icon-App-20x20@2x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\CalendaIcon.imageset\Icon-App-20x20@3x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\CalendaIcon.imageset\ic_calendar_today.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -208,6 +220,12 @@
     <ImageAsset Include="Assets.xcassets\HomeIcon.imageset\Icon-Home-20x20@3x.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\CalendaIcon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\WeekIcon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\Logo.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -248,6 +266,18 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\SettingsIcon.imageset\settings.pdf">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\WeekIcon.imageset\Icon-App-20x20@1x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\WeekIcon.imageset\Icon-App-20x20@2x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\WeekIcon.imageset\Icon-App-20x20@3x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\WeekIcon.imageset\ic_view_week.pdf">
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>

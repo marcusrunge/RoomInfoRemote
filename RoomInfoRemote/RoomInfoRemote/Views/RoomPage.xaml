@@ -41,16 +41,16 @@
     <local:CalendarPage Title="{extension:Translate CalendarPageTab_Title}">
         <local:CalendarPage.Icon>
             <OnPlatform x:TypeArguments="FileImageSource">
-                <On Platform="Android" Value="@drawable/ic_action_home"/>
-                <On Platform="iOS" Value="HomeIcon"/>
+                <On Platform="Android" Value="@drawable/ic_action_calendar_today"/>
+                <On Platform="iOS" Value="CalendarIcon"/>
             </OnPlatform>
         </local:CalendarPage.Icon>
     </local:CalendarPage>
     <local:StandardWeekPage Title="{extension:Translate StandardWeekPageTab_Title}" >
         <local:StandardWeekPage.Icon>
             <OnPlatform x:TypeArguments="FileImageSource">
-                <On Platform="Android" Value="@drawable/ic_action_settings"/>
-                <On Platform="iOS" Value="SettingsIcon"/>
+                <On Platform="Android" Value="@drawable/ic_action_view_week"/>
+                <On Platform="iOS" Value="WeekIcon"/>
             </OnPlatform>
         </local:StandardWeekPage.Icon>
     </local:StandardWeekPage>
