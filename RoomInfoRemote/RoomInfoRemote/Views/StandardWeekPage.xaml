@@ -141,7 +141,19 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Label HorizontalOptions="Start"/>
-                    <Button HorizontalOptions="End"/>
+                    <Button HorizontalOptions="End" FontFamily="Segoe MDL2 Assets">
+                        <Button.Text>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="UWP" Value="&#xE711;"/>
+                            </OnPlatform>
+                        </Button.Text>
+                        <Button.Image>
+                            <OnPlatform x:TypeArguments="FileImageSource">
+                                <On Platform="Android" Value="@drawable/ic_action_cancel_dark"/>
+                                <On Platform="iOS" Value="CancelIcon"/>
+                            </OnPlatform>
+                        </Button.Image>
+                    </Button>
                     <TimePicker Grid.Row="1"/>
                     <TimePicker Grid.Row="2"/>
                     <Picker Grid.Row="3">
