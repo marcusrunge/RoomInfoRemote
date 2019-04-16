@@ -131,7 +131,7 @@
                     <ListView Grid.Column="6" Grid.Row="2"/>
                 </Grid>
             </ScrollView>
-            <ContentView BackgroundColor="#D9808080">
+            <ContentView BackgroundColor="#D9808080" IsVisible="{Binding IsTimeSpanContentViewVisible}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -140,8 +140,8 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Label HorizontalOptions="Start"/>
-                    <Button HorizontalOptions="End" FontFamily="Segoe MDL2 Assets">
+                    <Label Text="{Binding WeekDay}" HorizontalOptions="Start"/>
+                    <Button HorizontalOptions="End" FontFamily="Segoe MDL2 Assets" Command="{Binding HideTimeSpanContentCommand}">
                         <Button.Text>
                             <OnPlatform x:TypeArguments="x:String">
                                 <On Platform="UWP" Value="&#xE711;"/>
@@ -167,6 +167,7 @@
                             <extension:Translate Text="RoomsPage_Occupancy_Home"/>
                         </Picker.Items>
                     </Picker>
+                    <Button Grid.Row="4" Text="{extension:Translate RoomPage_SaveButton_Text}" Command="{Binding SaveTimespanItemCommand}" HorizontalOptions="Center"/>
                 </Grid>
             </ContentView>
         </AbsoluteLayout>
