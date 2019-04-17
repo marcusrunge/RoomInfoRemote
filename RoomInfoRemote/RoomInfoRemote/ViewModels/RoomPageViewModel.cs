@@ -1,12 +1,8 @@
 ﻿using Prism.Commands;
 using Prism.Events;
-using Prism.Mvvm;
 using Prism.Navigation;
 using RoomInfoRemote.Models;
 using RoomInfoRemote.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 

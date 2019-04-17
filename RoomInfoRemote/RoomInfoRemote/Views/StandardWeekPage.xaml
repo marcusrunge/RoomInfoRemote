@@ -4,8 +4,68 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:extension="clr-namespace:RoomInfoRemote.Extension;assembly=RoomInfoRemote"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms" 
+             xmlns:Helpers="clr-namespace:RoomInfoRemote.Helpers;assembly=RoomInfoRemote"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoomInfoRemote.Views.StandardWeekPage" >
+    <ContentPage.Resources>
+        <Helpers:PropertyValueConverter x:Key="PropertyValueConverter"/>
+        <ResourceDictionary>
+            <DataTemplate x:Key="TimeSpanItemTemplate">
+                <ViewCell>
+                    <StackLayout>
+                        <Label HorizontalOptions="CenterAndExpand">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Start.Hours, StringFormat='{0:D2}'}"/>
+                                    <Span Text=":"/>
+                                    <Span Text="{Binding Start.Minutes, StringFormat='{0:D2}'}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label HorizontalOptions="CenterAndExpand">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding End.Hours, StringFormat='{0:D2}'}"/>
+                                    <Span Text=":"/>
+                                    <Span Text="{Binding End.Minutes, StringFormat='{0:D2}'}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Text="{Binding Occupancy,Converter={StaticResource PropertyValueConverter}}" HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                    <ViewCell.ContextActions>
+                        <MenuItem Command="{Binding EditTimeSpanItemCommand}">
+                            <MenuItem.Text>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <On Platform="UWP" Value="{extension:Translate StandardWeekPageMenuItem_Edit}"/>
+                                    <On Platform="iOS" Value="{extension:Translate StandardWeekPageMenuItem_Edit}"/>
+                                </OnPlatform>
+                            </MenuItem.Text>
+                            <MenuItem.Icon>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="@drawable/ic_action_edit_dark"/>
+                                </OnPlatform>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Command="{Binding DeleteTimeSpanItemCommand}" IsDestructive="True">
+                            <MenuItem.Text>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <On Platform="UWP" Value="{extension:Translate RoomPage_DeleteButton_Text}"/>
+                                    <On Platform="iOS" Value="{extension:Translate RoomPage_DeleteButton_Text}"/>
+                                </OnPlatform>
+                            </MenuItem.Text>
+                                <MenuItem.Icon>
+                                    <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="@drawable/ic_action_delete_dark"/>                                        
+                                    </OnPlatform>
+                                </MenuItem.Icon>                            
+                        </MenuItem>
+                    </ViewCell.ContextActions>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <AbsoluteLayout x:Name="standardWeekPageAbsoluteLayout">
             <ScrollView Orientation="Horizontal" WidthRequest="{Binding Source={x:Reference standardWeekPageAbsoluteLayout}, Path=Width}">
@@ -31,7 +91,7 @@
                     <Label Grid.Column="4" Text="{extension:Translate StandardWeekPage_Friday}" HorizontalOptions="Center"/>
                     <Label Grid.Column="5" Text="{extension:Translate StandardWeekPage_Saturday}" HorizontalOptions="Center"/>
                     <Label Grid.Column="6" Text="{extension:Translate StandardWeekPage_Sunday}" HorizontalOptions="Center"/>
-                    <Button Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Monday">
+                    <Button Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimeSpanItemCommand}" CommandParameter="Monday">
                         <Button.Text>
                             <OnPlatform x:TypeArguments="x:String">
                                 <On Platform="UWP" Value="&#xE710;"/>
@@ -44,7 +104,7 @@
                             </OnPlatform>
                         </Button.Image>
                     </Button>
-                    <Button Grid.Column="1" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Tuesday">
+                    <Button Grid.Column="1" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimeSpanItemCommand}" CommandParameter="Tuesday">
                         <Button.Text>
                             <OnPlatform x:TypeArguments="x:String">
                                 <On Platform="UWP" Value="&#xE710;"/>
@@ -57,7 +117,7 @@
                             </OnPlatform>
                         </Button.Image>
                     </Button>
-                    <Button Grid.Column="2" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Wednesday">
+                    <Button Grid.Column="2" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimeSpanItemCommand}" CommandParameter="Wednesday">
                         <Button.Text>
                             <OnPlatform x:TypeArguments="x:String">
                                 <On Platform="UWP" Value="&#xE710;"/>
@@ -70,7 +130,7 @@
                             </OnPlatform>
                         </Button.Image>
                     </Button>
-                    <Button Grid.Column="3" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Thurday">
+                    <Button Grid.Column="3" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimeSpanItemCommand}" CommandParameter="Thurday">
                         <Button.Text>
                             <OnPlatform x:TypeArguments="x:String">
                                 <On Platform="UWP" Value="&#xE710;"/>
@@ -83,7 +143,7 @@
                             </OnPlatform>
                         </Button.Image>
                     </Button>
-                    <Button Grid.Column="4" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Friday">
+                    <Button Grid.Column="4" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimeSpanItemCommand}" CommandParameter="Friday">
                         <Button.Text>
                             <OnPlatform x:TypeArguments="x:String">
                                 <On Platform="UWP" Value="&#xE710;"/>
@@ -96,7 +156,7 @@
                             </OnPlatform>
                         </Button.Image>
                     </Button>
-                    <Button Grid.Column="5" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Saturday">
+                    <Button Grid.Column="5" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimeSpanItemCommand}" CommandParameter="Saturday">
                         <Button.Text>
                             <OnPlatform x:TypeArguments="x:String">
                                 <On Platform="UWP" Value="&#xE710;"/>
@@ -109,7 +169,7 @@
                             </OnPlatform>
                         </Button.Image>
                     </Button>
-                    <Button Grid.Column="6" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimespanItemCommand}" CommandParameter="Sunday">
+                    <Button Grid.Column="6" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Command="{Binding AddTimeSpanItemCommand}" CommandParameter="Sunday">
                         <Button.Text>
                             <OnPlatform x:TypeArguments="x:String">
                                 <On Platform="UWP" Value="&#xE710;"/>
@@ -122,13 +182,13 @@
                             </OnPlatform>
                         </Button.Image>
                     </Button>
-                    <ListView Grid.Row="2"/>
-                    <ListView Grid.Column="1" Grid.Row="2"/>
-                    <ListView Grid.Column="2" Grid.Row="2"/>
-                    <ListView Grid.Column="3" Grid.Row="2"/>
-                    <ListView Grid.Column="4" Grid.Row="2"/>
-                    <ListView Grid.Column="5" Grid.Row="2"/>
-                    <ListView Grid.Column="6" Grid.Row="2"/>
+                    <ListView Grid.Row="2" ItemsSource="{Binding Monday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}"/>
+                    <ListView Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Tuesday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}"/>
+                    <ListView Grid.Column="2" Grid.Row="2" ItemsSource="{Binding Wednesday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}"/>
+                    <ListView Grid.Column="3" Grid.Row="2" ItemsSource="{Binding Thursday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}"/>
+                    <ListView Grid.Column="4" Grid.Row="2" ItemsSource="{Binding Friday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}"/>
+                    <ListView Grid.Column="5" Grid.Row="2" ItemsSource="{Binding Saturday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}"/>
+                    <ListView Grid.Column="6" Grid.Row="2" ItemsSource="{Binding Sunday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}"/>
                 </Grid>
             </ScrollView>
             <ContentView BackgroundColor="#D9808080" IsVisible="{Binding IsTimeSpanContentViewVisible}">
@@ -154,9 +214,17 @@
                             </OnPlatform>
                         </Button.Image>
                     </Button>
-                    <TimePicker Grid.Row="1"/>
-                    <TimePicker Grid.Row="2"/>
-                    <Picker Grid.Row="3">
+                    <TimePicker x:Name="startTime" Grid.Row="1" Time="{Binding TimeSpanItem.Start, Mode=TwoWay, UpdateSourceEventName=ValueChanged}">
+                        <TimePicker.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference startTime}}"/>
+                        </TimePicker.Behaviors>
+                    </TimePicker>
+                    <TimePicker x:Name="endTime" Grid.Row="2" Time="{Binding TimeSpanItem.End, Mode=TwoWay, UpdateSourceEventName=ValueChanged}">
+                        <TimePicker.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference endTime}}"/>
+                        </TimePicker.Behaviors>
+                    </TimePicker>
+                    <Picker Grid.Row="3" SelectedIndex="{Binding TimeSpanItem.Occupancy, Mode=TwoWay}">
                         <Picker.Items>
                             <extension:Translate Text="RoomsPage_Occupancy_Free"/>
                             <extension:Translate Text="RoomsPage_Occupancy_Present"/>
@@ -167,7 +235,7 @@
                             <extension:Translate Text="RoomsPage_Occupancy_Home"/>
                         </Picker.Items>
                     </Picker>
-                    <Button Grid.Row="4" Text="{extension:Translate RoomPage_SaveButton_Text}" Command="{Binding SaveTimespanItemCommand}" HorizontalOptions="Center"/>
+                    <Button Grid.Row="4" Text="{extension:Translate RoomPage_SaveButton_Text}" Command="{Binding SaveTimeSpanItemCommand}" HorizontalOptions="Center" IsEnabled="{Binding IsSaveButtonEnabled}"/>
                 </Grid>
             </ContentView>
         </AbsoluteLayout>

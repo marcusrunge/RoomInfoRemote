@@ -421,6 +421,15 @@ namespace RoomInfoRemote.Resx {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Edit ähnelt.
+        /// </summary>
+        internal static string StandardWeekPageMenuItem_Edit {
+            get {
+                return ResourceManager.GetString("StandardWeekPageMenuItem_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Standardweek ähnelt.
         /// </summary>
         internal static string StandardWeekPageTab_Title {

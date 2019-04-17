@@ -3,8 +3,6 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 
 namespace RoomInfoRemote.Models
@@ -37,22 +35,22 @@ namespace RoomInfoRemote.Models
         [JsonIgnore]
         public double Width { get => _width; set { SetProperty(ref _width, value); } }
 
-        private ICommand _updateTimespanItemCommand;
+        private ICommand _editTimeSpanItemCommand;
         [JsonIgnore]
-        public ICommand UpdateTimespanItemCommand => _updateTimespanItemCommand ?? (_updateTimespanItemCommand = new DelegateCommand<object>((param) =>
+        public ICommand EditTimeSpanItemCommand => _editTimeSpanItemCommand ?? (_editTimeSpanItemCommand = new DelegateCommand<object>((param) =>
         {
-            EventAggregator.GetEvent<UpdateTimespanItemEvent>().Publish(this);
+            EventAggregator.GetEvent<EditTimeSpanItemEvent>().Publish(this);
         }));
 
-        private ICommand _deleteTimespanItemCommand;
+        private ICommand _deleteTimeSpanItemCommand;
         [JsonIgnore]
-        public ICommand DeleteTimespanItemCommand => _deleteTimespanItemCommand ?? (_deleteTimespanItemCommand = new DelegateCommand<object>((param) =>
+        public ICommand DeleteTimeSpanItemCommand => _deleteTimeSpanItemCommand ?? (_deleteTimeSpanItemCommand = new DelegateCommand<object>((param) =>
         {
-            EventAggregator.GetEvent<DeleteTimespanItemEvent>().Publish(param);
+            EventAggregator.GetEvent<DeleteTimeSpanItemEvent>().Publish(param);
         }));        
 
         public int CompareTo(object obj)
-        {
+        { 
             return ((IComparable)Start).CompareTo(((TimeSpanItem)obj).Start);
         }        
     }

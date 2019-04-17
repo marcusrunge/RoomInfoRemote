@@ -240,4 +240,7 @@
   <data name="StandardWeekPage_Wednesday" xml:space="preserve">
     <value>Wednesday</value>
   </data>
+  <data name="StandardWeekPageMenuItem_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
 </root>
