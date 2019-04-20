@@ -37,7 +37,7 @@ namespace RoomInfoRemote.ViewModels
             UdpPort = Settings.UdpPort;
             _eventAggregator.GetEvent<CurrentPageChangedEvent>().Subscribe((e) =>
             {
-                if (e == typeof(SettingsPage)) { }
+                if (e.PageType == typeof(SettingsPage)) { }
             });
             switch (Settings.Theme)
             {

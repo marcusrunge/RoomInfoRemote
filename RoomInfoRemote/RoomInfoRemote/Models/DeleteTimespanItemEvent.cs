@@ -2,7 +2,7 @@
 
 namespace RoomInfoRemote.Models
 {
-    class DeleteTimeSpanItemEvent : PubSubEvent<object>
+    class DeleteTimeSpanItemEvent : PubSubEvent<TimeSpanItem>
     {
     }
 }

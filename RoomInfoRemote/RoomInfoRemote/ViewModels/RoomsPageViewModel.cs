@@ -36,7 +36,7 @@ namespace RoomInfoRemote.ViewModels
 
             _eventAggregator.GetEvent<CurrentPageChangedEvent>().Subscribe(e =>
             {
-                if (e == typeof(RoomsPage))
+                if (e.PageType == typeof(RoomsPage))
                 {
                     if (RoomItems != null) RoomItems.Clear();
                     _networkCommunication.SendPayload(JsonConvert.SerializeObject(_discoveryPackage), null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);

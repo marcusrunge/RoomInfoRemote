@@ -51,7 +51,7 @@ namespace RoomInfoRemote.ViewModels
                        
 
             var currentPageType = (param as TabbedPage).CurrentPage.GetType();
-            _eventAggregator.GetEvent<CurrentPageChangedEvent>().Publish(currentPageType);
+            _eventAggregator.GetEvent<CurrentPageChangedEvent>().Publish(new CurrentPageChangedEventArgs(currentPageType, null));
             IsRefreshButtonVisible = currentPageType == typeof(RoomsPage);
             if (currentPageType == typeof(RoomsPage))
             {

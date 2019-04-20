@@ -5,6 +5,7 @@ using Prism.Navigation;
 using RoomInfoRemote.Helpers;
 using RoomInfoRemote.Interfaces;
 using RoomInfoRemote.Models;
+using RoomInfoRemote.Views;
 using Syncfusion.SfCalendar.XForms;
 using System;
 using System.Collections.Generic;
@@ -64,6 +65,16 @@ namespace RoomInfoRemote.ViewModels
             IsReservationContentViewVisible = false;
             IsExtensionButtonVisible = false;
             _eventAggregator.GetEvent<OpenReservationPopupEvent>().Subscribe((param) => OpenReservationPopupCommand.Execute(param));
+            _eventAggregator.GetEvent<CurrentPageChangedEvent>().Subscribe(CurrentPageChangedAction);
+        }
+
+        private async void CurrentPageChangedAction(CurrentPageChangedEventArgs obj)
+        {
+            if (obj.PageType == typeof(CalendarPage))
+            {
+                var package = new Package() { PayloadType = (int)PayloadType.RequestSchedule };
+                await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), RoomItem.HostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
+            }
         }
 
         private ICommand _openReservationPopupCommand;

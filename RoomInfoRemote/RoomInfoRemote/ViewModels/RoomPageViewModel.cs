@@ -35,7 +35,8 @@ namespace RoomInfoRemote.ViewModels
         public ICommand NotifyCurrentPageChangedCommand => _notifyCurrentPageChangedCommand ?? (_notifyCurrentPageChangedCommand = new DelegateCommand<object>((param) =>
         {
             var currentPageType = (param as TabbedPage).CurrentPage.GetType();
-            _eventAggregator.GetEvent<CurrentPageChangedEvent>().Publish(currentPageType);
+            var hostName = RoomItem?.HostName;
+            _eventAggregator.GetEvent<CurrentPageChangedEvent>().Publish(new CurrentPageChangedEventArgs(currentPageType, hostName));
             IsAddReservationButtonVisible = currentPageType == typeof(CalendarPage);            
         }));
 

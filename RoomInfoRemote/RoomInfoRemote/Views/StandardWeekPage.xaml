@@ -67,7 +67,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <AbsoluteLayout x:Name="standardWeekPageAbsoluteLayout">
+        <AbsoluteLayout x:Name="standardWeekPageAbsoluteLayout" >
             <ScrollView Orientation="Horizontal" WidthRequest="{Binding Source={x:Reference standardWeekPageAbsoluteLayout}, Path=Width}">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -182,13 +182,13 @@
                             </OnPlatform>
                         </Button.Image>
                     </Button>
-                    <ListView Grid.Row="2" ItemsSource="{Binding Monday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}"/>
-                    <ListView Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Tuesday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}"/>
-                    <ListView Grid.Column="2" Grid.Row="2" ItemsSource="{Binding Wednesday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}"/>
-                    <ListView Grid.Column="3" Grid.Row="2" ItemsSource="{Binding Thursday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}"/>
-                    <ListView Grid.Column="4" Grid.Row="2" ItemsSource="{Binding Friday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}"/>
-                    <ListView Grid.Column="5" Grid.Row="2" ItemsSource="{Binding Saturday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}"/>
-                    <ListView Grid.Column="6" Grid.Row="2" ItemsSource="{Binding Sunday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}"/>
+                    <ListView Grid.Row="2" ItemsSource="{Binding Monday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" SeparatorVisibility="Default"/>
+                    <ListView Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Tuesday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" SeparatorVisibility="Default"/>
+                    <ListView Grid.Column="2" Grid.Row="2" ItemsSource="{Binding Wednesday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" SeparatorVisibility="Default"/>
+                    <ListView Grid.Column="3" Grid.Row="2" ItemsSource="{Binding Thursday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" SeparatorVisibility="Default"/>
+                    <ListView Grid.Column="4" Grid.Row="2" ItemsSource="{Binding Friday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" SeparatorVisibility="Default"/>
+                    <ListView Grid.Column="5" Grid.Row="2" ItemsSource="{Binding Saturday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" SeparatorVisibility="Default"/>
+                    <ListView Grid.Column="6" Grid.Row="2" ItemsSource="{Binding Sunday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" SeparatorVisibility="Default"/>
                 </Grid>
             </ScrollView>
             <ContentView BackgroundColor="#D9808080" IsVisible="{Binding IsTimeSpanContentViewVisible}">
