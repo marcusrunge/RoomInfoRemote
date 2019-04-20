@@ -93,8 +93,11 @@ namespace RoomInfoRemote.ViewModels
                     IsTimeSpanContentViewVisible = true;
                     IsSaveButtonEnabled = true;
                 });
-                _eventAggregator.GetEvent<DeleteTimeSpanItemEvent>().Subscribe(e =>
+                _eventAggregator.GetEvent<DeleteTimeSpanItemEvent>().Subscribe(async e =>
                 {
+                    e.IsDeleted = true;
+                    var timeSpanItemPackage = new Package() { PayloadType = (int)PayloadType.TimeSpanItem, Payload = e };
+                    await _networkCommunication.SendPayload(JsonConvert.SerializeObject(timeSpanItemPackage), _hostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
                     switch ((DayOfWeek)e.DayOfWeek)
                     {
                         case DayOfWeek.Friday:
@@ -125,7 +128,6 @@ namespace RoomInfoRemote.ViewModels
                 _networkCommunication.PayloadReceived += async (s, e) => { if (e.Package != null) await ProcessPackage(JsonConvert.DeserializeObject<Package>(e.Package), e.HostName); };
                 var package = new Package() { PayloadType = (int)PayloadType.RequestStandardWeek };
                 await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), _hostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
-
             }
         }
 
@@ -256,7 +258,7 @@ namespace RoomInfoRemote.ViewModels
         private ICommand _addTimeSpanItemCommand;
         public ICommand AddTimeSpanItemCommand => _addTimeSpanItemCommand ?? (_addTimeSpanItemCommand = new DelegateCommand<object>((param) =>
         {
-            TimeSpanItem = new TimeSpanItem() { Id = -1, Occupancy = 0, EventAggregator = _eventAggregator, TimeStamp = DateTimeOffset.Now.ToUnixTimeMilliseconds() };
+            TimeSpanItem = new TimeSpanItem() { Occupancy = 0, EventAggregator = _eventAggregator, TimeStamp = DateTimeOffset.Now.ToUnixTimeMilliseconds() };
             IsTimeSpanContentViewVisible = true;
             IsSaveButtonEnabled = false;
             switch ((string)param)
