@@ -71,7 +71,7 @@ namespace RoomInfoRemote.ViewModels
                 _cultureInfo = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
             }
             _resourceManager = new ResourceManager("RoomInfoRemote.Resx.AppResources", typeof(TranslateExtension).GetTypeInfo().Assembly);
-            _eventAggregator.GetEvent<CurrentPageChangedEvent>().Subscribe(CurrentPageChangedAction);            
+            _eventAggregator.GetEvent<CurrentPageChangedEvent>().Subscribe(CurrentPageChangedAction);
         }
 
         private async void CurrentPageChangedAction(CurrentPageChangedEventArgs obj)
@@ -208,8 +208,8 @@ namespace RoomInfoRemote.ViewModels
                     case PayloadType.Discovery:
                         break;
                     case PayloadType.PropertyChanged:
-                        var requestStandardWeekPackage = new Package() { PayloadType = (int)PayloadType.RequestStandardWeek };
-                        await _networkCommunication.SendPayload(JsonConvert.SerializeObject(requestStandardWeekPackage), _hostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
+                        //var requestStandardWeekPackage = new Package() { PayloadType = (int)PayloadType.RequestStandardWeek };
+                        //await _networkCommunication.SendPayload(JsonConvert.SerializeObject(requestStandardWeekPackage), _hostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
                         break;
                     case PayloadType.TimeSpanItem:
                         break;
@@ -218,32 +218,60 @@ namespace RoomInfoRemote.ViewModels
                         switch ((DayOfWeek)TimeSpanItem.DayOfWeek)
                         {
                             case DayOfWeek.Friday:
-                                Friday.Add(new TimeSpanItem() { DayOfWeek = TimeSpanItem.DayOfWeek, End = TimeSpanItem.End, Id = TimeSpanItem.Id, Occupancy = TimeSpanItem.Occupancy, Start = TimeSpanItem.Start, TimeStamp = TimeSpanItem.TimeStamp, Width = TimeSpanItem.Width, EventAggregator = _eventAggregator });
-                                Friday.OrderByDescending(x => x.Start);
+                                var fridayTimespanItem = Friday.Where(x => x.Id == TimeSpanItem.Id).Select(x => x).FirstOrDefault();
+                                if (fridayTimespanItem == null)
+                                {
+                                    Friday.Add(new TimeSpanItem() { DayOfWeek = TimeSpanItem.DayOfWeek, End = TimeSpanItem.End, Id = TimeSpanItem.Id, Occupancy = TimeSpanItem.Occupancy, Start = TimeSpanItem.Start, TimeStamp = TimeSpanItem.TimeStamp, Width = TimeSpanItem.Width, EventAggregator = _eventAggregator });
+                                    Friday.OrderByDescending(x => x.Start);
+                                }
                                 break;
                             case DayOfWeek.Monday:
-                                Monday.Add(new TimeSpanItem() { DayOfWeek = TimeSpanItem.DayOfWeek, End = TimeSpanItem.End, Id = TimeSpanItem.Id, Occupancy = TimeSpanItem.Occupancy, Start = TimeSpanItem.Start, TimeStamp = TimeSpanItem.TimeStamp, Width = TimeSpanItem.Width, EventAggregator = _eventAggregator });
-                                Monday.OrderByDescending(x => x.Start);
+                                var mondayTimespanItem = Monday.Where(x => x.Id == TimeSpanItem.Id).Select(x => x).FirstOrDefault();
+                                if (mondayTimespanItem == null)
+                                {
+                                    Monday.Add(new TimeSpanItem() { DayOfWeek = TimeSpanItem.DayOfWeek, End = TimeSpanItem.End, Id = TimeSpanItem.Id, Occupancy = TimeSpanItem.Occupancy, Start = TimeSpanItem.Start, TimeStamp = TimeSpanItem.TimeStamp, Width = TimeSpanItem.Width, EventAggregator = _eventAggregator });
+                                    Monday.OrderByDescending(x => x.Start);
+                                }
                                 break;
                             case DayOfWeek.Saturday:
-                                Saturday.Add(new TimeSpanItem() { DayOfWeek = TimeSpanItem.DayOfWeek, End = TimeSpanItem.End, Id = TimeSpanItem.Id, Occupancy = TimeSpanItem.Occupancy, Start = TimeSpanItem.Start, TimeStamp = TimeSpanItem.TimeStamp, Width = TimeSpanItem.Width, EventAggregator = _eventAggregator });
-                                Saturday.OrderByDescending(x => x.Start);
+                                var saturdayTimespanItem = Saturday.Where(x => x.Id == TimeSpanItem.Id).Select(x => x).FirstOrDefault();
+                                if (saturdayTimespanItem == null)
+                                {
+                                    Saturday.Add(new TimeSpanItem() { DayOfWeek = TimeSpanItem.DayOfWeek, End = TimeSpanItem.End, Id = TimeSpanItem.Id, Occupancy = TimeSpanItem.Occupancy, Start = TimeSpanItem.Start, TimeStamp = TimeSpanItem.TimeStamp, Width = TimeSpanItem.Width, EventAggregator = _eventAggregator });
+                                    Saturday.OrderByDescending(x => x.Start);
+                                }
                                 break;
                             case DayOfWeek.Sunday:
-                                Sunday.Add(new TimeSpanItem() { DayOfWeek = TimeSpanItem.DayOfWeek, End = TimeSpanItem.End, Id = TimeSpanItem.Id, Occupancy = TimeSpanItem.Occupancy, Start = TimeSpanItem.Start, TimeStamp = TimeSpanItem.TimeStamp, Width = TimeSpanItem.Width, EventAggregator = _eventAggregator });
-                                Sunday.OrderByDescending(x => x.Start);
+                                var sundayTimespanItem = Sunday.Where(x => x.Id == TimeSpanItem.Id).Select(x => x).FirstOrDefault();
+                                if (sundayTimespanItem == null)
+                                {
+                                    Sunday.Add(new TimeSpanItem() { DayOfWeek = TimeSpanItem.DayOfWeek, End = TimeSpanItem.End, Id = TimeSpanItem.Id, Occupancy = TimeSpanItem.Occupancy, Start = TimeSpanItem.Start, TimeStamp = TimeSpanItem.TimeStamp, Width = TimeSpanItem.Width, EventAggregator = _eventAggregator });
+                                    Sunday.OrderByDescending(x => x.Start);
+                                }
                                 break;
                             case DayOfWeek.Thursday:
-                                Thursday.Add(new TimeSpanItem() { DayOfWeek = TimeSpanItem.DayOfWeek, End = TimeSpanItem.End, Id = TimeSpanItem.Id, Occupancy = TimeSpanItem.Occupancy, Start = TimeSpanItem.Start, TimeStamp = TimeSpanItem.TimeStamp, Width = TimeSpanItem.Width, EventAggregator = _eventAggregator });
-                                Thursday.OrderByDescending(x => x.Start);
+                                var thursdayTimespanItem = Thursday.Where(x => x.Id == TimeSpanItem.Id).Select(x => x).FirstOrDefault();
+                                if (thursdayTimespanItem == null)
+                                {
+                                    Thursday.Add(new TimeSpanItem() { DayOfWeek = TimeSpanItem.DayOfWeek, End = TimeSpanItem.End, Id = TimeSpanItem.Id, Occupancy = TimeSpanItem.Occupancy, Start = TimeSpanItem.Start, TimeStamp = TimeSpanItem.TimeStamp, Width = TimeSpanItem.Width, EventAggregator = _eventAggregator });
+                                    Thursday.OrderByDescending(x => x.Start);
+                                }
                                 break;
                             case DayOfWeek.Tuesday:
-                                Tuesday.Add(new TimeSpanItem() { DayOfWeek = TimeSpanItem.DayOfWeek, End = TimeSpanItem.End, Id = TimeSpanItem.Id, Occupancy = TimeSpanItem.Occupancy, Start = TimeSpanItem.Start, TimeStamp = TimeSpanItem.TimeStamp, Width = TimeSpanItem.Width, EventAggregator = _eventAggregator });
-                                Tuesday.OrderByDescending(x => x.Start);
+                                var tuesdayTimespanItem = Tuesday.Where(x => x.Id == TimeSpanItem.Id).Select(x => x).FirstOrDefault();
+                                if (tuesdayTimespanItem == null)
+                                {
+                                    Tuesday.Add(new TimeSpanItem() { DayOfWeek = TimeSpanItem.DayOfWeek, End = TimeSpanItem.End, Id = TimeSpanItem.Id, Occupancy = TimeSpanItem.Occupancy, Start = TimeSpanItem.Start, TimeStamp = TimeSpanItem.TimeStamp, Width = TimeSpanItem.Width, EventAggregator = _eventAggregator });
+                                    Tuesday.OrderByDescending(x => x.Start);
+                                }
                                 break;
                             case DayOfWeek.Wednesday:
-                                Wednesday.Add(new TimeSpanItem() { DayOfWeek = TimeSpanItem.DayOfWeek, End = TimeSpanItem.End, Id = TimeSpanItem.Id, Occupancy = TimeSpanItem.Occupancy, Start = TimeSpanItem.Start, TimeStamp = TimeSpanItem.TimeStamp, Width = TimeSpanItem.Width, EventAggregator = _eventAggregator });
-                                Wednesday.OrderByDescending(x => x.Start);
+                                var wednesdayimespanItem = Wednesday.Where(x => x.Id == TimeSpanItem.Id).Select(x => x).FirstOrDefault();
+                                if (wednesdayimespanItem == null)
+                                {
+                                    Wednesday.Add(new TimeSpanItem() { DayOfWeek = TimeSpanItem.DayOfWeek, End = TimeSpanItem.End, Id = TimeSpanItem.Id, Occupancy = TimeSpanItem.Occupancy, Start = TimeSpanItem.Start, TimeStamp = TimeSpanItem.TimeStamp, Width = TimeSpanItem.Width, EventAggregator = _eventAggregator });
+                                    Wednesday.OrderByDescending(x => x.Start);
+                                }
                                 break;
                             default:
                                 break;

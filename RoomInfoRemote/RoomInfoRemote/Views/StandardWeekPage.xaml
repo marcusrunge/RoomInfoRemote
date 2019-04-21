@@ -33,6 +33,7 @@
                             </Label.FormattedText>
                         </Label>
                         <Label Text="{Binding Occupancy,Converter={StaticResource PropertyValueConverter}}" HorizontalOptions="CenterAndExpand"/>
+                        <Grid BackgroundColor="LightGray" HeightRequest="1"/>
                     </StackLayout>
                     <ViewCell.ContextActions>
                         <MenuItem Command="{Binding EditTimeSpanItemCommand}">
