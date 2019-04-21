@@ -91,6 +91,7 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CustomRenderer\CustomPickerRenderer.cs" />
     <Compile Include="CustomRenderer\TransparentButtonRenderer.cs" />
     <Compile Include="DependencyServices\AppVersionDependencyService.cs" />
     <Compile Include="DependencyServices\NetworkCommunicationDependencyService.cs" />

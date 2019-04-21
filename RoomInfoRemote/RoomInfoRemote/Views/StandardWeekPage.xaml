@@ -192,7 +192,7 @@
                     <ListView Grid.Column="6" Grid.Row="2" ItemsSource="{Binding Sunday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" SeparatorVisibility="Default"/>
                 </Grid>
             </ScrollView>
-            <ContentView BackgroundColor="#D9808080" IsVisible="{Binding IsTimeSpanContentViewVisible}">
+            <ContentView BackgroundColor="#D9808080" IsVisible="{Binding IsTimeSpanContentViewVisible}" Padding="8">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -201,20 +201,26 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Label Text="{Binding WeekDay}" HorizontalOptions="Start"/>
-                    <Button HorizontalOptions="End" FontFamily="Segoe MDL2 Assets" Command="{Binding HideTimeSpanContentCommand}">
-                        <Button.Text>
-                            <OnPlatform x:TypeArguments="x:String">
-                                <On Platform="UWP" Value="&#xE711;"/>
-                            </OnPlatform>
-                        </Button.Text>
-                        <Button.Image>
-                            <OnPlatform x:TypeArguments="FileImageSource">
-                                <On Platform="Android" Value="@drawable/ic_action_cancel_dark"/>
-                                <On Platform="iOS" Value="CancelIcon"/>
-                            </OnPlatform>
-                        </Button.Image>
-                    </Button>
+                    <Grid x:Name="titleGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding WeekDay}" FontSize="Medium" HorizontalOptions="Start" VerticalOptions="Center"/>
+                        <Button x:Name="cancelButton" Grid.Column="1" WidthRequest="{Binding Source={x:Reference cancelButton}, Path=Height}" HorizontalOptions="End" FontFamily="Segoe MDL2 Assets" Command="{Binding HideTimeSpanContentCommand}" VerticalOptions="Center">
+                            <Button.Text>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <On Platform="UWP" Value="&#xE711;"/>
+                                </OnPlatform>
+                            </Button.Text>
+                            <Button.Image>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="Android" Value="@drawable/ic_action_cancel_dark"/>
+                                    <On Platform="iOS" Value="CancelIcon"/>
+                                </OnPlatform>
+                            </Button.Image>
+                        </Button>
+                    </Grid>                    
                     <TimePicker x:Name="startTime" Grid.Row="1" Time="{Binding TimeSpanItem.Start, Mode=TwoWay, UpdateSourceEventName=ValueChanged}">
                         <TimePicker.Behaviors>
                             <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference startTime}}"/>
@@ -225,9 +231,9 @@
                             <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference endTime}}"/>
                         </TimePicker.Behaviors>
                     </TimePicker>
-                    <Picker Grid.Row="3" SelectedIndex="{Binding TimeSpanItem.Occupancy, Mode=TwoWay}">
+                    <Picker Grid.Row="3" SelectedIndex="{Binding TimeSpanItem.Occupancy, Mode=TwoWay}" WidthRequest="{Binding Source={x:Reference titleGrid}, Path=Width}">
                         <Picker.Items>
-                            <extension:Translate Text="RoomsPage_Occupancy_Free"/>
+                            <extension:Translate Text="RoomsPage_Occupancy_Free" />
                             <extension:Translate Text="RoomsPage_Occupancy_Present"/>
                             <extension:Translate Text="RoomsPage_Occupancy_Absent"/>
                             <extension:Translate Text="RoomsPage_Occupancy_Busy"/>
