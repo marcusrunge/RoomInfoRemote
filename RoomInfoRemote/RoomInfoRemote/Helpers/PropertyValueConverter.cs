@@ -1,11 +1,9 @@
 ﻿using RoomInfoRemote.Extension;
 using RoomInfoRemote.Models;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
-using System.Text;
 using Xamarin.Forms;
 
 namespace RoomInfoRemote.Helpers
