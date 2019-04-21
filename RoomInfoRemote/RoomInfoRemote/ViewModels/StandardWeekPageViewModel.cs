@@ -71,95 +71,7 @@ namespace RoomInfoRemote.ViewModels
                 _cultureInfo = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
             }
             _resourceManager = new ResourceManager("RoomInfoRemote.Resx.AppResources", typeof(TranslateExtension).GetTypeInfo().Assembly);
-            _eventAggregator.GetEvent<CurrentPageChangedEvent>().Subscribe(CurrentPageChangedAction);
-            _eventAggregator.GetEvent<EditTimeSpanItemEvent>().Subscribe(e =>
-            {
-                TimeSpanItem = e;
-                IsTimeSpanContentViewVisible = true;
-                IsSaveButtonEnabled = true;
-            });
-            _eventAggregator.GetEvent<DeleteTimeSpanItemEvent>().Subscribe(async e =>
-            {
-                e.IsDeleted = true;
-                var timeSpanItemPackage = new Package() { PayloadType = (int)PayloadType.TimeSpanItem, Payload = e };
-                await _networkCommunication.SendPayload(JsonConvert.SerializeObject(timeSpanItemPackage), _hostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
-                switch ((DayOfWeek)e.DayOfWeek)
-                {
-                    case DayOfWeek.Friday:
-                        for (int i = Friday.Count; i > 0; i--)
-                        {
-                            if (Friday.ElementAt(i-1).Id == e.Id)
-                            {
-                                Friday.RemoveAt(i - 1);
-                                break;
-                            }
-                        }
-                        break;
-                    case DayOfWeek.Monday:
-                        for (int i = Monday.Count; i > 0; i--)
-                        {
-                            if (Monday.ElementAt(i - 1).Id == e.Id)
-                            {
-                                Monday.RemoveAt(i - 1);
-                                break;
-                            }
-                        }
-                        break;
-                    case DayOfWeek.Saturday:
-                        for (int i = Saturday.Count; i > 0; i--)
-                        {
-                            if (Saturday.ElementAt(i - 1).Id == e.Id)
-                            {
-                                Saturday.RemoveAt(i - 1);
-                                break;
-                            }
-                        }
-                        break;
-                    case DayOfWeek.Sunday:
-                        for (int i = Sunday.Count; i > 0; i--)
-                        {
-                            if (Sunday.ElementAt(i - 1).Id == e.Id)
-                            {
-                                Sunday.RemoveAt(i - 1);
-                                break;
-                            }
-                        }
-                        break;
-                    case DayOfWeek.Thursday:
-                        for (int i = Thursday.Count; i > 0; i--)
-                        {
-                            if (Thursday.ElementAt(i - 1).Id == e.Id)
-                            {
-                                Thursday.RemoveAt(i - 1);
-                                break;
-                            }
-                        }
-                        break;
-                    case DayOfWeek.Tuesday:
-                        for (int i = Tuesday.Count; i > 0; i--)
-                        {
-                            if (Tuesday.ElementAt(i - 1).Id == e.Id)
-                            {
-                                Tuesday.RemoveAt(i - 1);
-                                break;
-                            }
-                        }
-                        break;
-                    case DayOfWeek.Wednesday:
-                        for (int i = Wednesday.Count; i > 0; i--)
-                        {
-                            if (Wednesday.ElementAt(i - 1).Id == e.Id)
-                            {
-                                Wednesday.RemoveAt(i - 1);
-                                break;
-                            }
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            });
-            _networkCommunication.PayloadReceived += async (s, e) => { if (e.Package != null) await ProcessPackage(JsonConvert.DeserializeObject<Package>(e.Package), e.HostName); };
+            _eventAggregator.GetEvent<CurrentPageChangedEvent>().Subscribe(CurrentPageChangedAction);            
         }
 
         private async void CurrentPageChangedAction(CurrentPageChangedEventArgs obj)
@@ -173,7 +85,47 @@ namespace RoomInfoRemote.ViewModels
                 Thursday = Thursday ?? new ObservableCollection<TimeSpanItem>();
                 Friday = Friday ?? new ObservableCollection<TimeSpanItem>();
                 Saturday = Saturday ?? new ObservableCollection<TimeSpanItem>();
-                Sunday = Sunday ?? new ObservableCollection<TimeSpanItem>();                
+                Sunday = Sunday ?? new ObservableCollection<TimeSpanItem>();
+
+                _eventAggregator.GetEvent<EditTimeSpanItemEvent>().Subscribe(e =>
+                {
+                    TimeSpanItem = e;
+                    IsTimeSpanContentViewVisible = true;
+                    IsSaveButtonEnabled = true;
+                });
+                _eventAggregator.GetEvent<DeleteTimeSpanItemEvent>().Subscribe(async e =>
+                {
+                    e.IsDeleted = true;
+                    var timeSpanItemPackage = new Package() { PayloadType = (int)PayloadType.TimeSpanItem, Payload = e };
+                    await _networkCommunication.SendPayload(JsonConvert.SerializeObject(timeSpanItemPackage), _hostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
+                    switch ((DayOfWeek)e.DayOfWeek)
+                    {
+                        case DayOfWeek.Friday:
+                            Friday.Remove(e);
+                            break;
+                        case DayOfWeek.Monday:
+                            Monday.Remove(e);
+                            break;
+                        case DayOfWeek.Saturday:
+                            Saturday.Remove(e);
+                            break;
+                        case DayOfWeek.Sunday:
+                            Sunday.Remove(e);
+                            break;
+                        case DayOfWeek.Thursday:
+                            Thursday.Remove(e);
+                            break;
+                        case DayOfWeek.Tuesday:
+                            Tuesday.Remove(e);
+                            break;
+                        case DayOfWeek.Wednesday:
+                            Wednesday.Remove(e);
+                            break;
+                        default:
+                            break;
+                    }
+                });
+                _networkCommunication.PayloadReceived += async (s, e) => { if (e.Package != null) await ProcessPackage(JsonConvert.DeserializeObject<Package>(e.Package), e.HostName); };
                 var package = new Package() { PayloadType = (int)PayloadType.RequestStandardWeek };
                 await _networkCommunication.SendPayload(JsonConvert.SerializeObject(package), _hostName, Settings.TcpPort, NetworkProtocol.TransmissionControl);
             }
