@@ -14,7 +14,7 @@
             <DataTemplate x:Key="TimeSpanItemTemplate">
                 <ViewCell>
                     <StackLayout>
-                        <Label HorizontalOptions="CenterAndExpand">
+                        <Label HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="{Binding Start.Hours, StringFormat='{0:D2}'}"/>
@@ -23,7 +23,7 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                        <Label HorizontalOptions="CenterAndExpand">
+                        <Label HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="{Binding End.Hours, StringFormat='{0:D2}'}"/>
@@ -32,7 +32,7 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                        <Label Text="{Binding Occupancy,Converter={StaticResource PropertyValueConverter}}" HorizontalOptions="CenterAndExpand"/>
+                        <Label Text="{Binding Occupancy,Converter={StaticResource PropertyValueConverter}}" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>                        
                         <Grid BackgroundColor="LightGray" HeightRequest="1"/>
                     </StackLayout>
                     <ViewCell.ContextActions>
@@ -183,13 +183,13 @@
                             </OnPlatform>
                         </Button.Image>
                     </Button>
-                    <ListView Grid.Row="2" ItemsSource="{Binding Monday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" SeparatorVisibility="Default"/>
-                    <ListView Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Tuesday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" SeparatorVisibility="Default"/>
-                    <ListView Grid.Column="2" Grid.Row="2" ItemsSource="{Binding Wednesday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" SeparatorVisibility="Default"/>
-                    <ListView Grid.Column="3" Grid.Row="2" ItemsSource="{Binding Thursday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" SeparatorVisibility="Default"/>
-                    <ListView Grid.Column="4" Grid.Row="2" ItemsSource="{Binding Friday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" SeparatorVisibility="Default"/>
-                    <ListView Grid.Column="5" Grid.Row="2" ItemsSource="{Binding Saturday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" SeparatorVisibility="Default"/>
-                    <ListView Grid.Column="6" Grid.Row="2" ItemsSource="{Binding Sunday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" SeparatorVisibility="Default"/>
+                    <ListView Grid.Row="2" ItemsSource="{Binding Monday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" HasUnevenRows="true"/>
+                    <ListView Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Tuesday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" HasUnevenRows="true"/>
+                    <ListView Grid.Column="2" Grid.Row="2" ItemsSource="{Binding Wednesday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" HasUnevenRows="true"/>
+                    <ListView Grid.Column="3" Grid.Row="2" ItemsSource="{Binding Thursday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" HasUnevenRows="true"/>
+                    <ListView Grid.Column="4" Grid.Row="2" ItemsSource="{Binding Friday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" HasUnevenRows="true"/>
+                    <ListView Grid.Column="5" Grid.Row="2" ItemsSource="{Binding Saturday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" HasUnevenRows="true"/>
+                    <ListView Grid.Column="6" Grid.Row="2" ItemsSource="{Binding Sunday}" ItemTemplate="{StaticResource TimeSpanItemTemplate}" HasUnevenRows="true"/>
                 </Grid>
             </ScrollView>
             <ContentView BackgroundColor="#D9808080" IsVisible="{Binding IsTimeSpanContentViewVisible}" Padding="8">
