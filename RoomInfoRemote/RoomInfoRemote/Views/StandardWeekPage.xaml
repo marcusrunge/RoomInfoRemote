@@ -100,7 +100,7 @@
                         </Button.Text>
                         <Button.Image>
                             <OnPlatform x:TypeArguments="FileImageSource">
-                                <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
+                                <On Platform="Android" Value="@drawable/ic_action_add_light"/>
                                 <On Platform="iOS" Value="AddIcon"/>
                             </OnPlatform>
                         </Button.Image>
@@ -113,7 +113,7 @@
                         </Button.Text>
                         <Button.Image>
                             <OnPlatform x:TypeArguments="FileImageSource">
-                                <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
+                                <On Platform="Android" Value="@drawable/ic_action_add_light"/>
                                 <On Platform="iOS" Value="AddIcon"/>
                             </OnPlatform>
                         </Button.Image>
@@ -126,7 +126,7 @@
                         </Button.Text>
                         <Button.Image>
                             <OnPlatform x:TypeArguments="FileImageSource">
-                                <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
+                                <On Platform="Android" Value="@drawable/ic_action_add_light"/>
                                 <On Platform="iOS" Value="AddIcon"/>
                             </OnPlatform>
                         </Button.Image>
@@ -139,7 +139,7 @@
                         </Button.Text>
                         <Button.Image>
                             <OnPlatform x:TypeArguments="FileImageSource">
-                                <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
+                                <On Platform="Android" Value="@drawable/ic_action_add_light"/>
                                 <On Platform="iOS" Value="AddIcon"/>
                             </OnPlatform>
                         </Button.Image>
@@ -152,7 +152,7 @@
                         </Button.Text>
                         <Button.Image>
                             <OnPlatform x:TypeArguments="FileImageSource">
-                                <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
+                                <On Platform="Android" Value="@drawable/ic_action_add_light"/>
                                 <On Platform="iOS" Value="AddIcon"/>
                             </OnPlatform>
                         </Button.Image>
@@ -165,7 +165,7 @@
                         </Button.Text>
                         <Button.Image>
                             <OnPlatform x:TypeArguments="FileImageSource">
-                                <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
+                                <On Platform="Android" Value="@drawable/ic_action_add_light"/>
                                 <On Platform="iOS" Value="AddIcon"/>
                             </OnPlatform>
                         </Button.Image>
@@ -178,7 +178,7 @@
                         </Button.Text>
                         <Button.Image>
                             <OnPlatform x:TypeArguments="FileImageSource">
-                                <On Platform="Android" Value="@drawable/ic_action_add_dark"/>
+                                <On Platform="Android" Value="@drawable/ic_action_add_light"/>
                                 <On Platform="iOS" Value="AddIcon"/>
                             </OnPlatform>
                         </Button.Image>
@@ -215,13 +215,13 @@
                             </Button.Text>
                             <Button.Image>
                                 <OnPlatform x:TypeArguments="FileImageSource">
-                                    <On Platform="Android" Value="@drawable/ic_action_cancel_dark"/>
+                                    <On Platform="Android" Value="@drawable/ic_action_cancel_light"/>
                                     <On Platform="iOS" Value="CancelIcon"/>
                                 </OnPlatform>
                             </Button.Image>
                         </Button>
                     </Grid>                    
-                    <TimePicker x:Name="startTime" Grid.Row="1" Time="{Binding TimeSpanItem.Start, Mode=TwoWay, UpdateSourceEventName=ValueChanged}">
+                    <TimePicker x:Name="startTime" Grid.Row="1" Time="{Binding TimeSpanItem.Start, Mode=TwoWay}">
                         <TimePicker.Behaviors>
                             <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference startTime}}"/>
                         </TimePicker.Behaviors>

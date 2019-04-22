@@ -47,11 +47,8 @@ namespace RoomInfoRemote.Models
         public ICommand DeleteTimeSpanItemCommand => _deleteTimeSpanItemCommand ?? (_deleteTimeSpanItemCommand = new DelegateCommand<object>((param) =>
         {
             EventAggregator.GetEvent<DeleteTimeSpanItemEvent>().Publish(this);
-        }));        
+        }));
 
-        public int CompareTo(object obj)
-        { 
-            return ((IComparable)Start).CompareTo(((TimeSpanItem)obj).Start);
-        }        
+        public int CompareTo(object obj) => ((IComparable)Start).CompareTo(((TimeSpanItem)obj).Start);
     }
 }

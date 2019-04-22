@@ -23,6 +23,7 @@
 
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
     <item name="actionModeBackground">?attr/colorPrimary</item>
+    <item name="android:colorLongPressedHighlight">?attr/colorAccent</item>
   </style>
 
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
