@@ -189,12 +189,12 @@ namespace RoomInfoRemote.ViewModels
                             }
                         }
                         Monday = new ObservableCollection<TimeSpanItem>(monday.OrderBy(x => x.Start));
-                        Tuesday = new ObservableCollection<TimeSpanItem>(monday.OrderBy(x => x.Start));
-                        Wednesday = new ObservableCollection<TimeSpanItem>(monday.OrderBy(x => x.Start));
-                        Thursday = new ObservableCollection<TimeSpanItem>(monday.OrderBy(x => x.Start));
-                        Friday = new ObservableCollection<TimeSpanItem>(monday.OrderBy(x => x.Start));
-                        Saturday = new ObservableCollection<TimeSpanItem>(monday.OrderBy(x => x.Start));
-                        Sunday = new ObservableCollection<TimeSpanItem>(monday.OrderBy(x => x.Start));
+                        Tuesday = new ObservableCollection<TimeSpanItem>(tuesday.OrderBy(x => x.Start));
+                        Wednesday = new ObservableCollection<TimeSpanItem>(wednesday.OrderBy(x => x.Start));
+                        Thursday = new ObservableCollection<TimeSpanItem>(thursday.OrderBy(x => x.Start));
+                        Friday = new ObservableCollection<TimeSpanItem>(friday.OrderBy(x => x.Start));
+                        Saturday = new ObservableCollection<TimeSpanItem>(saturday.OrderBy(x => x.Start));
+                        Sunday = new ObservableCollection<TimeSpanItem>(sunday.OrderBy(x => x.Start));
                         break;
                     case PayloadType.RequestOccupancy:
                         break;
