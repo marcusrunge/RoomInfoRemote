@@ -23,7 +23,7 @@ namespace RoomInfoRemote
 
         protected override async void OnInitialized()
         {
-            SyncfusionLicenseProvider.RegisterLicense("ODMwMjBAMzEzNzJlMzEyZTMwV2JmdHRUdkFhdzRFKzRKd1NOL3RGM2phT1NhRDUrcDJVL1FqRzE0ak0rQT0=;ODMwMjFAMzEzNzJlMzEyZTMwVmJIcEdHNGs5TUhkQnJ1aExwZ0s3RnF4U2ZvbVlsZWtjenBjb0ZmODZ2UT0=;ODMwMjJAMzEzNzJlMzEyZTMwb2l1SHFtY1pvUm1Nb0hoZ3RqYnRYY2EwKzgwQU1mVXB5V0JZWmxhZEZBZz0=;ODMwMjNAMzEzNzJlMzEyZTMwV2Z1REs3WGI1YnNqRGVZQTBmMllvZVdZZ0t0V0ZRTXV2aEVzVHFnSkNQMD0=;ODMwMjRAMzEzNzJlMzEyZTMwSTV3N1RyS3QyZU11QlV0OXF5YjN3WTFtOWhKOENJc2NpM1U5YmkvYjAvbz0=;ODMwMjVAMzEzNzJlMzEyZTMwQ2hxWUVidXh1eTFsNExSQzZXbURZTUhwUElmMHZKNjV3eklDVE16WTB1Zz0=;ODMwMjZAMzEzNzJlMzEyZTMwQk9nNmRSUFFGaW5sVU1nbVFXYy9FZjNXL3A0T25LczViYjc4UU9FODZNWT0=;ODMwMjdAMzEzNzJlMzEyZTMwQ3ptZVpVc0Z1MGhEamltYkdYRHZOcjNINEd0M1VTT0tzdWd1VHByRjJ2cz0=;ODMwMjhAMzEzNzJlMzEyZTMwRzFYQ3R2NEhaWU5oYUVLeGRuTFNXTVY1Z1Z3aXNFRVpWTGJqdnFDOGpIbz0=;ODMwMjlAMzEzNzJlMzEyZTMwSTV3N1RyS3QyZU11QlV0OXF5YjN3WTFtOWhKOENJc2NpM1U5YmkvYjAvbz0=");
+            SyncfusionLicenseProvider.RegisterLicense("MTI5NzY0QDMxMzcyZTMyMmUzMFJ0b3pSbTlIRnFRUThrY2VTd3IwMU16TDlKTFBPNG9qYU5jaXBHbFVkTnc9");
             InitializeComponent();            
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {

@@ -9,6 +9,7 @@ using RoomInfoRemote.Views;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace RoomInfoRemote.ViewModels
 {
@@ -50,6 +51,15 @@ namespace RoomInfoRemote.ViewModels
                     _networkCommunication.SendPayload(JsonConvert.SerializeObject(_discoveryPackage), null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
                 }
             });
+            Connectivity.ConnectivityChanged += (s, e) => RefreshRooms();
+        }
+
+        private void RefreshRooms()
+        {
+            IsRefreshing = true;
+            if (RoomItems != null) RoomItems.Clear();
+            _networkCommunication.SendPayload(JsonConvert.SerializeObject(_discoveryPackage), null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
+            IsRefreshing = false;
         }
 
         private void ProcessPackage(Package package, string hostName)
@@ -109,13 +119,7 @@ namespace RoomInfoRemote.ViewModels
         }
 
         private ICommand _refreshCommand;
-        public ICommand RefreshCommand => _refreshCommand ?? (_refreshCommand = new DelegateCommand<object>((param) =>
-        {
-            IsRefreshing = true;
-            if (RoomItems != null) RoomItems.Clear();
-            _networkCommunication.SendPayload(JsonConvert.SerializeObject(_discoveryPackage), null, Settings.UdpPort, NetworkProtocol.UserDatagram, true);
-            IsRefreshing = false;
-        }));
+        public ICommand RefreshCommand => _refreshCommand ?? (_refreshCommand = new DelegateCommand<object>((param) => RefreshRooms()));
 
         private ICommand _navigateToSelectedRoomPageCommand;
         public ICommand NavigateToSelectedRoomPageCommand => _navigateToSelectedRoomPageCommand ?? (_navigateToSelectedRoomPageCommand = new DelegateCommand<object>((param) =>
