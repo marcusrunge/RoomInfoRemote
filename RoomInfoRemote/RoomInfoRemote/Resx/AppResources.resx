@@ -208,7 +208,7 @@
     <value>http://3lys1um.myqnapcloud.com/Datenschutz/roominfo/en/</value>
   </data>
   <data name="RoomsPage_ReservationExtensionButton_Text" xml:space="preserve">
-    <value>Extend by 15 minutes</value>
+    <value>15 minutes extension</value>
   </data>
   <data name="CalendarPageTab_Title" xml:space="preserve">
     <value>Calendar</value>

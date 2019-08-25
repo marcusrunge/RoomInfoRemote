@@ -21,7 +21,7 @@
                     <behaviors:EventToCommandBehavior EventName="InlineItemTapped" Command="{Binding OpenReservationPopupCommand}" EventArgsConverter="{StaticResource inlineItemTappedEventArgsConverter}" />
                 </syncfusion:SfCalendar.Behaviors>
             </syncfusion:SfCalendar>
-            <Button x:Name="extensionButton" AbsoluteLayout.LayoutBounds=".5,1,.5,.1" AbsoluteLayout.LayoutFlags="All" Text="{extension:Translate RoomsPage_ReservationExtensionButton_Text}" IsVisible="{Binding IsExtensionButtonVisible}" Command="{Binding ExtendCurrentReservationCommand}"/>
+            <Button x:Name="extensionButton" AbsoluteLayout.LayoutBounds=".5,1,.75,.1" AbsoluteLayout.LayoutFlags="All" Text="{extension:Translate RoomsPage_ReservationExtensionButton_Text}" IsVisible="{Binding IsExtensionButtonVisible}" Command="{Binding ExtendCurrentReservationCommand}"/>
             <ContentView x:Name="reservationContentView" BackgroundColor="#D9808080" IsVisible="{Binding IsReservationContentViewVisible}" HorizontalOptions="Start" VerticalOptions="Center" Padding="12,0,12,0" HeightRequest="{Binding Source={x:Reference calendar},Path=Height}">
                 <ScrollView >
                     <StackLayout x:Name="reservationStackLayout" HorizontalOptions="Start" Margin="0,12,0,12">

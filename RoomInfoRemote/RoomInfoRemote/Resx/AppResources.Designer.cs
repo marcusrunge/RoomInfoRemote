@@ -214,7 +214,7 @@ namespace RoomInfoRemote.Resx {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Extend by 15 minutes ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die 15 minutes extension ähnelt.
         /// </summary>
         internal static string RoomsPage_ReservationExtensionButton_Text {
             get {
