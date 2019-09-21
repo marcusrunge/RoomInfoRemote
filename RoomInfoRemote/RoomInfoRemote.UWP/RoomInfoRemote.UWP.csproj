@@ -20,7 +20,7 @@
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <PackageCertificateKeyFile>
     </PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>2334EB17E710E8FEF61DF8F061622FF927949E0E</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>1259533BBD44B89A3EA7C63D0E0B4A7C74AD5582</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxPackageDir>C:\Users\Marcus Runge\Austausch\</AppxPackageDir>
