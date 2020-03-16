@@ -1,7 +1,7 @@
 ﻿using Android.Content;
-using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
+using Google.Android.Material.BottomNavigation;
 using RoomInfoRemote.Droid.CustomRenderer;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;

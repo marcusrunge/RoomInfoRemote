@@ -8,6 +8,7 @@ using RoomInfoRemote.Views;
 using Syncfusion.XForms.Buttons;
 using System;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace RoomInfoRemote.ViewModels
@@ -74,11 +75,11 @@ namespace RoomInfoRemote.ViewModels
         }));
 
         private ICommand _executeHyperLinkCommand;
-        public ICommand ExecuteHyperLinkCommand => _executeHyperLinkCommand ?? (_executeHyperLinkCommand = new DelegateCommand<object>((param) =>
+        public ICommand ExecuteHyperLinkCommand => _executeHyperLinkCommand ?? (_executeHyperLinkCommand = new DelegateCommand<object>(async (param) =>
         {
             try
             {
-                Device.OpenUri(new Uri(param as string));
+                await Launcher.TryOpenAsync(new Uri(param as string));
             }
             catch (Exception)
             {
