@@ -2,5 +2,5 @@
 
 namespace RoomInfoRemote.Models
 {
-    public class OpenReservationPopupEvent : PubSubEvent<string> { }    
+    public class OpenReservationPopupEvent : PubSubEvent<string> { }
 }

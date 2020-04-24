@@ -1,13 +1,13 @@
-﻿using System;
-using System.Text;
+﻿using RoomInfoRemote.Droid.DependencyServices;
 using RoomInfoRemote.Interfaces;
 using RoomInfoRemote.Models;
-using Xamarin.Forms;
-using RoomInfoRemote.Droid.DependencyServices;
-using System.Threading.Tasks;
-using System.Net.Sockets;
+using System;
 using System.IO;
 using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 [assembly: Dependency(typeof(NetworkCommunicationDependencyService))]
 namespace RoomInfoRemote.Droid.DependencyServices
@@ -112,13 +112,13 @@ namespace RoomInfoRemote.Droid.DependencyServices
                     await networkStream.WriteAsync(payloadAsBytes, 0, payloadAsBytes.Length);
                     using (StreamReader streamReader = new StreamReader(networkStream, Encoding.UTF8))
                     {
-                        string response = await streamReader.ReadLineAsync();                        
+                        string response = await streamReader.ReadLineAsync();
                         OnPayloadReceived(new PayloadReceivedEventArgs(((IPEndPoint)tcpClient.Client.RemoteEndPoint).Address.ToString(), response));
                         streamReader.Close();
                         networkStream.Close();
                         tcpClient.Close();
                     }
-                }                
+                }
             }
             catch { }
         }

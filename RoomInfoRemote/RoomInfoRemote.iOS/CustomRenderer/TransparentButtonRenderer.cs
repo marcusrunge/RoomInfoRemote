@@ -12,7 +12,7 @@ namespace RoomInfoRemote.iOS.Renderer
         {
             base.OnElementChanged(e);
             Control.BackgroundColor = UIKit.UIColor.Clear;
-            Control.TintColor= UIKit.UIColor.Clear;
+            Control.TintColor = UIKit.UIColor.Clear;
         }
     }
 }

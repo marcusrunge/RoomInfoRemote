@@ -13,5 +13,5 @@ namespace RoomInfoRemote.Models
             HostName = hostName;
         }
     }
-    public class CurrentPageChangedEvent : PubSubEvent<CurrentPageChangedEventArgs> { }    
+    public class CurrentPageChangedEvent : PubSubEvent<CurrentPageChangedEventArgs> { }
 }

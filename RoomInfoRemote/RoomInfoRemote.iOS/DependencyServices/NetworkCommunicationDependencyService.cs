@@ -1,12 +1,12 @@
-﻿using System;
+﻿using RoomInfoRemote.Interfaces;
+using RoomInfoRemote.iOS.DependencyServices;
+using RoomInfoRemote.Models;
+using System;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using RoomInfoRemote.Interfaces;
-using RoomInfoRemote.iOS.DependencyServices;
-using RoomInfoRemote.Models;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(NetworkCommunicationDependencyService))]

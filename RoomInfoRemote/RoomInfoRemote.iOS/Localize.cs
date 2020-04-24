@@ -1,8 +1,8 @@
-﻿using System.Globalization;
-using System.Threading;
-using Foundation;
+﻿using Foundation;
 using RoomInfoRemote.Helpers;
 using RoomInfoRemote.Interfaces;
+using System.Globalization;
+using System.Threading;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(RoomInfoRemote.iOS.Localize))]

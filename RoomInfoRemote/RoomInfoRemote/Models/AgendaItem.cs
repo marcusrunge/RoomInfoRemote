@@ -7,7 +7,7 @@ namespace RoomInfoRemote.Models
 {
     public class AgendaItem : BindableBase, IComparable
     {
-        int _id = default;        
+        int _id = default;
         public int Id { get => _id; set { SetProperty(ref _id, value); } }
 
         string _title = default;
@@ -34,11 +34,11 @@ namespace RoomInfoRemote.Models
         public long TimeStamp { get; set; }
 
         public bool IsDeleted { get; set; }
-                
+
         double _width = default;
         [JsonIgnore]
         public double Width { get => _width; set { SetProperty(ref _width, value); } }
-                
+
         double _mediumFontSize = default;
         [JsonIgnore]
         public double MediumFontSize { get => _mediumFontSize; set { SetProperty(ref _mediumFontSize, value); } }

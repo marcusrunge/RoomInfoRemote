@@ -17,7 +17,7 @@ namespace RoomInfoRemote.Droid.CustomRenderer
         protected override void OnElementChanged(ElementChangedEventArgs<TimePicker> e)
         {
             base.OnElementChanged(e);
-            if (Control!=null)
+            if (Control != null)
             {
                 Control.Gravity = GravityFlags.CenterHorizontal;
             }

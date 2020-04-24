@@ -8,8 +8,8 @@ using RoomInfoRemote.Models;
 using RoomInfoRemote.Views;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Xamarin.Forms;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace RoomInfoRemote.ViewModels
 {

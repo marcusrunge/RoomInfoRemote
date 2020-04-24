@@ -12,7 +12,7 @@ namespace RoomInfoRemote.Models
         IEventAggregator _eventAggregator = default;
         [JsonIgnore]
         public IEventAggregator EventAggregator { get => _eventAggregator; set { SetProperty(ref _eventAggregator, value); } }
-        int _id = default;        
+        int _id = default;
         public int Id { get => _id; set { SetProperty(ref _id, value); } }
 
         int _dayOfWeek = default;

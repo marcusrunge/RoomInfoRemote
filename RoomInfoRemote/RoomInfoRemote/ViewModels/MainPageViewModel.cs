@@ -48,7 +48,7 @@ namespace RoomInfoRemote.ViewModels
         private ICommand _notifyCurrentPageChangedCommand;
         public ICommand NotifyCurrentPageChangedCommand => _notifyCurrentPageChangedCommand ?? (_notifyCurrentPageChangedCommand = new DelegateCommand<object>((param) =>
         {
-                       
+
 
             var currentPageType = (param as TabbedPage).CurrentPage.GetType();
             _eventAggregator.GetEvent<CurrentPageChangedEvent>().Publish(new CurrentPageChangedEventArgs(currentPageType, null));

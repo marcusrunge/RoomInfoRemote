@@ -19,7 +19,7 @@ namespace RoomInfoRemote.Droid.DependencyServices
             {
                 case Theme.Default:
                     break;
-                case Theme.Light:                    
+                case Theme.Light:
                     break;
                 case Theme.Dark:
                     break;
