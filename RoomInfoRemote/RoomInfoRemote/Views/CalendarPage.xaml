@@ -5,7 +5,6 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RoomInfoRemote.Views.CalendarPage"
              xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
-             xmlns:syncfusionbuttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"             
              xmlns:extension="clr-namespace:RoomInfoRemote.Extension;assembly=RoomInfoRemote"
              xmlns:helpers="clr-namespace:RoomInfoRemote.Helpers;assembly=RoomInfoRemote">    
@@ -43,11 +42,18 @@
                                     <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference startDate}}"/>
                                 </DatePicker.Behaviors>
                             </DatePicker>
-                            <syncfusionbuttons:SfCheckBox x:Name="allDaySfCheckBox" Grid.Row="0" Grid.Column="1" Text="{extension:Translate RoomPage_AllDayButton_Text}" IsChecked="{Binding AgendaItem.IsAllDayEvent}" >
-                                <syncfusionbuttons:SfCheckBox.Behaviors>
-                                    <behaviors:EventToCommandBehavior EventName="StateChanged" Command="{Binding ChangeStateCommand}" CommandParameter="{Binding Source={x:Reference allDaySfCheckBox}, Path=IsChecked}"/>
-                                </syncfusionbuttons:SfCheckBox.Behaviors>
-                            </syncfusionbuttons:SfCheckBox>
+                            <Grid Grid.Row="0" Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>                                
+                                <Label Text="{extension:Translate RoomPage_AllDayButton_Text}" VerticalOptions="Center"/>
+                                <CheckBox x:Name="allDayCheckBox" Grid.Column="1" IsChecked="{Binding AgendaItem.IsAllDayEvent}" VerticalOptions="Center">
+                                    <CheckBox.Behaviors>
+                                        <behaviors:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding ChangeStateCommand}" CommandParameter="{Binding Source={x:Reference allDayCheckBox}, Path=IsChecked}"/>
+                                    </CheckBox.Behaviors>
+                                </CheckBox>
+                            </Grid>
                             <TimePicker x:Name="startTime" Grid.Row="1" Time="{Binding AgendaItem.Start.TimeOfDay, Mode=TwoWay}" HorizontalOptions="Center" WidthRequest="{Binding Source={x:Reference startDate}, Path=Width}">
                                 <TimePicker.Behaviors>
                                     <behaviors:EventToCommandBehavior EventName="PropertyChanged" Command="{Binding UpdateValueFromPickerCommand}" CommandParameter="{Binding Source={x:Reference startTime}}"/>

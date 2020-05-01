@@ -195,9 +195,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.10" />
-    <PackageReference Include="Syncfusion.Xamarin.Buttons">
-      <Version>18.1.0.46</Version>
-    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar">
       <Version>18.1.0.46</Version>
     </PackageReference>
