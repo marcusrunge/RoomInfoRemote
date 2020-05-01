@@ -365,14 +365,14 @@ namespace RoomInfoRemote.ViewModels
             if (AgendaItem == null) return;
             if (!(bool)param)
             {
-                AgendaItem.Start = AgendaItem.Start.Date + TimeSpan.FromHours(0);
-                AgendaItem.End = AgendaItem.End.Date + TimeSpan.FromHours(23).Add(TimeSpan.FromMinutes(59));
-            }
-            else
-            {
                 var now = DateTime.Now;
                 AgendaItem.Start = AgendaItem.Start.Date + now.TimeOfDay;
                 AgendaItem.End = AgendaItem.End.Date + now.TimeOfDay;
+            }
+            else
+            {
+                AgendaItem.Start = AgendaItem.Start.Date + TimeSpan.FromHours(0);
+                AgendaItem.End = AgendaItem.End.Date + TimeSpan.FromHours(23).Add(TimeSpan.FromMinutes(59));
             }
         }));
 

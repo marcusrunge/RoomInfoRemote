@@ -5,7 +5,6 @@ using RoomInfoRemote.Helpers;
 using RoomInfoRemote.Interfaces;
 using RoomInfoRemote.Models;
 using RoomInfoRemote.Views;
-using Syncfusion.XForms.Buttons;
 using System;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -56,23 +55,23 @@ namespace RoomInfoRemote.ViewModels
             VersionInfo = DependencyService.Get<IAppVersion>().VersionInfo();
         }
 
-        private ICommand _setThemeCommand;
-        public ICommand SetThemeCommand => _setThemeCommand ?? (_setThemeCommand = new DelegateCommand<object>((param) =>
-        {
-            if (param is SfRadioButton sfRadioButton)
-            {
-                if (sfRadioButton.StyleId.Equals("lightThemeRadioButton") && sfRadioButton.IsChecked == true)
-                {
-                    DependencyService.Get<IThemeSelectionDependencyService>().SetTheme(Theme.Light);
-                    Settings.Theme = Theme.Light;
-                }
-                else if (sfRadioButton.StyleId.Equals("darkThemeRadioButton") && sfRadioButton.IsChecked == true)
-                {
-                    DependencyService.Get<IThemeSelectionDependencyService>().SetTheme(Theme.Dark);
-                    Settings.Theme = Theme.Dark;
-                }
-            }
-        }));
+        //private ICommand _setThemeCommand;
+        //public ICommand SetThemeCommand => _setThemeCommand ?? (_setThemeCommand = new DelegateCommand<object>((param) =>
+        //{
+        //    if (param is SfRadioButton sfRadioButton)
+        //    {
+        //        if (sfRadioButton.StyleId.Equals("lightThemeRadioButton") && sfRadioButton.IsChecked == true)
+        //        {
+        //            DependencyService.Get<IThemeSelectionDependencyService>().SetTheme(Theme.Light);
+        //            Settings.Theme = Theme.Light;
+        //        }
+        //        else if (sfRadioButton.StyleId.Equals("darkThemeRadioButton") && sfRadioButton.IsChecked == true)
+        //        {
+        //            DependencyService.Get<IThemeSelectionDependencyService>().SetTheme(Theme.Dark);
+        //            Settings.Theme = Theme.Dark;
+        //        }
+        //    }
+        //}));
 
         private ICommand _executeHyperLinkCommand;
         public ICommand ExecuteHyperLinkCommand => _executeHyperLinkCommand ?? (_executeHyperLinkCommand = new DelegateCommand<object>(async (param) =>
