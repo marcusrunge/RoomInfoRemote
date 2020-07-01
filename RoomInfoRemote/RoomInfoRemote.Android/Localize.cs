@@ -17,16 +17,15 @@ namespace RoomInfoRemote.Droid
         }
         public CultureInfo GetCurrentCultureInfo()
         {
-            var netLanguage = "en";
             var androidLocale = Java.Util.Locale.Default;
-            netLanguage = AndroidToDotnetLanguage(androidLocale.ToString().Replace("_", "-"));
+            string netLanguage = AndroidToDotnetLanguage(androidLocale.ToString().Replace("_", "-"));
             // this gets called a lot - try/catch can be expensive so consider caching or something
-            CultureInfo ci = null;
+            CultureInfo ci;
             try
             {
                 ci = new CultureInfo(netLanguage);
             }
-            catch (CultureNotFoundException e1)
+            catch (CultureNotFoundException)
             {
                 // iOS locale not valid .NET culture (eg. "en-ES" : English in Spain)
                 // fallback to first characters, in this case "en"
@@ -35,7 +34,7 @@ namespace RoomInfoRemote.Droid
                     var fallback = ToDotnetFallbackLanguage(new PlatformCulture(netLanguage));
                     ci = new CultureInfo(fallback);
                 }
-                catch (CultureNotFoundException e2)
+                catch (CultureNotFoundException)
                 {
                     // iOS language not valid .NET culture, falling back to English
                     ci = new CultureInfo("en");
