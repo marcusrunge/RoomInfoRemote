@@ -62,7 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar">
-      <Version>18.2.0.45</Version>
+      <Version>18.2.0.47</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>4.1.0-beta</Version>

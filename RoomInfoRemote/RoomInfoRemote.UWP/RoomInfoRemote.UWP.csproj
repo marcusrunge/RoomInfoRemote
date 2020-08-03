@@ -196,7 +196,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.10" />
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar">
-      <Version>18.2.0.45</Version>
+      <Version>18.2.0.47</Version>
     </PackageReference>
     <PackageReference Include="Win2D.uwp">
       <Version>1.25.0</Version>
