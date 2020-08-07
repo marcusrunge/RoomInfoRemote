@@ -241,6 +241,8 @@
     <Language Code="no-no" InMinimumRequirementSet="true" />
     <Language Code="nso" InMinimumRequirementSet="true" />
     <Language Code="nso-za" InMinimumRequirementSet="true" />
+    <Language Code="om" InMinimumRequirementSet="false" />
+    <Language Code="om-et" InMinimumRequirementSet="false" />
     <Language Code="or" InMinimumRequirementSet="true" />
     <Language Code="or-in" InMinimumRequirementSet="true" />
     <Language Code="pa" InMinimumRequirementSet="true" />
@@ -359,11 +361,26 @@
     <Language Code="zu-za" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>marcusrunge.RoominfoRemote</MainPackageIdentityName>
+    <MainPackageIdentityName>27242Daedalus737.RoominfoRemote</MainPackageIdentityName>
     <ReservedNames>
       <ReservedName>Roominfo Remote</ReservedName>
       <ReservedName>Rauminfo Fernbedienung</ReservedName>
     </ReservedNames>
-  </ProductReservedInfo>  
+  </ProductReservedInfo>
+  <AccountPackageIdentityNames>
+    <MainPackageIdentityName>27242Daedalus737.B737NGFUEL</MainPackageIdentityName>
+    <MainPackageIdentityName>27242Daedalus737.Emirates</MainPackageIdentityName>
+    <MainPackageIdentityName>27242Daedalus737.Etihad</MainPackageIdentityName>
+    <MainPackageIdentityName>27242Daedalus737.Flirtbar</MainPackageIdentityName>
+    <MainPackageIdentityName>27242Daedalus737.flydubai</MainPackageIdentityName>
+    <MainPackageIdentityName>27242Daedalus737.568453A32A7D2</MainPackageIdentityName>
+    <MainPackageIdentityName>27242DAEDALUS737.MYDEFCON</MainPackageIdentityName>
+    <MainPackageIdentityName>27242Daedalus737.QatarAirways</MainPackageIdentityName>
+    <MainPackageIdentityName>27242Daedalus737.RoomInfo</MainPackageIdentityName>
+    <MainPackageIdentityName>27242Daedalus737.62063F8A9D697</MainPackageIdentityName>
+    <MainPackageIdentityName>27242Daedalus737.TheMNPSWATRSAPP</MainPackageIdentityName>
+    <MainPackageIdentityName>27242Daedalus737.TheBoeing737NGApp</MainPackageIdentityName>
+    <MainPackageIdentityName>27242Daedalus737.UniversalLeet</MainPackageIdentityName>
+  </AccountPackageIdentityNames>
   <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9NSMVKW8RKJF" />
 </StoreAssociation>

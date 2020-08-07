@@ -20,10 +20,10 @@
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <PackageCertificateKeyFile>
     </PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>1259533BBD44B89A3EA7C63D0E0B4A7C74AD5582</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>237E2A12EC4761282866FD01146390BED684D55A</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
-    <AppxPackageDir>C:\Users\Marcus Runge\Austausch\</AppxPackageDir>
+    <AppxPackageDir>C:\Users\mru\Downloads</AppxPackageDir>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <AppInstallerUpdateFrequency>0</AppInstallerUpdateFrequency>
@@ -196,7 +196,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.10" />
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar">
-      <Version>18.2.0.47</Version>
+      <Version>18.2.0.48</Version>
     </PackageReference>
     <PackageReference Include="Win2D.uwp">
       <Version>1.25.0</Version>
@@ -207,7 +207,7 @@
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.5.3.2</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1143-pre1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />
     <PackageReference Include="Prism.Unity.Forms" Version="8.0.0.1740-pre" />
   </ItemGroup>
   <ItemGroup>
@@ -217,7 +217,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="RoomInfoRemote.UWP_StoreKey.pfx" />
     <None Include="RoomInfoRemote.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

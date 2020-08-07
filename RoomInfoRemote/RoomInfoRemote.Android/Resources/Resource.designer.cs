@@ -4315,6 +4315,7 @@ namespace RoomInfoRemote.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.String.fab_transformation_sheet_behavior = global::RoomInfoRemote.Droid.Resource.String.fab_transformation_sheet_behavior;
 			global::Xamarin.Forms.Platform.Android.Resource.String.hide_bottom_view_on_scroll_behavior = global::RoomInfoRemote.Droid.Resource.String.hide_bottom_view_on_scroll_behavior;
 			global::Xamarin.Forms.Platform.Android.Resource.String.mtrl_chip_close_icon_content_description = global::RoomInfoRemote.Droid.Resource.String.mtrl_chip_close_icon_content_description;
+			global::Xamarin.Forms.Platform.Android.Resource.String.overflow_tab_title = global::RoomInfoRemote.Droid.Resource.String.overflow_tab_title;
 			global::Xamarin.Forms.Platform.Android.Resource.String.password_toggle_content_description = global::RoomInfoRemote.Droid.Resource.String.password_toggle_content_description;
 			global::Xamarin.Forms.Platform.Android.Resource.String.path_password_eye = global::RoomInfoRemote.Droid.Resource.String.path_password_eye;
 			global::Xamarin.Forms.Platform.Android.Resource.String.path_password_eye_mask_strike_through = global::RoomInfoRemote.Droid.Resource.String.path_password_eye_mask_strike_through;
@@ -6949,6 +6950,7 @@ namespace RoomInfoRemote.Droid
 			global::Xamarin.Forms.Platform.Resource.String.fab_transformation_sheet_behavior = global::RoomInfoRemote.Droid.Resource.String.fab_transformation_sheet_behavior;
 			global::Xamarin.Forms.Platform.Resource.String.hide_bottom_view_on_scroll_behavior = global::RoomInfoRemote.Droid.Resource.String.hide_bottom_view_on_scroll_behavior;
 			global::Xamarin.Forms.Platform.Resource.String.mtrl_chip_close_icon_content_description = global::RoomInfoRemote.Droid.Resource.String.mtrl_chip_close_icon_content_description;
+			global::Xamarin.Forms.Platform.Resource.String.overflow_tab_title = global::RoomInfoRemote.Droid.Resource.String.overflow_tab_title;
 			global::Xamarin.Forms.Platform.Resource.String.password_toggle_content_description = global::RoomInfoRemote.Droid.Resource.String.password_toggle_content_description;
 			global::Xamarin.Forms.Platform.Resource.String.path_password_eye = global::RoomInfoRemote.Droid.Resource.String.path_password_eye;
 			global::Xamarin.Forms.Platform.Resource.String.path_password_eye_mask_strike_through = global::RoomInfoRemote.Droid.Resource.String.path_password_eye_mask_strike_through;
@@ -15240,31 +15242,34 @@ namespace RoomInfoRemote.Droid
 			public const int mtrl_picker_toggle_to_year_selection = 2131624037;
 			
 			// aapt resource value: 0x7F0E0066
-			public const int password_toggle_content_description = 2131624038;
+			public const int overflow_tab_title = 2131624038;
 			
 			// aapt resource value: 0x7F0E0067
-			public const int path_password_eye = 2131624039;
+			public const int password_toggle_content_description = 2131624039;
 			
 			// aapt resource value: 0x7F0E0068
-			public const int path_password_eye_mask_strike_through = 2131624040;
+			public const int path_password_eye = 2131624040;
 			
 			// aapt resource value: 0x7F0E0069
-			public const int path_password_eye_mask_visible = 2131624041;
+			public const int path_password_eye_mask_strike_through = 2131624041;
 			
 			// aapt resource value: 0x7F0E006A
-			public const int path_password_strike_through = 2131624042;
+			public const int path_password_eye_mask_visible = 2131624042;
 			
 			// aapt resource value: 0x7F0E006B
-			public const int search_menu_title = 2131624043;
+			public const int path_password_strike_through = 2131624043;
 			
 			// aapt resource value: 0x7F0E006C
-			public const int sfcalendar_inlineviewalldaytext = 2131624044;
+			public const int search_menu_title = 2131624044;
 			
 			// aapt resource value: 0x7F0E006D
-			public const int sfcalendar_inlineviewnoappointmenttext = 2131624045;
+			public const int sfcalendar_inlineviewalldaytext = 2131624045;
 			
 			// aapt resource value: 0x7F0E006E
-			public const int status_bar_notification_info_overflow = 2131624046;
+			public const int sfcalendar_inlineviewnoappointmenttext = 2131624046;
+			
+			// aapt resource value: 0x7F0E006F
+			public const int status_bar_notification_info_overflow = 2131624047;
 			
 			static String()
 			{

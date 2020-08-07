@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.2.8</Version>
+    <Version>1.2.9</Version>
     <RepositoryUrl>https://github.com/marcusrunge/RoomInfoRemote</RepositoryUrl>
-    <AssemblyVersion>1.2.8.0</AssemblyVersion>
-    <FileVersion>1.2.8.0</FileVersion>
+    <AssemblyVersion>1.2.9.0</AssemblyVersion>
+    <FileVersion>1.2.9.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -14,10 +14,10 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="18.2.0.48" />
     <PackageReference Include="Xam.Plugins.Settings" Version="4.1.0-beta" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1143-pre1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />
     <PackageReference Include="Prism.Unity.Forms" Version="8.0.0.1740-pre" />
   </ItemGroup>
 
