@@ -62,7 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar">
-      <Version>18.3.0.40</Version>
+      <Version>18.3.0.42</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>4.1.0-beta</Version>
@@ -82,13 +82,13 @@
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.5.3.2</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1534" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.1.0.1-rc3" />
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.4" />
     <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4" Version="1.0.0.5" />
     <PackageReference Include="Xamarin.AndroidX.CardView" Version="1.0.0.5" />
     <PackageReference Include="Xamarin.AndroidX.MediaRouter" Version="1.0.0-preview02" />
-    <PackageReference Include="Prism.Unity.Forms" Version="8.0.0.1740-pre" />
+    <PackageReference Include="Prism.Unity.Forms" Version="8.0.0.1909" />
     <PackageReference Include="Xamarin.AndroidX.Migration" Version="1.0.7.1" />
     <PackageReference Include="Xamarin.AndroidX.AppCompat.Resources" Version="1.1.0.1" />
   </ItemGroup>
