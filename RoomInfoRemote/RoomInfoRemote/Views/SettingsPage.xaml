@@ -13,22 +13,7 @@
                 <Entry Text="{Binding TcpPort, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" Placeholder="8273" MaxLength="15" Keyboard="Numeric" HorizontalOptions="Start"/>
                 <Label Text="{extension:Translate SettingsPage_UdpPort}" />
                 <Entry Text="{Binding UdpPort, Mode=TwoWay, UpdateSourceEventName=ValueChanged}" Placeholder="8274" MaxLength="5" Keyboard="Numeric" HorizontalOptions="Start"/>
-            </StackLayout>
-            <!--<StackLayout Margin="0, 20, 0, 48">
-                <Label Text="{extension:Translate SettingsPage_Themes}" FontSize="Medium"/>
-                <syncfusionbuttons:SfRadioGroup>
-                    <syncfusionbuttons:SfRadioButton x:Name="lightThemeRadioButton" Text="{extension:Translate SettingsPage_Theme_Light}">
-                        <syncfusionbuttons:SfRadioButton.Behaviors>
-                            <behaviors:EventToCommandBehavior EventName="StateChanged" Command="{Binding SetThemeCommand}" CommandParameter="{Binding Source={x:Reference lightThemeRadioButton}}"/>
-                        </syncfusionbuttons:SfRadioButton.Behaviors>
-                    </syncfusionbuttons:SfRadioButton>
-                    <syncfusionbuttons:SfRadioButton x:Name="darkThemeRadioButton" Text="{extension:Translate SettingsPage_Theme_Dark}">
-                        <syncfusionbuttons:SfRadioButton.Behaviors>
-                            <behaviors:EventToCommandBehavior EventName="StateChanged" Command="{Binding SetThemeCommand}" CommandParameter="{Binding Source={x:Reference darkThemeRadioButton}}"/>
-                        </syncfusionbuttons:SfRadioButton.Behaviors>
-                    </syncfusionbuttons:SfRadioButton>
-                </syncfusionbuttons:SfRadioGroup>
-            </StackLayout>-->
+            </StackLayout>            
             <StackLayout Margin="0, 20, 0, 48">
                 <Label Text="{extension:Translate SettingsPage_About}" FontSize="Medium" HorizontalOptions="Start"/>
                 <Grid HorizontalOptions="Start"> 
