@@ -23,7 +23,7 @@ namespace RoomInfoRemote
 
         protected override async void OnInitialized()
         {
-            SyncfusionLicenseProvider.RegisterLicense("MzQwMzU3QDMxMzgyZTMzMmUzMFRVeTIvbUJuNE1zR2d5bWR6eHdGdjRqR0F4RE11SHpYd1FhU24vUUhIak09");
+            SyncfusionLicenseProvider.RegisterLicense("MzY5MzMwQDMxMzgyZTM0MmUzMGRzcTNUU08xZDlpblZNNE5FeWlVV1FyOENTdW54L1lXdTF5eUNLdy84YWs9");
             InitializeComponent();
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {
