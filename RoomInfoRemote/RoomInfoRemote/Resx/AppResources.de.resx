@@ -243,4 +243,7 @@
   <data name="StandardWeekPageMenuItem_Edit" xml:space="preserve">
     <value>Bearbeiten</value>
   </data>
+  <data name="SettingsPage_Softwareengineering" xml:space="preserve">
+    <value>SOFTWARETECHNIK</value>
+  </data>
 </root>

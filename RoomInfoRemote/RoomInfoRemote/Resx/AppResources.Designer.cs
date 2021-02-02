@@ -286,6 +286,15 @@ namespace RoomInfoRemote.Resx {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die SOFTWAREENGINEERING ähnelt.
+        /// </summary>
+        internal static string SettingsPage_Softwareengineering {
+            get {
+                return ResourceManager.GetString("SettingsPage_Softwareengineering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Support ähnelt.
         /// </summary>
         internal static string SettingsPage_Support {
