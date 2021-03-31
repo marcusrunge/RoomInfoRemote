@@ -313,7 +313,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar">
-      <Version>18.4.0.44</Version>
+      <Version>19.1.0.54</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>4.1.0-beta</Version>
