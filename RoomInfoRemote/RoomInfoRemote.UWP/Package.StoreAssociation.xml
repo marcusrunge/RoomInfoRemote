@@ -361,10 +361,11 @@
     <Language Code="zu-za" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>27242Daedalus737.RoominfoRemote</MainPackageIdentityName>
+    <MainPackageIdentityName>27242Daedalus737.RoomInfo</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>Roominfo Remote</ReservedName>
-      <ReservedName>Rauminfo Fernbedienung</ReservedName>
+      <ReservedName>Room Info</ReservedName>
+      <ReservedName>Raum Info</ReservedName>
+      <ReservedName>Informations sur la chambre</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
@@ -376,11 +377,11 @@
     <MainPackageIdentityName>27242Daedalus737.568453A32A7D2</MainPackageIdentityName>
     <MainPackageIdentityName>27242DAEDALUS737.MYDEFCON</MainPackageIdentityName>
     <MainPackageIdentityName>27242Daedalus737.QatarAirways</MainPackageIdentityName>
-    <MainPackageIdentityName>27242Daedalus737.RoomInfo</MainPackageIdentityName>
+    <MainPackageIdentityName>27242Daedalus737.RoominfoRemote</MainPackageIdentityName>
     <MainPackageIdentityName>27242Daedalus737.62063F8A9D697</MainPackageIdentityName>
     <MainPackageIdentityName>27242Daedalus737.TheMNPSWATRSAPP</MainPackageIdentityName>
     <MainPackageIdentityName>27242Daedalus737.TheBoeing737NGApp</MainPackageIdentityName>
     <MainPackageIdentityName>27242Daedalus737.UniversalLeet</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9NSMVKW8RKJF" />
+  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9N4B3GMGZ7M7" />
 </StoreAssociation>
