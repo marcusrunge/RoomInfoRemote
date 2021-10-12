@@ -4,7 +4,7 @@
   <mp:PhoneIdentity PhoneProductId="83998e48-d58a-481f-933e-f6ebef7862e0" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Roominfo Remote</DisplayName>
-    <PublisherDisplayName>34360351-E0A4-43A5-99AE-0840493AC494</PublisherDisplayName>
+    <PublisherDisplayName>MR Softwaretechnik</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
